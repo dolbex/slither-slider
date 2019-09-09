@@ -1,8 +1,17 @@
 import Vue from 'vue';
-import App from './App.vue';
+import Slider from './components/Slider.vue';
 
-Vue.config.productionTip = false;
-
-new Vue({
-  render: h => h(App),
-}).$mount('#app');
+export default {
+  functional: true,
+  props: {
+    config: {
+      type: Object,
+      default: () => ({}),
+    },
+  },
+  render(h) {
+    return h(Slider, this.$slots.default, {
+      props: this.$props,
+    });
+  },
+};
