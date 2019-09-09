@@ -8,7 +8,7 @@
 import Slider from './components/Slider.vue';
 
 export default {
-  name: 'App',
+  name: 'SlitherSlider',
   components: {
     Slider,
   },
