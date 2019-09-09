@@ -1341,12 +1341,12 @@ if (typeof window !== 'undefined') {
 // Indicate to webpack that this file can be concatenated
 /* harmony default export */ var setPublicPath = (null);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"b817028a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/App.vue?vue&type=template&id=6fce3ed8&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"b817028a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/SlitherSlider.vue?vue&type=template&id=24256109&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('slider',{attrs:{"config":_vm.config}},[_vm._t("default")],2)}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/App.vue?vue&type=template&id=6fce3ed8&
+// CONCATENATED MODULE: ./src/SlitherSlider.vue?vue&type=template&id=24256109&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"b817028a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Slider.vue?vue&type=template&id=0260339e&
 var Slidervue_type_template_id_0260339e_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('div',{ref:"slidesSlot",class:{'slider-hide': _vm.loaded}},[_vm._t("default")],2),(_vm.slides.length > 0)?_c('slider-frame',{ref:"sliderframe",scopedSlots:_vm._u([{key:"default",fn:function(ref){
@@ -1814,7 +1814,7 @@ var Slider_component = normalizeComponent(
 )
 
 /* harmony default export */ var Slider = (Slider_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/App.vue?vue&type=script&lang=js&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/SlitherSlider.vue?vue&type=script&lang=js&
 //
 //
 //
@@ -1822,7 +1822,7 @@ var Slider_component = normalizeComponent(
 //
 //
 
-/* harmony default export */ var Appvue_type_script_lang_js_ = ({
+/* harmony default export */ var SlitherSlidervue_type_script_lang_js_ = ({
   name: 'App',
   components: {
     Slider: Slider
@@ -1836,9 +1836,9 @@ var Slider_component = normalizeComponent(
     }
   }
 });
-// CONCATENATED MODULE: ./src/App.vue?vue&type=script&lang=js&
- /* harmony default export */ var src_Appvue_type_script_lang_js_ = (Appvue_type_script_lang_js_); 
-// CONCATENATED MODULE: ./src/App.vue
+// CONCATENATED MODULE: ./src/SlitherSlider.vue?vue&type=script&lang=js&
+ /* harmony default export */ var src_SlitherSlidervue_type_script_lang_js_ = (SlitherSlidervue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./src/SlitherSlider.vue
 
 
 
@@ -1846,8 +1846,8 @@ var Slider_component = normalizeComponent(
 
 /* normalize component */
 
-var App_component = normalizeComponent(
-  src_Appvue_type_script_lang_js_,
+var SlitherSlider_component = normalizeComponent(
+  src_SlitherSlidervue_type_script_lang_js_,
   render,
   staticRenderFns,
   false,
@@ -1857,11 +1857,11 @@ var App_component = normalizeComponent(
   
 )
 
-/* harmony default export */ var App = (App_component.exports);
+/* harmony default export */ var SlitherSlider = (SlitherSlider_component.exports);
 // CONCATENATED MODULE: ./node_modules/@vue/cli-service/lib/commands/build/entry-lib.js
 
 
-/* harmony default export */ var entry_lib = __webpack_exports__["default"] = (App);
+/* harmony default export */ var entry_lib = __webpack_exports__["default"] = (SlitherSlider);
 
 
 
