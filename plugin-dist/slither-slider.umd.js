@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define([], factory);
 	else if(typeof exports === 'object')
-		exports["test-lib"] = factory();
+		exports["slither-slider"] = factory();
 	else
-		root["test-lib"] = factory();
+		root["slither-slider"] = factory();
 })((typeof self !== 'undefined' ? self : this), function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -2346,15 +2346,17 @@ var SlitherSlider_component = normalizeComponent(
 )
 
 /* harmony default export */ var SlitherSlider = (SlitherSlider_component.exports);
-// CONCATENATED MODULE: ./src/library-entry.js
+// CONCATENATED MODULE: ./src/library-plugin.js
 
-/* harmony default export */ var library_entry = ({
-  SlitherSlider: SlitherSlider
+/* harmony default export */ var library_plugin = ({
+  install: function install(Vue) {
+    Vue.component('slither-slider', SlitherSlider);
+  }
 });
 // CONCATENATED MODULE: ./node_modules/@vue/cli-service/lib/commands/build/entry-lib.js
 
 
-/* harmony default export */ var entry_lib = __webpack_exports__["default"] = (library_entry);
+/* harmony default export */ var entry_lib = __webpack_exports__["default"] = (library_plugin);
 
 
 
@@ -2362,4 +2364,4 @@ var SlitherSlider_component = normalizeComponent(
 
 /******/ });
 });
-//# sourceMappingURL=test-lib.umd.js.map
+//# sourceMappingURL=slither-slider.umd.js.map

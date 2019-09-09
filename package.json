@@ -1,5 +1,14 @@
 {
   "name": "slither-slider",
+  "description": "Simple Vue JS slider for Vue JS that pretty much takes what you throw at it. Features 'fullscreen', lazy loading, and easy customization",
+  "keywords": [
+    "vue",
+    "vuejs",
+    "slider",
+    "lazy",
+    "slither"
+  ],
+  "license": "MIT",
   "version": "0.1.0",
   "private": false,
   "main": "./dist/slither-slider.umd.min.js",

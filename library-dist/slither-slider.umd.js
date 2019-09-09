@@ -1,5 +1,14 @@
-module.exports =
-/******/ (function(modules) { // webpackBootstrap
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else if(typeof exports === 'object')
+		exports["slither-slider"] = factory();
+	else
+		root["slither-slider"] = factory();
+})((typeof self !== 'undefined' ? self : this), function() {
+return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 /******/
@@ -2352,4 +2361,5 @@ var SlitherSlider_component = normalizeComponent(
 /***/ })
 
 /******/ });
-//# sourceMappingURL=test-lib.common.js.map
+});
+//# sourceMappingURL=slither-slider.umd.js.map

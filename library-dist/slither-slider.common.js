@@ -2337,21 +2337,19 @@ var SlitherSlider_component = normalizeComponent(
 )
 
 /* harmony default export */ var SlitherSlider = (SlitherSlider_component.exports);
-// CONCATENATED MODULE: ./src/library-plugin.js
+// CONCATENATED MODULE: ./src/library-entry.js
 
-/* harmony default export */ var library_plugin = ({
-  install: function install(Vue) {
-    Vue.component('slither-slider', SlitherSlider);
-  }
+/* harmony default export */ var library_entry = ({
+  SlitherSlider: SlitherSlider
 });
 // CONCATENATED MODULE: ./node_modules/@vue/cli-service/lib/commands/build/entry-lib.js
 
 
-/* harmony default export */ var entry_lib = __webpack_exports__["default"] = (library_plugin);
+/* harmony default export */ var entry_lib = __webpack_exports__["default"] = (library_entry);
 
 
 
 /***/ })
 
 /******/ });
-//# sourceMappingURL=test-lib.common.js.map
+//# sourceMappingURL=slither-slider.common.js.map
