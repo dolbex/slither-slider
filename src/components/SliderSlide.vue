@@ -12,7 +12,17 @@
 <script>
 export default {
   name: 'SliderSlide',
-  data() {
+  props: {
+    options: {
+      type: Object,
+      default () {
+        return {
+          lazy: false
+        }
+      }
+    }
+  },
+  data () {
     return {
       active: false,
       transition: '',
@@ -21,16 +31,30 @@ export default {
   methods: {
     // Deactivate and hide the slide and
     // also activate the correct transition.
-    hide(direction) {
+    hide (direction) {
       this.transition = `SliderSlide--transition-${direction}`;
       this.active = false;
     },
     // Activate and show the slide and
     // also activate the correct transition.
-    show(direction) {
+    show (direction) {
       this.transition = `SliderSlide--transition-${direction}`;
+      this.checkLazy();
       this.active = true;
     },
+
+    checkLazy () {
+      if (this.options.lazy) {
+        const lazyImages = this.$el.getElementsByClassName("slither-lazy");
+        for (let image of lazyImages) {
+          if (image.hasAttribute('data-src')) {
+            const imageSrc = image.getAttribute('data-src')
+            image.setAttribute('src', imageSrc)
+            image.removeAttribute('data-src')
+          }
+        }
+      }
+    }
   },
 };
 </script>

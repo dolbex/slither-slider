@@ -5,8 +5,12 @@
   "main": "./dist/slither-slider.umd.min.js",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --mode production --dest dist --target lib --dashboard --name slither-slider ./src/SlitherSlider.vue",
-    "lint": "vue-cli-service lint"
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "build-lib": "npm run build-lib:library && npm run build-lib:plugin",
+    "build-lib:library": "vue-cli-service build --target lib --name slither-slider src/library-entry.js --dest library-dist/",
+    "build-lib:plugin": "vue-cli-service build --target lib --name slither-slider src/library-plugin.js --dest plugin-dist/",
+    "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
     "core-js": "^2.6.5",

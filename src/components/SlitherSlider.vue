@@ -1,11 +1,13 @@
 <template>
-  <slider :config="config">
-    <slot></slot>
-  </slider>
+  <div id="app">
+    <slider :config="config">
+      <slot></slot>
+    </slider>
+  </div>
 </template>
 
 <script>
-import Slider from './components/Slider.vue';
+import Slider from './Slider.vue';
 
 export default {
   name: 'SlitherSlider',

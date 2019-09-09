@@ -3,7 +3,7 @@
     <!-- Holder for incoming HTML -->
     <div
       ref="slidesSlot"
-      :class="{'slider-hide': loaded}"
+      v-show="false"
     >
       <slot></slot>
     </div>
@@ -25,6 +25,7 @@
             v-for="(slide, key) in slides"
             :key="key"
             v-html="slide"
+            :options="options"
           >
           </slider-slide>
         </slider-slides>
@@ -85,19 +86,20 @@ export default {
       default: () => ({}),
     },
   },
-  data() {
+  data () {
     return {
       options: {
         nextPrev: true,
         dots: true,
         fullscreen: false,
+        lazy: false,
       },
       slides: [],
       inlineHeight: 0,
       loaded: false,
     };
   },
-  mounted() {
+  mounted () {
     this.setOptions();
     this.addSlides();
     this.$nextTick(() => {
@@ -105,10 +107,10 @@ export default {
     });
   },
   methods: {
-    setOptions() {
+    setOptions () {
       this.options = Object.assign({}, this.options, this.config);
     },
-    addSlides() {
+    addSlides () {
       this.$refs.slidesSlot.childNodes.forEach((node) => {
         // find THE HIGHEST!!!
         this.inlineHeight = this.inlineHeight > node.offsetHeight
@@ -119,19 +121,19 @@ export default {
       });
       this.loaded = true;
     },
-    calculateHeight() {
+    calculateHeight () {
       if (this.options.fullscreen) {
         this.setFullScreen();
       } else {
         this.setInlineHeight();
       }
     },
-    setFullScreen() {
+    setFullScreen () {
       this.$refs.slides.$el.childNodes.forEach((node) => {
         node.style.height = `${window.innerHeight}px`;
       });
     },
-    setInlineHeight() {
+    setInlineHeight () {
       this.$refs.slides.$el.childNodes.forEach((node) => {
         node.style.height = `${this.inlineHeight}px`;
       });
@@ -143,10 +145,6 @@ export default {
 <style lang="scss">
 .slider {
   position: relative;
-}
-
-.slider-hide {
-  display: none;
 }
 
 .slider-fullscreen {
