@@ -11,7 +11,7 @@
   "license": "MIT",
   "version": "0.1.0",
   "private": false,
-  "main": "./dist/slither-slider.umd.min.js",
+  "main": "./plugin-dist/slither-slider.umd.min.js",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
