@@ -1,8 +1,6 @@
 <template>
-  <slider :config="{dots:false, fullscreen:true}">
-    <div :style="{backgroundColor: 'red', height:'10000px'}">Yeah</div>
-    <div>Yo</div>
-    <div>Boo</div>
+  <slider :config="config">
+    <slot></slot>
   </slider>
 </template>
 
@@ -13,6 +11,14 @@ export default {
   name: 'App',
   components: {
     Slider,
+  },
+  props: {
+    config: {
+      type: Object,
+      default() {
+        return {};
+      },
+    },
   },
 };
 </script>
