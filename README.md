@@ -1,6 +1,6 @@
 # Slither Slider
 
-[Snakes.... I hate snakes](https://github.com/dolbex/slither-slider/blob/master/snake.png?raw=true)
+![Snakes.... I hate snakes](https://github.com/dolbex/slither-slider/blob/master/snake.png?raw=true)
 
 ## Usage
 
