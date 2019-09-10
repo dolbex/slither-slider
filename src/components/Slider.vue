@@ -57,13 +57,10 @@
             <li
               v-for="n in slides.length"
               :key="n"
+              class="slider-dot"
+              @click="goToIndex(n - 1)"
             >
-              <div
-                @click="goToIndex(n - 1)"
-                class="slider-dot"
-              >
-                {{ n }}
-              </div>
+              {{ n }}
             </li>
           </ol>
         </template>
