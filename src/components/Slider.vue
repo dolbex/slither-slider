@@ -200,10 +200,6 @@ export default {
   right: 0.5em;
 }
 
-.slider-slide {
-  width: 100%;
-}
-
 .slider-dots {
   position: absolute;
   right: 0;

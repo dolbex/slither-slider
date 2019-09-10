@@ -73,7 +73,7 @@ export default {
 .slider-slide--transition-left-leave-active,
 .slider-slide--transition-right-enter-active,
 .slider-slide--transition-right-leave-active {
-  transition-duration: 1s;
+  transition-duration: 750ms;
   transition-property: height, opacity, transform;
   transition-timing-function: cubic-bezier(0.55, 0, 0.1, 1);
   overflow: hidden;
@@ -81,19 +81,19 @@ export default {
 
 .slider-slide--transition-left-leave-active,
 .slider-slide--transition-right-leave-active {
-  top: 0;
   position: absolute;
+  transition-duration: 0s;
 }
 
 .slider-slide--transition-left-enter,
 .slider-slide--transition-right-leave-active {
   opacity: 0;
-  transform: translate(2em, 0);
+  transform: translate(3em, 0);
 }
 
 .slider-slide--transition-left-leave-active,
 .slider-slide--transition-right-enter {
   opacity: 0;
-  transform: translate(-2em, 0);
+  transform: translate(-3em, 0);
 }
 </style>
