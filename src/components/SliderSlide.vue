@@ -69,10 +69,6 @@ export default {
 </script>
 
 <style lang="scss">
-.slider-slide {
-  float: left;
-}
-
 .slider-slide--transition-left-enter-active,
 .slider-slide--transition-left-leave-active,
 .slider-slide--transition-right-enter-active,
