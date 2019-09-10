@@ -24,7 +24,7 @@
         <!-- Slides -->
         <slider-slides
           ref="slides"
-          :style="{overflow:'hidden', display:'flex'}"
+          class="slides"
         >
           <slider-slide
             v-for="(slide, key) in slides"
@@ -61,7 +61,7 @@
         <template v-if="options.dots && slides.length > 1">
           <ol class="slider-dots">
             <li
-              v-for="n in slides.length"
+              v-for="n in numberOfPages"
               :key="n"
               class="slider-dot"
               :class="{'active-slide': (n-1) === activeIndex}"
@@ -93,6 +93,14 @@ export default {
     config: {
       type: Object,
       default: () => ({}),
+    },
+  },
+  computed: {
+    slidesCount () {
+      return this.slides.length;
+    },
+    numberOfPages () {
+      return Math.ceil(this.slidesCount / this.options.numberOfSlides)
     },
   },
   data () {
@@ -206,5 +214,11 @@ export default {
   padding: 0;
   margin: 0;
   list-style: none;
+}
+
+.slides {
+  overflow: hidden;
+  display: flex;
+  justify-content: space-around;
 }
 </style>

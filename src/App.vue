@@ -24,7 +24,7 @@
 
       <h1>Slider with logical slides and options</h1>
 
-      <slither-slider :options="{dots:false, numberOfSlides:3}">
+      <slither-slider :options="{dots:true, numberOfSlides:3}">
         <div
           v-for="n in 35"
           :key="n"
