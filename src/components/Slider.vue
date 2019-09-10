@@ -12,6 +12,7 @@
     <slider-frame
       ref="sliderframe"
       v-if="slides.length > 0"
+      @active-index-changed="activeIndexChanged"
     >
       <!-- DIV container - parent of the outputted slider -->
       <div
@@ -58,6 +59,7 @@
               v-for="n in slides.length"
               :key="n"
               class="slider-dot"
+              :class="{'active-slide': (n-1) === activeIndex}"
               @click="goToIndex(n - 1)"
             >
               {{ n }}
@@ -90,6 +92,7 @@ export default {
   },
   data () {
     return {
+      activeIndex: 1,
       options: {
         controls: true,
         dots: true,
@@ -145,6 +148,9 @@ export default {
         node.style.height = `${this.inlineHeight}px`;
       });
     },
+    activeIndexChanged (index) {
+      this.activeIndex = index;
+    }
   },
 };
 </script>
@@ -162,7 +168,9 @@ export default {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  outline: 0em;
+  &:focus {
+    outline: none;
+  }
 }
 
 .slider-direction--prev {
@@ -184,5 +192,8 @@ export default {
   left: 0;
   display: flex;
   justify-content: center;
+  padding: 0;
+  margin: 0;
+  list-style: none;
 }
 </style>

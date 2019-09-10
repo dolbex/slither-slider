@@ -1,35 +1,35 @@
 export default {
-  data() {
+  data () {
     return {
       activeIndex: 0,
     };
   },
   computed: {
-    slides() {
+    slides () {
       // All slides must be children of the `SliderSlides` component.
       return this.$children
         .find(x => x.$options.name === 'SliderSlides').$children;
     },
-    slidesCount() {
+    slidesCount () {
       return this.slides.length;
     },
-    nextIndex() {
+    nextIndex () {
       const nextIndex = this.activeIndex + 1;
 
       return nextIndex <= this.slidesCount - 1 ? nextIndex : 0;
     },
-    prevIndex() {
+    prevIndex () {
       const prevIndex = this.activeIndex - 1;
 
       return prevIndex >= 0 ? prevIndex : this.slidesCount - 1;
     },
   },
-  mounted() {
+  mounted () {
     // Immediately activate the first slide.
     this.goToIndex(this.activeIndex);
   },
   methods: {
-    goToIndex(index) {
+    goToIndex (index) {
       // Find out the direction we're moving.
       // This is useful for animations.
       const direction = index > this.activeIndex ? 'left' : 'right';
@@ -40,15 +40,16 @@ export default {
       // component with the correspondign index.
       this.slides[index].show(direction);
       this.activeIndex = index;
+      this.$emit('active-index-changed', index)
     },
-    next() {
+    next () {
       this.goToIndex(this.nextIndex);
     },
-    prev() {
+    prev () {
       this.goToIndex(this.prevIndex);
     },
   },
-  render() {
+  render () {
     return this.$scopedSlots.default({
       // Data
       activeIndex: this.activeIndex,
