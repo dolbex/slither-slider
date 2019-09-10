@@ -12,10 +12,10 @@
       <div>Boo</div>
 
       <template slot="previous">
-        Before
+        <div>WTF</div>
       </template>
       <template slot="next">
-        After
+        <div>After</div>
       </template>
     </slither-slider>
   </div>

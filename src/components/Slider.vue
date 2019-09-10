@@ -122,7 +122,10 @@ export default {
           ? this.inlineHeight : node.offsetHeight;
 
         // Push into slides
-        this.slides.push(node.outerHTML);
+        console.log(node.outerHTML)
+        if (node.outerHTML.length > 0) {
+          this.slides.push(node.outerHTML);
+        }
       });
       this.loaded = true;
     },
@@ -163,6 +166,7 @@ export default {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+  outline: 0em;
 }
 
 .slider-direction--prev {
