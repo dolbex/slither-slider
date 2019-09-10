@@ -1,8 +1,5 @@
 <template>
-  <div
-    id="app"
-    class="slither-slider"
-  >
+  <div class="slither-slider">
     <slider :config="options">
       <slot></slot>
       <template slot="previous">

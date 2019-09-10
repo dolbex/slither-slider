@@ -24,7 +24,7 @@
         <!-- Slides -->
         <slider-slides
           ref="slides"
-          :style="{overflow:'hidden'}"
+          :style="{overflow:'hidden', display:'flex'}"
         >
           <slider-slide
             v-for="(slide, key) in slides"

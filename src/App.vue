@@ -24,12 +24,12 @@
 
       <h1>Slider with logical slides and options</h1>
 
-      <slither-slider :options="{dots:false}">
+      <slither-slider :options="{dots:false, numberOfSlides:3}">
         <div
-          v-for="n in 4"
+          v-for="n in 35"
           :key="n"
         >
-          <h2>Slide {{ n + 4 }} </h2>
+          <h2>Slide {{ n }} </h2>
         </div>
       </slither-slider>
 

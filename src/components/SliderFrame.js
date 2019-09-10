@@ -69,8 +69,8 @@ export default {
     showPageOfSlides (index, direction) {
       // Hide old page
       const oldActiveSlides = {
-        start: ((this.numberOfSlides * (this.activeIndex))),
-        end: ((this.numberOfSlides * this.activeIndex) + 1),
+        start: this.numberOfSlides * this.activeIndex,
+        end: this.activeIndex === 0 ? this.numberOfSlides - 1 : ((this.activeIndex + 1) * this.numberOfSlides) - 1,
       }
       for (let i = oldActiveSlides.start; i <= oldActiveSlides.end; i++) {
         if (this.slides[i]) {
@@ -80,8 +80,8 @@ export default {
 
       // Show new page
       const newActiveSlides = {
-        start: ((this.numberOfSlides * index)),
-        end: ((this.numberOfSlides * index) + 1),
+        start: this.numberOfSlides * index,
+        end: index === 0 ? this.numberOfSlides - 1 : ((index + 1) * this.numberOfSlides) - 1,
       }
       for (let i = newActiveSlides.start; i <= newActiveSlides.end; i++) {
         if (this.slides[i]) {
