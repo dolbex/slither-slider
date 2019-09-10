@@ -135,6 +135,9 @@ export default {
     },
     setInlineHeight () {
       this.$refs.slides.$el.childNodes.forEach((node) => {
+        if (node.offsetHeight > this.inlineHeight) {
+          this.inlineHeight = node.offsetHeight
+        };
         node.style.height = `${this.inlineHeight}px`;
       });
     },
