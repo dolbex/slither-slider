@@ -35,7 +35,8 @@ Vue.use(SlitherSlider)
   dots: true, // Show dots at the botttom
   fullscreen: false, // Makes the slideshow fill the height of the screen
   lazy: false, // Must be set to true - see below
-  controls: true,
+  controls: true, // Show the previous and next buttons
+  numberOfSlides:1 // Show n number of slides at a time
 }
 ```
 

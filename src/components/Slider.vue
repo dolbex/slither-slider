@@ -12,6 +12,7 @@
     <slider-frame
       ref="sliderframe"
       v-if="slides.length > 0"
+      :number-of-slides="options.numberOfSlides"
       @active-index-changed="activeIndexChanged"
     >
       <!-- DIV container - parent of the outputted slider -->
@@ -98,6 +99,7 @@ export default {
         dots: true,
         fullscreen: false,
         lazy: true,
+        numberOfSlides: 1,
       },
       slides: [],
       inlineHeight: 0,

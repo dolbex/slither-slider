@@ -1,17 +1,17 @@
 <template>
-  <div class="SliderSlides">
+  <div class="slider-slides">
     <slot />
   </div>
 </template>
 
 <script>
 export default {
-  name: 'SliderSlides',
+  name: 'Slides',
 };
 </script>
 
 <style lang="scss">
-.SliderSlides {
+.slider-slides {
   position: relative;
 }
 </style>

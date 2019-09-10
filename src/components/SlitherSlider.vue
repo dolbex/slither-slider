@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <slider :options="options">
+    <slider :config="options">
       <slot></slot>
       <template slot="previous">
         <slot name="previous"></slot>
