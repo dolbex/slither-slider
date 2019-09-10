@@ -37,7 +37,7 @@
         </slider-slides>
 
         <!-- Next/Prev controls -->
-        <template v-if="options.controls">
+        <template v-if="options.controls && slides.length > 1">
 
           <button
             class="slider-direction slider-direction--prev"
@@ -58,7 +58,7 @@
         </template>
 
         <!-- Dots at the bottom of the slider -->
-        <template v-if="options.dots">
+        <template v-if="options.dots && slides.length > 1">
           <ol class="slider-dots">
             <li
               v-for="n in slides.length"
@@ -145,7 +145,7 @@ export default {
       });
     },
     setInlineHeight () {
-      if (this.$refs.slides) {
+      if (this.$refs.slides.$el) {
         this.$refs.slides.$el.childNodes.forEach((node) => {
           // find THE HIGHEST!!!
           this.inlineHeight = this.inlineHeight > node.scrollHeight
