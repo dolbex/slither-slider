@@ -214,7 +214,5 @@ export default {
 
 .slides {
   overflow: hidden;
-  display: flex;
-  justify-content: space-around;
 }
 </style>
