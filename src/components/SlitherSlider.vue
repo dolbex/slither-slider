@@ -1,5 +1,8 @@
 <template>
-  <div id="app">
+  <div
+    id="app"
+    class="slither-slider"
+  >
     <slider :config="options">
       <slot></slot>
       <template slot="previous">
@@ -30,3 +33,9 @@ export default {
   },
 };
 </script>
+
+<style>
+.slither-slider {
+  overflow: hidden;
+}
+</style>

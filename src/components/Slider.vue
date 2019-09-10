@@ -22,10 +22,14 @@
         :class="{'slider-fullscreen': options.fullscreen}"
       >
         <!-- Slides -->
-        <slider-slides ref="slides">
+        <slider-slides
+          ref="slides"
+          :style="{overflow:'hidden'}"
+        >
           <slider-slide
             v-for="(slide, key) in slides"
             :key="key"
+            :loaded="loaded"
             v-html="slide"
             :options="options"
           >
@@ -111,6 +115,7 @@ export default {
     this.addSlides();
     this.$nextTick(() => {
       this.calculateHeight();
+      this.loaded = true;
     });
   },
   methods: {
@@ -118,17 +123,13 @@ export default {
       this.options = Object.assign({}, this.options, this.config);
     },
     addSlides () {
+      let height = 0;
       this.$refs.slidesSlot.childNodes.forEach((node) => {
-        // find THE HIGHEST!!!
-        this.inlineHeight = this.inlineHeight > node.offsetHeight
-          ? this.inlineHeight : node.offsetHeight;
-
         // Push into slides
         if (node.outerHTML && node.outerHTML.length > 0) {
           this.slides.push(node.outerHTML);
         }
       });
-      this.loaded = true;
     },
     calculateHeight () {
       if (this.options.fullscreen) {
@@ -140,15 +141,23 @@ export default {
     setFullScreen () {
       this.$refs.slides.$el.childNodes.forEach((node) => {
         node.style.height = `${window.innerHeight}px`;
+        this.$refs.slides.$el.style.height = `${window.innerHeight}px`;
       });
     },
     setInlineHeight () {
-      this.$refs.slides.$el.childNodes.forEach((node) => {
-        if (node.offsetHeight > this.inlineHeight) {
-          this.inlineHeight = node.offsetHeight
-        };
-        node.style.height = `${this.inlineHeight}px`;
-      });
+      if (this.$refs.slides) {
+        this.$refs.slides.$el.childNodes.forEach((node) => {
+          // find THE HIGHEST!!!
+          this.inlineHeight = this.inlineHeight > node.scrollHeight
+            ? this.inlineHeight : node.scrollHeight;
+        });
+
+        this.$refs.slides.$el.childNodes.forEach((node) => {
+          node.style.height = `${this.inlineHeight}px`;
+        });
+
+        this.$refs.slides.$el.style.height = `${this.inlineHeight}px`;
+      }
     },
     activeIndexChanged (index) {
       this.activeIndex = index;

@@ -1,11 +1,10 @@
 <template>
   <transition :name="transition">
     <div
-      v-show="active"
+      v-show="active || !loaded"
       class="slider-slide"
     >
       <slot />
-
     </div>
   </transition>
 </template>
@@ -14,6 +13,10 @@
 export default {
   name: 'Slide',
   props: {
+    loaded: {
+      type: Boolean,
+      default: false
+    },
     options: {
       type: Object,
       default () {
@@ -70,7 +73,7 @@ export default {
 .slider-slide--transition-left-leave-active,
 .slider-slide--transition-right-enter-active,
 .slider-slide--transition-right-leave-active {
-  transition-duration: 0.5s;
+  transition-duration: 1s;
   transition-property: height, opacity, transform;
   transition-timing-function: cubic-bezier(0.55, 0, 0.1, 1);
   overflow: hidden;
