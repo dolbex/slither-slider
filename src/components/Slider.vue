@@ -145,7 +145,7 @@ export default {
       });
     },
     setInlineHeight () {
-      if (this.$refs.slides.$el) {
+      if (this.$refs.slides) {
         this.$refs.slides.$el.childNodes.forEach((node) => {
           // find THE HIGHEST!!!
           this.inlineHeight = this.inlineHeight > node.scrollHeight
