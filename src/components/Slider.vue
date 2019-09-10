@@ -97,7 +97,7 @@ export default {
         controls: true,
         dots: true,
         fullscreen: false,
-        lazy: false,
+        lazy: true,
       },
       slides: [],
       inlineHeight: 0,

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <slider :config="config">
+    <slider :options="options">
       <slot></slot>
       <template slot="previous">
         <slot name="previous"></slot>
@@ -21,7 +21,7 @@ export default {
     Slider,
   },
   props: {
-    config: {
+    options: {
       type: Object,
       default () {
         return {};
