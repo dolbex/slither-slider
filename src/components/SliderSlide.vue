@@ -53,6 +53,11 @@ export default {
             image.setAttribute('src', imageSrc)
             image.removeAttribute('data-src')
           }
+          if (image.hasAttribute('data-bg-src')) {
+            const imageSrc = image.getAttribute('data-bg-src')
+            image.style.backgroundImage = `url('${imageSrc}')`
+            image.removeAttribute('data-bg-src')
+          }
         }
       }
     }

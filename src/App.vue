@@ -6,7 +6,8 @@
           class="slither-lazy"
         ></div>
       <div>Yo <img
-          data-src="https://picsum.photos/id/237/200/300"
+          data-bg-src="https://picsum.photos/id/238/500/500"
+          style="width:500px;height:500px;"
           class="slither-lazy"
         ></div>
       <div>Boo</div>
