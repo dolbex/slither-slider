@@ -122,8 +122,7 @@ export default {
           ? this.inlineHeight : node.offsetHeight;
 
         // Push into slides
-        console.log(node.outerHTML)
-        if (node.outerHTML.length > 0) {
+        if (node && node.outerHTML.length > 0) {
           this.slides.push(node.outerHTML);
         }
       });
