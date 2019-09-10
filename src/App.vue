@@ -10,6 +10,13 @@
           class="slither-lazy"
         ></div>
       <div>Boo</div>
+
+      <template slot="previous">
+        Before
+      </template>
+      <template slot="next">
+        After
+      </template>
     </slither-slider>
   </div>
 </template>

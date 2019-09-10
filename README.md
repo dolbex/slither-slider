@@ -35,7 +35,7 @@ Vue.use(SlitherSlider)
   dots: true, // Show dots at the botttom
   fullscreen: false, // Makes the slideshow fill the height of the screen
   lazy: false, // Must be set to true - see below
-  nextPrev: true,
+  controls: true,
 }
 ```
 
@@ -43,7 +43,12 @@ Vue.use(SlitherSlider)
 
 Styles are fairly minimal out of the box so here are some that you may want to use to get started that represent what you're probably used to seeing and then you can modify from there.
 
+```scss
+// Ensure you include the main styles and modify this path to suite your needs
+@import './node_modules/slither-slider/plugin-dist/slither-slider.css';
 ```
+
+```scss
 
 ```
 
@@ -55,6 +60,27 @@ Ensure that you have lazy set to true in the configuration and then use the foll
   <img
     data-src="https://picsum.photos/id/237/200/300"
     class="slither-lazy">
+```
+
+### Custom Controls
+
+In your component you can add a couple of slots that will override the control button contents like-a-so:
+
+```html
+<slither-slider>
+  <!-- Slides -->
+  <div>Slide 1</div>
+  <div>Slide 2</div>
+  <div>Slide 3</div>
+
+  <!-- Controls -->
+  <template slot="previous">
+    Before
+  </template>
+  <template slot="next">
+    After
+  </template>
+</slither-slider>
 ```
 
 

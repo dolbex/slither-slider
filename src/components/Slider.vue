@@ -31,18 +31,23 @@
         </slider-slides>
 
         <!-- Next/Prev controls -->
-        <template v-if="options.nextPrev">
+        <template v-if="options.controls">
+
           <button
             class="slider-direction slider-direction--prev"
             @click="prev"
           >
-            &laquo; Prev
+            <slot name="previous">
+              &laquo; Prev
+            </slot>
           </button>
           <button
             class="slider-direction slider-direction--next"
             @click="next"
           >
-            Next &raquo;
+            <slot name="next">
+              Next &raquo;
+            </slot>
           </button>
         </template>
 
@@ -89,7 +94,7 @@ export default {
   data () {
     return {
       options: {
-        nextPrev: true,
+        controls: true,
         dots: true,
         fullscreen: false,
         lazy: false,

@@ -5,6 +5,7 @@
       class="SliderSlide"
     >
       <slot />
+
     </div>
   </transition>
 </template>
