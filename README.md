@@ -109,6 +109,9 @@ In your component you can add a couple of slots that will override the control b
 </slither-slider>
 ```
 
+## ToDo
+
+* Responsive "numberOfSlides"
 
 ## Development
 ```
