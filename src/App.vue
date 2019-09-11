@@ -1,5 +1,8 @@
 <template>
-  <div id="app">
+  <div
+    id="app"
+    class="demo"
+  >
     <div>
       <h1>Basic slider</h1>
       <slither-slider>
@@ -23,7 +26,6 @@
       <hr>
 
       <h1>Slider with logical slides and options</h1>
-
       <slither-slider :options="{dots:true, numberOfSlides:3}">
         <div
           v-for="n in 35"
@@ -76,6 +78,19 @@
         </template>
       </slither-slider>
 
+      <h1>Fullscreen with Offset of -200</h1>
+      <slither-slider :options="{fullscreen: true, fullscreenOffset: -200}">
+        <div :style="{backgroundColor: 'blue', height:'100%'}">
+          <h2>Slide 1 </h2>
+        </div>
+        <div :style="{backgroundColor: 'green', height:'100%'}">
+          <h2>Slide 2 </h2>
+        </div>
+        <div :style="{backgroundColor: 'yellow', height:'100%'}">
+          <h2>Slide 3 </h2>
+        </div>
+      </slither-slider>
+
       <h1>Single Slide</h1>
       <slither-slider>
         <div :style="{backgroundColor: 'blue', color: 'white', padding:'20px', height:'50px', width: '500px'}">
@@ -96,3 +111,31 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+.demo {
+  font-family: Arial;
+  padding: 3em;
+
+  h1 {
+    font-size: 2em;
+    font-weight: 100;
+  }
+
+  h2 {
+    font-size: 1.5em;
+  }
+
+  hr {
+    margin: 8em;
+  }
+
+  .slider-slide {
+    margin: 0 200px;
+  }
+
+  .slider-slides {
+    padding-bottom: 100px;
+  }
+}
+</style>

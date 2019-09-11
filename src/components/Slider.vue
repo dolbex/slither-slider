@@ -110,6 +110,7 @@ export default {
         controls: true,
         dots: true,
         fullscreen: false,
+        fullscreenOffset: null,
         lazy: true,
         numberOfSlides: 1,
       },
@@ -148,8 +149,8 @@ export default {
     },
     setFullScreen () {
       this.$refs.slides.$el.childNodes.forEach((node) => {
-        node.style.height = `${window.innerHeight}px`;
-        this.$refs.slides.$el.style.height = `${window.innerHeight}px`;
+        node.style.height = `${window.innerHeight + this.options.fullscreenOffset}px`;
+        this.$refs.slides.$el.style.height = `${window.innerHeight + this.options.fullscreenOffset}px`;
       });
     },
     setInlineHeight () {
@@ -187,6 +188,21 @@ export default {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+
+  border: 0;
+  background-color: #fafafa;
+  color: #222;
+  padding: 0.7em 2em;
+  font-size: 1em;
+  opacity: 0.75;
+
+  transition: opacity 0.25s;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 1;
+  }
+
   &:focus {
     outline: none;
   }
@@ -200,6 +216,10 @@ export default {
   right: 0.5em;
 }
 
+.slides {
+  overflow: hidden;
+}
+
 .slider-dots {
   position: absolute;
   right: 0;
@@ -210,9 +230,27 @@ export default {
   padding: 0;
   margin: 0;
   list-style: none;
+  padding: 0;
 }
 
-.slides {
+.slider-dot {
+  width: 12px;
+  height: 12px;
+  font-size: 0.1em;
+  background-color: #ddd;
+  color: #ddd;
+  border-radius: 12px;
   overflow: hidden;
+  margin-right: 1em;
+  border: 1px solid white;
+  transition: all 1s;
+  box-shadow: 0 4px 6px 3px rgba(0, 0, 0, 0.06),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+
+  &.active-slide {
+    background-color: #4caf50;
+    color: #4caf50;
+  }
 }
 </style>

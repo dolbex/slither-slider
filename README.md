@@ -32,13 +32,23 @@ Vue.use(SlitherSlider)
 
 ```javascript
 {
-  dots: true, // Show dots at the botttom
-  fullscreen: false, // Makes the slideshow fill the height of the screen
-  lazy: false, // Must be set to true - see below
-  controls: true, // Show the previous and next buttons
-  numberOfSlides:1 // Show n number of slides at a time
+  dots: true,
+  fullscreen: false, 
+  fullscreenOffset: null, 
+  lazy: false, 
+  controls: true, 
+  numberOfSlides:1 
 }
 ```
+
+| Option           | Default | Effect                                                                                                                                                                                                                                                                                   |
+|------------------|---------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| dots             | true    | Show dots at the bottom                                                                                                                                                                                                                                                                  |
+| fullscreen       | false   | Makes the slideshow fill the height of the screen                                                                                                                                                                                                                                        |
+| fullscreenOffset | null    | When fullscreen is true it adds this number  -200 would subtract 200 pixels this works well for heros with consideration for the nav                                                                                                                                                     |
+| lazy             | false   | Attempts to lazy load images. * You *must* add .slither-lazy to all images  * Set the url of the image to 'data-src' attribute for images * For background images (like on a div) set the url to 'data-bg-src' * It is highly advisable to add the height of the image to the image tag. |
+| controls         | true    | Show the previous and next buttons                                                                                                                                                                                                                                                       |
+| numberOfSlides   | 1       | Creates pages and shows n number of slides at a time   
 
 ### Styles
 
@@ -47,10 +57,25 @@ Styles are fairly minimal out of the box so here are some that you may want to u
 ```scss
 // Ensure you include the main styles and modify this path to suite your needs
 @import './node_modules/slither-slider/plugin-dist/slither-slider.css';
-```
 
-```scss
+  .slider-slide {
+    margin: 0 200px;
+  }
 
+  .slider-slides {
+    padding-bottom: 100px;
+  }
+
+  .slider-dot {
+  width:20px;
+  height:20px;
+
+  &.active-slide {
+    background-color:#8FC7E8;
+    color:#8FC7E8;
+  }
+}
+  
 ```
 
 ### Lazy Loading 
