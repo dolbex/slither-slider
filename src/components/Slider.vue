@@ -2,7 +2,7 @@
   <div>
     <!-- Holder for incoming HTML -->
     <div
-      ref="slidesSlot"
+      ref="allSlidesSlot"
       v-show="false"
     >
       <slot></slot>
@@ -30,7 +30,7 @@
             v-for="(slide, key) in slides"
             :key="key"
             :loaded="loaded"
-            v-html="slide"
+            :slide="slide"
             :options="options"
           >
           </slider-slide>
@@ -133,12 +133,14 @@ export default {
     },
     addSlides () {
       let height = 0;
-      this.$refs.slidesSlot.childNodes.forEach((node) => {
-        // Push into slides
-        if (node.outerHTML && node.outerHTML.length > 0) {
-          this.slides.push(node.outerHTML);
-        }
-      });
+      console.log(this.$slots.default)
+      this.slides = this.$slots.default
+      // this.$refs.allSlidesSlot.childNodes.forEach((node) => {
+      //   // Push into slides
+      //   if (node.outerHTML && node.outerHTML.length > 0) {
+      //     this.slides.push(node.outerHTML);
+      //   }
+      // });
     },
     calculateHeight () {
       if (this.options.fullscreen) {

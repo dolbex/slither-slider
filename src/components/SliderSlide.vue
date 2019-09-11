@@ -4,15 +4,24 @@
       v-show="active || !loaded"
       class="slider-slide"
     >
-      <slot />
+      <slide-renderer :slide="slide"></slide-renderer>
     </div>
   </transition>
 </template>
 
 <script>
+import SlideRenderer from './SlideRenderer';
+
 export default {
   name: 'Slide',
+  components: {
+    SlideRenderer
+  },
   props: {
+    slide: {
+      type: Object,
+      required: true
+    },
     loaded: {
       type: Boolean,
       default: false
@@ -51,17 +60,34 @@ export default {
       if (this.options.lazy) {
         const lazyImages = this.$el.getElementsByClassName("slither-lazy");
         for (let image of lazyImages) {
-          if (image.hasAttribute('data-src')) {
-            const imageSrc = image.getAttribute('data-src')
-            image.setAttribute('src', imageSrc)
-            image.removeAttribute('data-src')
-          }
-          if (image.hasAttribute('data-bg-src')) {
-            const imageSrc = image.getAttribute('data-bg-src')
-            image.style.backgroundImage = `url('${imageSrc}')`
-            image.removeAttribute('data-bg-src')
+          if ('IntersectionObserver' in window) {
+            const lazyImageObserver = new IntersectionObserver(entries => {
+              entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                  this.setImage(image);
+                  lazyImageObserver.unobserve(image);
+                }
+              });
+            });
+
+            lazyImageObserver.observe(image);
+          } else {
+            this.setImage(image);
           }
         }
+      }
+    },
+
+    setImage (image) {
+      if (image.hasAttribute('data-src')) {
+        const imageSrc = image.getAttribute('data-src')
+        image.setAttribute('src', imageSrc)
+        image.removeAttribute('data-src')
+      }
+      if (image.hasAttribute('data-bg-src')) {
+        const imageSrc = image.getAttribute('data-bg-src')
+        image.style.backgroundImage = `url('${imageSrc}')`
+        image.removeAttribute('data-bg-src')
       }
     }
   },
