@@ -133,14 +133,7 @@ export default {
     },
     addSlides () {
       let height = 0;
-      console.log(this.$slots.default)
       this.slides = this.$slots.default
-      // this.$refs.allSlidesSlot.childNodes.forEach((node) => {
-      //   // Push into slides
-      //   if (node.outerHTML && node.outerHTML.length > 0) {
-      //     this.slides.push(node.outerHTML);
-      //   }
-      // });
     },
     calculateHeight () {
       if (this.options.fullscreen) {
