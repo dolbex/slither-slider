@@ -44,6 +44,9 @@ export default {
       transition: '',
     };
   },
+  mounted () {
+    console.log(this.slide)
+  },
   methods: {
     // Deactivate and hide the slide and
     // also activate the correct transition.
