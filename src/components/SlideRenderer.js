@@ -1,5 +1,8 @@
 export default {
   name: 'SlideRenderer',
+  mounted () {
+    console.log(this.slide)
+  },
   props: {
     slide: {
       type: Object,

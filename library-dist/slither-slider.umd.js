@@ -2259,6 +2259,9 @@ var es6_symbol = __webpack_require__("8a81");
 // CONCATENATED MODULE: ./src/components/SlideRenderer.js
 /* harmony default export */ var SlideRenderer = ({
   name: 'SlideRenderer',
+  mounted: function mounted() {
+    console.log(this.slide);
+  },
   props: {
     slide: {
       type: Object,
