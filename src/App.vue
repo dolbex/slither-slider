@@ -111,31 +111,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss">
-.demo {
-  font-family: Arial;
-  padding: 3em;
-
-  h1 {
-    font-size: 2em;
-    font-weight: 100;
-  }
-
-  h2 {
-    font-size: 1.5em;
-  }
-
-  hr {
-    margin: 8em;
-  }
-
-  .slider-slide {
-    margin: 0 200px;
-  }
-
-  .slider-slides {
-    padding-bottom: 100px;
-  }
-}
-</style>
