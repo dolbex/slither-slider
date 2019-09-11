@@ -4,7 +4,10 @@
       v-show="active || !loaded"
       class="slider-slide"
     >
-      <slide-renderer :slide="slide"></slide-renderer>
+      <slide-renderer
+        :slide="slide"
+        v-if="typeof slide.tag !== 'undefined'"
+      ></slide-renderer>
     </div>
   </transition>
 </template>

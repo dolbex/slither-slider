@@ -2234,12 +2234,12 @@ var component = normalizeComponent(
 )
 
 /* harmony default export */ var SliderSlides = (component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"76252afb-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SliderSlide.vue?vue&type=template&id=fa5135cc&
-var SliderSlidevue_type_template_id_fa5135cc_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('transition',{attrs:{"name":_vm.transition}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.active || !_vm.loaded),expression:"active || !loaded"}],staticClass:"slider-slide"},[_c('slide-renderer',{attrs:{"slide":_vm.slide}})],1)])}
-var SliderSlidevue_type_template_id_fa5135cc_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"76252afb-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SliderSlide.vue?vue&type=template&id=3a134d10&
+var SliderSlidevue_type_template_id_3a134d10_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('transition',{attrs:{"name":_vm.transition}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.active || !_vm.loaded),expression:"active || !loaded"}],staticClass:"slider-slide"},[(typeof _vm.slide.tag !== 'undefined')?_c('slide-renderer',{attrs:{"slide":_vm.slide}}):_vm._e()],1)])}
+var SliderSlidevue_type_template_id_3a134d10_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/SliderSlide.vue?vue&type=template&id=fa5135cc&
+// CONCATENATED MODULE: ./src/components/SliderSlide.vue?vue&type=template&id=3a134d10&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es7.symbol.async-iterator.js
 var es7_symbol_async_iterator = __webpack_require__("ac4d");
@@ -2250,9 +2250,6 @@ var es6_symbol = __webpack_require__("8a81");
 // CONCATENATED MODULE: ./src/components/SlideRenderer.js
 /* harmony default export */ var SlideRenderer = ({
   name: 'SlideRenderer',
-  mounted: function mounted() {
-    console.log(this.slide);
-  },
   props: {
     slide: {
       type: Object,
@@ -2267,6 +2264,9 @@ var es6_symbol = __webpack_require__("8a81");
 
 
 
+//
+//
+//
 //
 //
 //
@@ -2402,8 +2402,8 @@ var SliderSlidevue_type_style_index_0_lang_scss_ = __webpack_require__("b90e");
 
 var SliderSlide_component = normalizeComponent(
   components_SliderSlidevue_type_script_lang_js_,
-  SliderSlidevue_type_template_id_fa5135cc_render,
-  SliderSlidevue_type_template_id_fa5135cc_staticRenderFns,
+  SliderSlidevue_type_template_id_3a134d10_render,
+  SliderSlidevue_type_template_id_3a134d10_staticRenderFns,
   false,
   null,
   null,
