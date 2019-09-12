@@ -1,5 +1,7 @@
 # Slither Slider
 
+Simple Vue JS slider for Vue JS that pretty much takes what you throw at it. Features 'fullscreen', lazy loading, and easy customization
+
 ![Snakes.... I hate snakes](https://github.com/dolbex/slither-slider/blob/master/snake.png?raw=true)
 
 ## Usage
@@ -37,7 +39,9 @@ Vue.use(SlitherSlider)
   fullscreenOffset: null, 
   lazy: false, 
   controls: true, 
-  numberOfSlides:1 
+  numberOfSlides:1,
+  sliderClass:null,
+  slideClass:null,
 }
 ```
 
@@ -49,6 +53,8 @@ Vue.use(SlitherSlider)
 | lazy             | false   | Attempts to lazy load images. * You *must* add .slither-lazy to all images  * Set the url of the image to 'data-src' attribute for images * For background images (like on a div) set the url to 'data-bg-src' * It is highly advisable to add the height of the image to the image tag. |
 | controls         | true    | Show the previous and next buttons                                                                                                                                                                                                                                                       |
 | numberOfSlides   | 1       | Creates pages and shows n number of slides at a time   
+| sliderClass      | null    | Adds these classes to the parent of the slides
+| slideClass       | null    | Adds these classes to each slide
 
 ### Styles
 

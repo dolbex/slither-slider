@@ -91,11 +91,54 @@
         </div>
       </slither-slider>
 
+      <hr>
+
       <h1>Single Slide</h1>
       <slither-slider>
         <div :style="{backgroundColor: 'blue', color: 'white', padding:'20px', height:'50px', width: '500px'}">
           <h2>Slide 1 </h2>
         </div>
+      </slither-slider>
+
+      <hr>
+
+      <h1>Slider with components</h1>
+      <slither-slider>
+        <div :style="{height:'50px'}">
+          <h2>Slide 1 </h2>
+          <test-render-component></test-render-component>
+        </div>
+        <div :style="{height:'50px'}">
+          <h2>Slide 2 </h2>
+          <test-render-component></test-render-component>
+        </div>
+        <div :style="{height:'50px'}">
+          <h2>Slide 3 </h2>
+          <test-render-component></test-render-component>
+        </div>
+        <!---->
+      </slither-slider>
+
+      <hr>
+
+      <h1>Slider with custom classes</h1>
+      <slither-slider :options="{sliderClass: 'slider-container-custom-class', slideClass: 'custom-slide-class'}">
+        <div :style="{height:'50px'}">
+          <h2>Slide 1 </h2>
+          "slider-container-custom-class" added to this slider
+          "custom-slide-class" added to this slide
+        </div>
+        <div :style="{height:'50px'}">
+          <h2>Slide 2 </h2>
+          "slider-container-custom-class" added to this slider
+          "custom-slide-class" added to this slide
+        </div>
+        <div :style="{height:'50px'}">
+          <h2>Slide 3 </h2>
+          "slider-container-custom-class" added to this slider
+          "custom-slide-class" added to this slide
+        </div>
+        <!---->
       </slither-slider>
     </div>
   </div>
@@ -103,11 +146,13 @@
 
 <script>
 import SlitherSlider from './components/SlitherSlider.vue';
+import TestRenderComponent from './components/TestRenderComponent';
 
 export default {
   name: 'App',
   components: {
     SlitherSlider,
+    TestRenderComponent,
   },
 };
 </script>

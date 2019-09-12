@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="slides">
     <!-- Holder for incoming HTML -->
     <div
       ref="allSlidesSlot"
@@ -25,6 +25,7 @@
         <slider-slides
           ref="slides"
           class="slides"
+          :class="[options.sliderClass]"
         >
           <slider-slide
             v-for="(slide, key) in slides"
@@ -32,6 +33,7 @@
             :loaded="loaded"
             :slide="slide"
             :options="options"
+            :class="options.slideClass"
           >
           </slider-slide>
         </slider-slides>
@@ -113,6 +115,8 @@ export default {
         fullscreenOffset: null,
         lazy: true,
         numberOfSlides: 1,
+        slideClass: null,
+        sliderClass: null,
       },
       slides: [],
       inlineHeight: 0,
@@ -133,6 +137,7 @@ export default {
     },
     addSlides () {
       let height = 0;
+      // console.log(this.$slots)
       this.slides = this.$slots.default
     },
     calculateHeight () {

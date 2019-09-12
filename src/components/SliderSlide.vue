@@ -6,6 +6,7 @@
     >
       <slide-renderer
         :slide="slide"
+        :options="options"
         v-if="typeof slide.tag !== 'undefined'"
       ></slide-renderer>
     </div>
@@ -45,7 +46,7 @@ export default {
     };
   },
   mounted () {
-    console.log(this.slide)
+    // console.log(this.slide)
   },
   methods: {
     // Deactivate and hide the slide and
