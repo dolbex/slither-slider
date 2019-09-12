@@ -136,9 +136,13 @@ export default {
       this.options = Object.assign({}, this.options, this.config);
     },
     addSlides () {
-      let height = 0;
-      // console.log(this.$slots)
-      this.slides = this.$slots.default
+      if (this.$slots && this.$slots.default) {
+        this.$slots.default.forEach(slide => {
+          if (typeof slide.tag !== 'undefined') {
+            this.slides.push(slide)
+          }
+        })
+      }
     },
     calculateHeight () {
       if (this.options.fullscreen) {
