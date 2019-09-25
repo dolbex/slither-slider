@@ -192,6 +192,7 @@ export default {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+  z-index:5000;
 
   border: 0;
   background-color: #fafafa;
