@@ -1,5 +1,5 @@
 <template>
-  <transition :name="transition">
+  <transition :name="transition" mode="out-in">
     <div
       v-show="active || !loaded"
       class="slider-slide"
@@ -102,9 +102,21 @@ export default {
 </script>
 
 <style lang="scss">
+.slide-fade-enter-active {
+  transition: all .3s ease;
+}
+.slide-fade-leave-active {
+  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateX(10px);
+  opacity: 0;
+}
+
 .slider-slide--transition-left-enter-active,
-.slider-slide--transition-left-leave-active,
 .slider-slide--transition-right-enter-active,
+.slider-slide--transition-left-leave-active,
 .slider-slide--transition-right-leave-active {
   transition-duration: 750ms;
   transition-property: height, opacity, transform;
@@ -115,18 +127,36 @@ export default {
 .slider-slide--transition-left-leave-active,
 .slider-slide--transition-right-leave-active {
   position: absolute;
-  transition-duration: 0ms;
+  // transition-duration: 0ms;
 }
 
-.slider-slide--transition-left-enter,
-.slider-slide--transition-right-leave-active {
-  opacity: 0;
-  transform: translate(3em, 0);
+.fade {
+  .slider-slide--transition-left-enter,
+  .slider-slide--transition-right-leave-active {
+    opacity: 0;
+    transform: translate(0em, 0);
+  }
+
+  .slider-slide--transition-left-leave-active,
+  .slider-slide--transition-right-enter {
+    opacity: 0;
+    transform: translate(-0em, 0);
+  }
 }
 
-.slider-slide--transition-left-leave-active,
-.slider-slide--transition-right-enter {
-  opacity: 0;
-  transform: translate(-3em, 0);
+.slide {
+  .slider-slide--transition-left-enter,
+  .slider-slide--transition-right-leave-active {
+    opacity: 0;
+    transform: translate(100%, 0);
+    top:0;
+  }
+
+  .slider-slide--transition-left-leave-active,
+  .slider-slide--transition-right-enter {
+    opacity: 0;
+    transform: translate(-100%, 0);
+    top:0;
+  }
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div v-if="slides">
+  <div v-if="slides" :class="[options.transition]">
     <!-- Holder for incoming HTML -->
     <div
       ref="allSlidesSlot"
@@ -109,6 +109,7 @@ export default {
     return {
       activeIndex: 1,
       options: {
+        transition: 'slide',
         controls: true,
         dots: true,
         fullscreen: false,

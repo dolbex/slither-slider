@@ -9,7 +9,7 @@
     "slither"
   ],
   "license": "MIT",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": false,
   "main": "./plugin-dist/slither-slider.umd.min.js",
   "scripts": {

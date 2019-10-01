@@ -34,6 +34,7 @@ Vue.use(SlitherSlider)
 
 ```javascript
 {
+  transition: 'fade',
   dots: true,
   fullscreen: false, 
   fullscreenOffset: null, 
@@ -47,6 +48,7 @@ Vue.use(SlitherSlider)
 
 | Option           | Default | Effect                                                                                                                                                                                                                                                                                   |
 |------------------|---------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| transition       | 'slide' | Transition can be set to 'fade' or 'slide'                                                                                                                                                                                                                                               |
 | dots             | true    | Show dots at the bottom                                                                                                                                                                                                                                                                  |
 | fullscreen       | false   | Makes the slideshow fill the height of the screen                                                                                                                                                                                                                                        |
 | fullscreenOffset | null    | When fullscreen is true it adds this number  -200 would subtract 200 pixels this works well for heros with consideration for the nav                                                                                                                                                     |
