@@ -28,10 +28,10 @@
           :class="[options.sliderClass]"
         >
           <slider-slide
-            v-for="(slide, key) in slides"
+            v-for="(group, key) in groups"
             :key="key"
             :loaded="loaded"
-            :slide="slide"
+            :group="group"
             :options="options"
             :class="options.slideClass"
           >
@@ -104,6 +104,19 @@ export default {
     numberOfPages () {
       return Math.ceil(this.slidesCount / this.options.numberOfSlides)
     },
+    groups () {
+      let groups = []
+      let _slides = this.slides.slice()
+
+      for (let i = 0; i < this.numberOfPages; i++) {
+        const start = i * this.options.numberOfSlides
+        const end = (i * this.options.numberOfSlides) + this.options.numberOfSlides
+        let group = _slides.slice(start, end)
+        groups.push(group)
+      }
+      
+      return groups
+    }
   },
   data () {
     return {

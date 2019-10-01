@@ -16,10 +16,13 @@
     margin: 8em;
   }
 
-  .slider-slide {
-    margin: 0 200px;
-  }
-
   .slider-slides {
     padding-bottom: 100px;
+  }
+
+  .flex-demo-slide {
+    display:flex;
+  }
+  .flex-demo-slide > div {
+      padding:0 10px;
   }

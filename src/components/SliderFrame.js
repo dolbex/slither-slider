@@ -1,11 +1,5 @@
 export default {
   name: 'SliderFrame',
-  props: {
-    numberOfSlides: {
-      type: Number,
-      default: 1
-    }
-  },
   data () {
     return {
       activeIndex: 0,
@@ -20,23 +14,13 @@ export default {
     slidesCount () {
       return this.slides.length;
     },
-    numberOfPages () {
-      return Math.ceil(this.slidesCount / this.numberOfSlides)
-    },
     nextIndex () {
       const nextIndex = this.activeIndex + 1;
-
-      if (this.numberOfSlides === 1) {
-        return nextIndex <= this.slidesCount - 1 ? nextIndex : 0;
-      }
-      return nextIndex <= this.numberOfPages - 1 ? nextIndex : 0;
+      return nextIndex <= this.slidesCount - 1 ? nextIndex : 0;
     },
     prevIndex () {
       const prevIndex = this.activeIndex - 1;
-      if (this.numberOfSlides === 1) {
-        return prevIndex >= 0 ? prevIndex : this.slidesCount - 1;
-      }
-      return prevIndex >= 0 ? prevIndex : this.numberOfPages - 1;
+      return prevIndex >= 0 ? prevIndex : this.slidesCount - 1;
     },
   },
   mounted () {
@@ -49,11 +33,7 @@ export default {
       // This is useful for animations.
       const direction = index > this.activeIndex ? 'left' : 'right';
 
-      if (this.numberOfSlides === 1) {
-        this.showSingleSlide(index, direction)
-      } else {
-        this.showPageOfSlides(index, direction)
-      }
+      this.showSingleSlide(index, direction)
 
       this.activeIndex = index;
       this.$emit('active-index-changed', index)
@@ -65,29 +45,6 @@ export default {
       // Call the `show()` method on the `SliderSlide`
       // component with the correspondign index.
       this.slides[index].show(direction);
-    },
-    showPageOfSlides (index, direction) {
-      // Hide old page
-      const oldActiveSlides = {
-        start: this.numberOfSlides * this.activeIndex,
-        end: this.activeIndex === 0 ? this.numberOfSlides - 1 : ((this.activeIndex + 1) * this.numberOfSlides) - 1,
-      }
-      for (let i = oldActiveSlides.start; i <= oldActiveSlides.end; i++) {
-        if (this.slides[i]) {
-          this.slides[i].hide(direction);
-        }
-      }
-
-      // Show new page
-      const newActiveSlides = {
-        start: this.numberOfSlides * index,
-        end: index === 0 ? this.numberOfSlides - 1 : ((index + 1) * this.numberOfSlides) - 1,
-      }
-      for (let i = newActiveSlides.start; i <= newActiveSlides.end; i++) {
-        if (this.slides[i]) {
-          this.slides[i].show(direction);
-        }
-      }
     },
     next () {
       this.goToIndex(this.nextIndex);

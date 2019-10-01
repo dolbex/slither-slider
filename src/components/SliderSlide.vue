@@ -5,9 +5,10 @@
       class="slider-slide"
     >
       <slide-renderer
+        v-for="(slide, key) in filteredGroup"
+        :key="key"
         :slide="slide"
         :options="options"
-        v-if="typeof slide.tag !== 'undefined'"
       ></slide-renderer>
     </div>
   </transition>
@@ -22,8 +23,8 @@ export default {
     SlideRenderer
   },
   props: {
-    slide: {
-      type: Object,
+    group: {
+      type: Array,
       required: true
     },
     loaded: {
@@ -44,6 +45,13 @@ export default {
       active: false,
       transition: '',
     };
+  },
+  computed: {
+    filteredGroup () {
+      return this.group.filter(slide => {
+        return typeof slide.tag !== 'undefined'
+      })
+    }
   },
   mounted () {
     // console.log(this.slide)
@@ -114,6 +122,14 @@ export default {
   opacity: 0;
 }
 
+.slider-slide {
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+}
+
 .slider-slide--transition-left-enter-active,
 .slider-slide--transition-right-enter-active,
 .slider-slide--transition-left-leave-active,
@@ -122,12 +138,6 @@ export default {
   transition-property: height, opacity, transform;
   transition-timing-function: cubic-bezier(0.55, 0, 0.1, 1);
   overflow: hidden;
-}
-
-.slider-slide--transition-left-leave-active,
-.slider-slide--transition-right-leave-active {
-  position: absolute;
-  // transition-duration: 0ms;
 }
 
 .fade {
@@ -147,16 +157,13 @@ export default {
 .slide {
   .slider-slide--transition-left-enter,
   .slider-slide--transition-right-leave-active {
-    opacity: 0;
     transform: translate(100%, 0);
-    top:0;
   }
 
   .slider-slide--transition-left-leave-active,
   .slider-slide--transition-right-enter {
-    opacity: 0;
     transform: translate(-100%, 0);
-    top:0;
+
   }
 }
 </style>

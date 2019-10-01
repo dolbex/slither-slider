@@ -25,8 +25,8 @@
 
       <hr>
 
-      <h1>Slider with logical slides and options</h1>
-      <slither-slider :options="{dots:true, numberOfSlides:3}">
+      <h1>Slider with multiple items per slide</h1>
+      <slither-slider :options="{dots:true, numberOfSlides:3, slideClass: 'flex-demo-slide'}">
         <div
           v-for="n in 35"
           :key="n"
@@ -60,13 +60,13 @@
 
       <h1>Custom Controls</h1>
       <slither-slider :options="{fullscreen: true}">
-        <div :style="{backgroundColor: 'blue', height:'100%'}">
+        <div :style="{backgroundColor: 'blue', height:'100%', width:'100%'}">
           <h2>Slide 1 </h2>
         </div>
-        <div :style="{backgroundColor: 'green', height:'100%'}">
+        <div :style="{backgroundColor: 'green', height:'100%',  width:'100%'}">
           <h2>Slide 2 </h2>
         </div>
-        <div :style="{backgroundColor: 'yellow', height:'100%'}">
+        <div :style="{backgroundColor: 'yellow', height:'100%', width:'100%'}">
           <h2>Slide 3 </h2>
         </div>
 
@@ -137,7 +137,6 @@
           <h2>Slide 3 </h2>
           <test-render-component></test-render-component>
         </div>
-        <!---->
       </slither-slider>
 
       <hr>
@@ -159,8 +158,8 @@
           "slider-container-custom-class" added to this slider
           "custom-slide-class" added to this slide
         </div>
-        <!---->
       </slither-slider>
+     
     </div>
   </div>
 </template>
