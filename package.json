@@ -10,6 +10,10 @@
   ],
   "license": "MIT",
   "version": "1.1.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dolbex/slither-slider"
+  },
   "private": false,
   "main": "./plugin-dist/slither-slider.umd.min.js",
   "scripts": {
