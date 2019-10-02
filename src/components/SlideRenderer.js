@@ -12,4 +12,15 @@ export default {
   render () {
     return this.slide;
   },
+  mounted () {
+    this.observer = new MutationObserver(function(mutations) {
+      this.$emit('contentChanged')
+    }.bind(this));
+    
+    // Setup the observer
+    this.observer.observe(
+      this.$el,
+      { attributes: true, childList: true, subtree: true }
+    );
+  }
 };

@@ -9,6 +9,7 @@
         :key="key"
         :slide="slide"
         :options="options"
+        @contentChanged="$emit('contentChanged')"
       ></slide-renderer>
     </div>
   </transition>

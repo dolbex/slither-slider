@@ -34,6 +34,7 @@
             :group="group"
             :options="options"
             :class="options.slideClass"
+            @contentChanged="contentChanged"
           >
           </slider-slide>
         </slider-slides>
@@ -188,6 +189,11 @@ export default {
     },
     activeIndexChanged (index) {
       this.activeIndex = index;
+    },
+    contentChanged () {
+      setTimeout(() => {
+        this.calculateHeight()
+      }, 500)
     }
   },
 };

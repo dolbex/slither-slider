@@ -58,6 +58,30 @@
 
       <hr>
 
+      <h1>Deep lazy slider</h1>
+      <slither-slider :options="{lazy: true, dots: false}">
+        <div>
+          <h2>Slide 1 </h2>
+          <div>
+            <img
+              data-src="https://picsum.photos/id/537/500/500"
+              class="slither-lazy"
+            >
+          </div>
+
+        </div>
+        <div>
+          <h2>Slide 2 </h2>
+          <img
+            data-bg-src="https://picsum.photos/id/238/500/500"
+            style="width:500px;height:500px;"
+            class="slither-lazy"
+          >
+        </div>
+      </slither-slider>
+
+      <hr>
+
       <h1>Custom Controls</h1>
       <slither-slider :options="{fullscreen: true}">
         <div :style="{backgroundColor: 'blue', height:'100%', width:'100%'}">
@@ -114,6 +138,20 @@
 
       <hr>
 
+      <h1>Slider that changes heights</h1>
+      <slither-slider>
+        <div>
+          <h2>Slide 1 </h2>
+          <img :src="`https://picsum.photos/id/400/${dynamicHeightDim}/${dynamicHeightDim}`">
+        </div>
+        <div ref="heightChanger2">
+          <h2>Slide 2 </h2>
+          <img :src="`https://picsum.photos/id/401/${dynamicHeightDim}/${dynamicHeightDim}`">
+        </div>
+      </slither-slider>
+
+      <hr>
+
       <h1>Single Slide</h1>
       <slither-slider>
         <div :style="{backgroundColor: 'blue', color: 'white', padding:'20px', height:'50px', width: '500px'}">
@@ -165,7 +203,7 @@
 </template>
 
 <script>
-import SlitherSlider from './components/SlitherSlider.vue';
+import SlitherSlider from './components/SlitherApp.vue';
 import TestRenderComponent from './components/TestRenderComponent';
 
 export default {
@@ -174,5 +212,15 @@ export default {
     SlitherSlider,
     TestRenderComponent,
   },
+  data () {
+    return {
+      dynamicHeightDim: 100
+    }
+  },
+  created () {
+    setInterval(() => {
+      this.dynamicHeightDim = (Math.floor(Math.random() * Math.floor(4)) + 1) * 100;
+    }, 2000)
+  }
 };
 </script>

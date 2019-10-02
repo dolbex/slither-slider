@@ -1,4 +1,4 @@
-import SlitherSlider from './components/SlitherSlider.vue';
+import SlitherSlider from './components/SlitherApp.vue';
 
 export default {
   install(Vue) {
