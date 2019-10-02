@@ -7,6 +7,12 @@
 <script>
 export default {
   name: 'Slides',
+  props: {
+    options: {
+      type: Object,
+      required: true
+    }
+  }
 };
 </script>
 

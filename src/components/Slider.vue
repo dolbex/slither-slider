@@ -12,6 +12,7 @@
     <slider-frame
       ref="sliderframe"
       v-if="slides.length > 0"
+      :options="options"
       :number-of-slides="options.numberOfSlides"
       @active-index-changed="activeIndexChanged"
     >
@@ -25,6 +26,7 @@
         <slider-slides
           ref="slides"
           class="slides"
+          :options="options"
           :class="[options.sliderClass]"
         >
           <slider-slide
@@ -119,9 +121,9 @@ export default {
       return groups
     },
     sliderClasses () {
-      const classes = this.options.sliderClass
+      let classes = this.options.sliderClass
 
-      if (options.fullscreen) {
+      if (this.options.fullscreen) {
         classes += ' slider-fullscreen'
       }
 

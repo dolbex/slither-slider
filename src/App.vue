@@ -58,6 +58,14 @@
 
       <hr>
 
+      <h1>Background Images</h1>
+      <slither-slider :options="{dots: false}">
+        <div style="background-image:url('https://picsum.photos/id/237/200/300');background-size:cover;height:100%;width:100%">
+        </div>
+      </slither-slider>
+
+      <hr>
+
       <h1>Custom Controls</h1>
       <slither-slider :options="{fullscreen: true}">
         <div :style="{backgroundColor: 'blue', height:'100%', width:'100%'}">

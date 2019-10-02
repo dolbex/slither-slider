@@ -1,5 +1,11 @@
 export default {
   name: 'SliderFrame',
+  props: {
+    options: {
+      type: Object,
+      required:true,
+    }
+  },
   data () {
     return {
       activeIndex: 0,
@@ -22,6 +28,15 @@ export default {
       const prevIndex = this.activeIndex - 1;
       return prevIndex >= 0 ? prevIndex : this.slidesCount - 1;
     },
+    sliderClasses () {
+      const classes = this.options.sliderClass
+
+      if (options.fullscreen) {
+        classes += ' slider-fullscreen'
+      }
+
+      return classes
+    }
   },
   mounted () {
     // Immediately activate the first slide.
