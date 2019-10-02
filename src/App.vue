@@ -60,7 +60,9 @@
 
       <h1>Background Images</h1>
       <slither-slider :options="{dots: false}">
-        <div style="background-image:url('https://picsum.photos/id/237/200/300');background-size:cover;height:100%;width:100%">
+        <div style="background-image:url('https://picsum.photos/id/450/600/500');background-size:cover;background-position:center;height:500px;width:100%">
+        </div>
+        <div style="background-image:url('https://picsum.photos/id/451/600/500');background-size:cover;background-position:center;height:500px;width:100%">
         </div>
       </slither-slider>
 
