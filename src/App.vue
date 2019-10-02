@@ -58,30 +58,6 @@
 
       <hr>
 
-      <h1>Deep lazy slider</h1>
-      <slither-slider :options="{lazy: true, dots: false}">
-        <div>
-          <h2>Slide 1 </h2>
-          <div>
-            <img
-              data-src="https://picsum.photos/id/537/500/500"
-              class="slither-lazy"
-            >
-          </div>
-
-        </div>
-        <div>
-          <h2>Slide 2 </h2>
-          <img
-            data-bg-src="https://picsum.photos/id/238/500/500"
-            style="width:500px;height:500px;"
-            class="slither-lazy"
-          >
-        </div>
-      </slither-slider>
-
-      <hr>
-
       <h1>Custom Controls</h1>
       <slither-slider :options="{fullscreen: true}">
         <div :style="{backgroundColor: 'blue', height:'100%', width:'100%'}">

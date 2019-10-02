@@ -1,5 +1,5 @@
 <template>
-  <div v-if="slides" :class="[options.transition]">
+  <div v-if="slides" :class="[options.transition, options.sliderClass]">
     <!-- Holder for incoming HTML -->
     <div
       ref="allSlidesSlot"
@@ -19,7 +19,7 @@
       <div
         slot-scope="{ goToIndex, next, prev }"
         class="slider"
-        :class="{'slider-fullscreen': options.fullscreen}"
+        :class="sliderClasses"
       >
         <!-- Slides -->
         <slider-slides
@@ -117,6 +117,15 @@ export default {
       }
       
       return groups
+    },
+    sliderClass () {
+      const classes = this.options.sliderClass
+
+      if (options.fullscreen) {
+        classes += ' slider-fullscreen'
+      }
+
+      return classes
     }
   },
   data () {
