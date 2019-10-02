@@ -145,6 +145,11 @@ export default {
       this.calculateHeight();
       this.loaded = true;
     });
+
+    // One last check to defeat race conditions
+    setTimeout(() => {
+      this.calculateHeight();
+    }, 1000);
   },
   methods: {
     setOptions () {
