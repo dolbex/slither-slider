@@ -166,5 +166,10 @@ export default {
     transform: translate(-100%, 0);
 
   }
+
+  .slither-lazy {
+    min-height:1px;
+    min-width:1px;
+  }
 }
 </style>
