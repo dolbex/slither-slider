@@ -189,6 +189,8 @@ export default {
           node.style.height = `${this.inlineHeight}px`;
         });
 
+        this.inlineHeight = this.inlineHeight < 1 ? 1 : this.inlineHeight;
+
         this.$refs.slides.$el.style.height = `${this.inlineHeight}px`;
       }
     },
