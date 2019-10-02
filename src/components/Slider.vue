@@ -118,7 +118,7 @@ export default {
       
       return groups
     },
-    sliderClass () {
+    sliderClasses () {
       const classes = this.options.sliderClass
 
       if (options.fullscreen) {
