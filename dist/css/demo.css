@@ -1,0 +1,24 @@
+.demo {
+    font-family: Arial;
+    padding: 3em;
+  }
+
+  h1 {
+    font-size: 2em;
+    font-weight: 100;
+  }
+
+  h2 {
+    font-size: 1.5em;
+  }
+
+  hr {
+    margin: 8em;
+  }
+
+  .flex-demo-slide {
+    display:flex;
+  }
+  .flex-demo-slide > div {
+      padding:0 10px;
+  }

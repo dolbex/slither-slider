@@ -1,5 +1,8 @@
 <template>
-  <div v-if="slides" :class="[options.transition, options.sliderClass]">
+  <div
+    v-if="slides"
+    :class="[options.transition, options.sliderClass]"
+  >
     <!-- Holder for incoming HTML -->
     <div
       ref="allSlidesSlot"
@@ -117,7 +120,7 @@ export default {
         let group = _slides.slice(start, end)
         groups.push(group)
       }
-      
+
       return groups
     },
     sliderClasses () {
@@ -183,20 +186,20 @@ export default {
       }
     },
     setFullScreen () {
-      this.$refs.slides.$el.childNodes.forEach((node) => {
+      Array.from(this.$refs.slides.$el.childNodes).forEach((node) => {
         node.style.height = `${window.innerHeight + this.options.fullscreenOffset}px`;
         this.$refs.slides.$el.style.height = `${window.innerHeight + this.options.fullscreenOffset}px`;
       });
     },
     setInlineHeight () {
       if (this.$refs.slides) {
-        this.$refs.slides.$el.childNodes.forEach((node) => {
+        Array.from(this.$refs.slides.$el.childNodes).forEach((node) => {
           // find THE HIGHEST!!!
           this.inlineHeight = this.inlineHeight > node.scrollHeight
             ? this.inlineHeight : node.scrollHeight;
         });
 
-        this.$refs.slides.$el.childNodes.forEach((node) => {
+        Array.from(this.$refs.slides.$el.childNodes).forEach((node) => {
           node.style.height = `${this.inlineHeight}px`;
         });
 
@@ -228,7 +231,7 @@ export default {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  z-index:5000;
+  z-index: 5000;
 
   border: 0;
   background-color: #fafafa;
