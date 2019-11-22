@@ -1,13 +1,7 @@
 <template>
-  <div
-    v-if="slides"
-    :class="[options.transition, options.sliderClass]"
-  >
+  <div v-if="slides" :class="[options.transition, options.sliderClass]">
     <!-- Holder for incoming HTML -->
-    <div
-      ref="allSlidesSlot"
-      v-show="false"
-    >
+    <div ref="allSlidesSlot" v-show="false">
       <slot></slot>
     </div>
 
@@ -21,7 +15,9 @@
     >
       <!-- DIV container - parent of the outputted slider -->
       <div
-        slot-scope="{ goToIndex, next, prev }"
+        @mouseenter="pauseInterval"
+        @mouseleave="startAutoplay"
+        slot-scope="{ goToIndex, next, prev, pauseInterval, startAutoplay }"
         class="slider"
         :class="sliderClasses"
       >
@@ -46,19 +42,12 @@
 
         <!-- Next/Prev controls -->
         <template v-if="options.controls && slides.length > 1">
-
-          <button
-            class="slider-direction slider-direction--prev"
-            @click="prev"
-          >
+          <button class="slider-direction slider-direction--prev" @click="prev">
             <slot name="previous">
               &laquo; Prev
             </slot>
           </button>
-          <button
-            class="slider-direction slider-direction--next"
-            @click="next"
-          >
+          <button class="slider-direction slider-direction--next" @click="next">
             <slot name="next">
               Next &raquo;
             </slot>
@@ -72,7 +61,7 @@
               v-for="n in numberOfPages"
               :key="n"
               class="slider-dot"
-              :class="{'active-slide': (n-1) === activeIndex}"
+              :class="{ 'active-slide': n - 1 === activeIndex }"
               @click="goToIndex(n - 1)"
             >
               {{ n }}
@@ -86,58 +75,58 @@
 
 <script>
 /* eslint-disable no-param-reassign */
-import SliderFrame from './SliderFrame';
-import SliderSlides from './SliderSlides.vue';
-import SliderSlide from './SliderSlide.vue';
+import SliderFrame from "./SliderFrame";
+import SliderSlides from "./SliderSlides.vue";
+import SliderSlide from "./SliderSlide.vue";
 
 export default {
-  name: 'Slider',
+  name: "Slider",
   components: {
     SliderFrame,
     SliderSlides,
-    SliderSlide,
+    SliderSlide
   },
   props: {
     config: {
       type: Object,
-      default: () => ({}),
-    },
-  },
-  computed: {
-    slidesCount () {
-      return this.slides.length;
-    },
-    numberOfPages () {
-      return Math.ceil(this.slidesCount / this.options.numberOfSlides)
-    },
-    groups () {
-      let groups = []
-      let _slides = this.slides.slice()
-
-      for (let i = 0; i < this.numberOfPages; i++) {
-        const start = i * this.options.numberOfSlides
-        const end = (i * this.options.numberOfSlides) + this.options.numberOfSlides
-        let group = _slides.slice(start, end)
-        groups.push(group)
-      }
-
-      return groups
-    },
-    sliderClasses () {
-      let classes = this.options.sliderClass
-
-      if (this.options.fullscreen) {
-        classes += ' slider-fullscreen'
-      }
-
-      return classes
+      default: () => ({})
     }
   },
-  data () {
+  computed: {
+    slidesCount() {
+      return this.slides.length;
+    },
+    numberOfPages() {
+      return Math.ceil(this.slidesCount / this.options.numberOfSlides);
+    },
+    groups() {
+      let groups = [];
+      let _slides = this.slides.slice();
+
+      for (let i = 0; i < this.numberOfPages; i++) {
+        const start = i * this.options.numberOfSlides;
+        const end = i * this.options.numberOfSlides + this.options.numberOfSlides;
+        let group = _slides.slice(start, end);
+        groups.push(group);
+      }
+
+      return groups;
+    },
+    sliderClasses() {
+      let classes = this.options.sliderClass;
+
+      if (this.options.fullscreen) {
+        classes += " slider-fullscreen";
+      }
+
+      return classes;
+    }
+  },
+  data() {
     return {
       activeIndex: 1,
       options: {
-        transition: 'slide',
+        transition: "slide",
         controls: true,
         dots: true,
         fullscreen: false,
@@ -145,14 +134,14 @@ export default {
         lazy: true,
         numberOfSlides: 1,
         slideClass: null,
-        sliderClass: null,
+        sliderClass: null
       },
       slides: [],
       inlineHeight: 0,
-      loaded: false,
+      loaded: false
     };
   },
-  mounted () {
+  mounted() {
     this.setOptions();
     this.addSlides();
     this.$nextTick(() => {
@@ -166,55 +155,56 @@ export default {
     }, 1000);
   },
   methods: {
-    setOptions () {
+    setOptions() {
       this.options = Object.assign({}, this.options, this.config);
     },
-    addSlides () {
+    addSlides() {
       if (this.$slots && this.$slots.default) {
         this.$slots.default.forEach(slide => {
-          if (typeof slide.tag !== 'undefined') {
-            this.slides.push(slide)
+          if (typeof slide.tag !== "undefined") {
+            this.slides.push(slide);
           }
-        })
+        });
       }
     },
-    calculateHeight () {
+    calculateHeight() {
       if (this.options.fullscreen) {
         this.setFullScreen();
       } else {
         this.setInlineHeight();
       }
     },
-    setFullScreen () {
-      Array.from(this.$refs.slides.$el.childNodes).forEach((node) => {
+    setFullScreen() {
+      Array.from(this.$refs.slides.$el.childNodes).forEach(node => {
         node.style.height = `${window.innerHeight + this.options.fullscreenOffset}px`;
-        this.$refs.slides.$el.style.height = `${window.innerHeight + this.options.fullscreenOffset}px`;
+        this.$refs.slides.$el.style.height = `${window.innerHeight +
+          this.options.fullscreenOffset}px`;
       });
     },
-    setInlineHeight () {
+    setInlineHeight() {
       if (this.$refs.slides) {
-        Array.from(this.$refs.slides.$el.childNodes).forEach((node) => {
+        Array.from(this.$refs.slides.$el.childNodes).forEach(node => {
           // find THE HIGHEST!!!
-          this.inlineHeight = this.inlineHeight > node.scrollHeight
-            ? this.inlineHeight : node.scrollHeight;
+          this.inlineHeight =
+            this.inlineHeight > node.scrollHeight ? this.inlineHeight : node.scrollHeight;
         });
 
-        Array.from(this.$refs.slides.$el.childNodes).forEach((node) => {
+        Array.from(this.$refs.slides.$el.childNodes).forEach(node => {
           node.style.height = `${this.inlineHeight}px`;
         });
 
         this.$refs.slides.$el.style.height = `${this.inlineHeight}px`;
       }
     },
-    activeIndexChanged (index) {
+    activeIndexChanged(index) {
       this.activeIndex = index;
     },
-    contentChanged () {
+    contentChanged() {
       setTimeout(() => {
-        this.calculateHeight()
-      }, 500)
+        this.calculateHeight();
+      }, 500);
     }
-  },
+  }
 };
 </script>
 
@@ -288,8 +278,7 @@ export default {
   margin-right: 1em;
   border: 1px solid white;
   transition: all 1s;
-  box-shadow: 0 4px 6px 3px rgba(0, 0, 0, 0.06),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 6px 3px rgba(0, 0, 0, 0.06), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   cursor: pointer;
 
   &.active-slide {

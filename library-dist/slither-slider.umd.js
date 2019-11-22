@@ -2015,16 +2015,18 @@ var staticRenderFns = []
 
 // CONCATENATED MODULE: ./src/components/SlitherApp.vue?vue&type=template&id=15846940&
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"76252afb-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Slider.vue?vue&type=template&id=fb4cccc6&
-var Slidervue_type_template_id_fb4cccc6_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.slides)?_c('div',{class:[_vm.options.transition, _vm.options.sliderClass]},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(false),expression:"false"}],ref:"allSlidesSlot"},[_vm._t("default")],2),(_vm.slides.length > 0)?_c('slider-frame',{ref:"sliderframe",attrs:{"options":_vm.options,"number-of-slides":_vm.options.numberOfSlides},on:{"active-index-changed":_vm.activeIndexChanged},scopedSlots:_vm._u([{key:"default",fn:function(ref){
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"76252afb-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Slider.vue?vue&type=template&id=197aed54&
+var Slidervue_type_template_id_197aed54_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.slides)?_c('div',{class:[_vm.options.transition, _vm.options.sliderClass]},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(false),expression:"false"}],ref:"allSlidesSlot"},[_vm._t("default")],2),(_vm.slides.length > 0)?_c('slider-frame',{ref:"sliderframe",attrs:{"options":_vm.options,"number-of-slides":_vm.options.numberOfSlides},on:{"active-index-changed":_vm.activeIndexChanged},scopedSlots:_vm._u([{key:"default",fn:function(ref){
 var goToIndex = ref.goToIndex;
 var next = ref.next;
 var prev = ref.prev;
-return _c('div',{staticClass:"slider",class:_vm.sliderClasses},[_c('slider-slides',{ref:"slides",staticClass:"slides",class:[_vm.options.sliderClass],attrs:{"options":_vm.options}},_vm._l((_vm.groups),function(group,key){return _c('slider-slide',{key:key,class:_vm.options.slideClass,attrs:{"loaded":_vm.loaded,"group":group,"options":_vm.options},on:{"contentChanged":_vm.contentChanged}})}),1),(_vm.options.controls && _vm.slides.length > 1)?[_c('button',{staticClass:"slider-direction slider-direction--prev",on:{"click":prev}},[_vm._t("previous",[_vm._v("\n            « Prev\n          ")])],2),_c('button',{staticClass:"slider-direction slider-direction--next",on:{"click":next}},[_vm._t("next",[_vm._v("\n            Next »\n          ")])],2)]:_vm._e(),(_vm.options.dots && _vm.slides.length > 1)?[_c('ol',{staticClass:"slider-dots"},_vm._l((_vm.numberOfPages),function(n){return _c('li',{key:n,staticClass:"slider-dot",class:{'active-slide': (n-1) === _vm.activeIndex},on:{"click":function($event){return goToIndex(n - 1)}}},[_vm._v("\n            "+_vm._s(n)+"\n          ")])}),0)]:_vm._e()],2)}}],null,true)}):_vm._e()],1):_vm._e()}
-var Slidervue_type_template_id_fb4cccc6_staticRenderFns = []
+var pauseInterval = ref.pauseInterval;
+var startAutoplay = ref.startAutoplay;
+return _c('div',{staticClass:"slider",class:_vm.sliderClasses,on:{"mouseenter":pauseInterval,"mouseleave":startAutoplay}},[_c('slider-slides',{ref:"slides",staticClass:"slides",class:[_vm.options.sliderClass],attrs:{"options":_vm.options}},_vm._l((_vm.groups),function(group,key){return _c('slider-slide',{key:key,class:_vm.options.slideClass,attrs:{"loaded":_vm.loaded,"group":group,"options":_vm.options},on:{"contentChanged":_vm.contentChanged}})}),1),(_vm.options.controls && _vm.slides.length > 1)?[_c('button',{staticClass:"slider-direction slider-direction--prev",on:{"click":prev}},[_vm._t("previous",[_vm._v("\n            « Prev\n          ")])],2),_c('button',{staticClass:"slider-direction slider-direction--next",on:{"click":next}},[_vm._t("next",[_vm._v("\n            Next »\n          ")])],2)]:_vm._e(),(_vm.options.dots && _vm.slides.length > 1)?[_c('ol',{staticClass:"slider-dots"},_vm._l((_vm.numberOfPages),function(n){return _c('li',{key:n,staticClass:"slider-dot",class:{ 'active-slide': n - 1 === _vm.activeIndex },on:{"click":function($event){return goToIndex(n - 1)}}},[_vm._v("\n            "+_vm._s(n)+"\n          ")])}),0)]:_vm._e()],2)}}],null,true)}):_vm._e()],1):_vm._e()}
+var Slidervue_type_template_id_197aed54_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Slider.vue?vue&type=template&id=fb4cccc6&
+// CONCATENATED MODULE: ./src/components/Slider.vue?vue&type=template&id=197aed54&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.string.iterator.js
 var es6_string_iterator = __webpack_require__("5df3");
@@ -2053,7 +2055,7 @@ var es6_array_find = __webpack_require__("7514");
 
 
 /* harmony default export */ var SliderFrame = ({
-  name: 'SliderFrame',
+  name: "SliderFrame",
   props: {
     options: {
       type: Object,
@@ -2062,14 +2064,15 @@ var es6_array_find = __webpack_require__("7514");
   },
   data: function data() {
     return {
-      activeIndex: 0
+      activeIndex: 0,
+      autoplayInterval: null
     };
   },
   computed: {
     slides: function slides() {
       // All slides must be children of the `SliderSlides` component.
       return this.$children.find(function (x) {
-        return x.$options.name === 'Slides';
+        return x.$options.name === "Slides";
       }).$children;
     },
     slidesCount: function slidesCount() {
@@ -2087,7 +2090,7 @@ var es6_array_find = __webpack_require__("7514");
       var classes = this.options.sliderClass;
 
       if (options.fullscreen) {
-        classes += (_readOnlyError("classes"), ' slider-fullscreen');
+        classes += (_readOnlyError("classes"), " slider-fullscreen");
       }
 
       return classes;
@@ -2096,15 +2099,16 @@ var es6_array_find = __webpack_require__("7514");
   mounted: function mounted() {
     // Immediately activate the first slide.
     this.goToIndex(this.activeIndex);
+    this.startAutoplay();
   },
   methods: {
     goToIndex: function goToIndex(index) {
       // Find out the direction we're moving.
       // This is useful for animations.
-      var direction = index > this.activeIndex ? 'left' : 'right';
+      var direction = index > this.activeIndex ? "left" : "right";
       this.showSingleSlide(index, direction);
       this.activeIndex = index;
-      this.$emit('active-index-changed', index);
+      this.$emit("active-index-changed", index);
     },
     showSingleSlide: function showSingleSlide(index, direction) {
       // Call the `hide()` method on the currently
@@ -2119,6 +2123,19 @@ var es6_array_find = __webpack_require__("7514");
     },
     prev: function prev() {
       this.goToIndex(this.prevIndex);
+    },
+    startAutoplay: function startAutoplay() {
+      var _this = this;
+
+      if (this.options.autoplay) {
+        var interval = this.options.secondsOnSlide ? this.options.secondsOnSlide * 1000 : 4000;
+        this.autoplayInterval = setInterval(function () {
+          _this.next();
+        }, interval);
+      }
+    },
+    pauseInterval: function pauseInterval() {
+      clearInterval(this.autoplayInterval);
     }
   },
   render: function render() {
@@ -2129,7 +2146,9 @@ var es6_array_find = __webpack_require__("7514");
       // Methods
       goToIndex: this.goToIndex,
       next: this.next,
-      prev: this.prev
+      prev: this.prev,
+      pauseInterval: this.pauseInterval,
+      startAutoplay: this.startAutoplay
     });
   }
 });
@@ -2277,12 +2296,12 @@ var component = normalizeComponent(
 )
 
 /* harmony default export */ var SliderSlides = (component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"76252afb-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SliderSlide.vue?vue&type=template&id=12ee92ba&
-var SliderSlidevue_type_template_id_12ee92ba_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('transition',{attrs:{"name":_vm.transition,"mode":"out-in"}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.active || !_vm.loaded),expression:"active || !loaded"}],staticClass:"slider-slide"},_vm._l((_vm.filteredGroup),function(slide,key){return _c('slide-renderer',{key:key,attrs:{"slide":slide,"options":_vm.options},on:{"contentChanged":function($event){return _vm.$emit('contentChanged')}}})}),1)])}
-var SliderSlidevue_type_template_id_12ee92ba_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"76252afb-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SliderSlide.vue?vue&type=template&id=a1fbc630&
+var SliderSlidevue_type_template_id_a1fbc630_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('transition',{attrs:{"name":_vm.transition,"mode":"out-in"}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.active || !_vm.loaded),expression:"active || !loaded"}],staticClass:"slider-slide"},_vm._l((_vm.filteredGroup),function(slide,key){return _c('slide-renderer',{key:key,attrs:{"slide":slide,"options":_vm.options},on:{"contentChanged":function($event){return _vm.$emit('contentChanged')}}})}),1)])}
+var SliderSlidevue_type_template_id_a1fbc630_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/SliderSlide.vue?vue&type=template&id=12ee92ba&
+// CONCATENATED MODULE: ./src/components/SliderSlide.vue?vue&type=template&id=a1fbc630&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es7.symbol.async-iterator.js
 var es7_symbol_async_iterator = __webpack_require__("ac4d");
@@ -2335,12 +2354,9 @@ var es6_symbol = __webpack_require__("8a81");
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ var SliderSlidevue_type_script_lang_js_ = ({
-  name: 'Slide',
+  name: "Slide",
   components: {
     SlideRenderer: SlideRenderer
   },
@@ -2365,18 +2381,19 @@ var es6_symbol = __webpack_require__("8a81");
   data: function data() {
     return {
       active: false,
-      transition: ''
+      transition: ""
     };
   },
   computed: {
     filteredGroup: function filteredGroup() {
       return this.group.filter(function (slide) {
-        return typeof slide.tag !== 'undefined';
+        return typeof slide.tag !== "undefined";
       });
     }
   },
-  mounted: function mounted() {// console.log(this.slide)
-  },
+  // mounted () {
+  // console.log(this.slide)
+  // },
   methods: {
     // Deactivate and hide the slide and
     // also activate the correct transition.
@@ -2404,7 +2421,7 @@ var es6_symbol = __webpack_require__("8a81");
           var _loop = function _loop() {
             var image = _step.value;
 
-            if ('IntersectionObserver' in window) {
+            if ("IntersectionObserver" in window) {
               var lazyImageObserver = new IntersectionObserver(function (entries) {
                 entries.forEach(function (entry) {
                   if (entry.isIntersecting) {
@@ -2440,17 +2457,17 @@ var es6_symbol = __webpack_require__("8a81");
       }
     },
     setImage: function setImage(image) {
-      if (image.hasAttribute('data-src')) {
-        var imageSrc = image.getAttribute('data-src');
-        image.setAttribute('src', imageSrc);
-        image.removeAttribute('data-src');
+      if (image.hasAttribute("data-src")) {
+        var imageSrc = image.getAttribute("data-src");
+        image.setAttribute("src", imageSrc);
+        image.removeAttribute("data-src");
       }
 
-      if (image.hasAttribute('data-bg-src')) {
-        var _imageSrc = image.getAttribute('data-bg-src');
+      if (image.hasAttribute("data-bg-src")) {
+        var _imageSrc = image.getAttribute("data-bg-src");
 
         image.style.backgroundImage = "url('".concat(_imageSrc, "')");
-        image.removeAttribute('data-bg-src');
+        image.removeAttribute("data-bg-src");
       }
     }
   }
@@ -2471,8 +2488,8 @@ var SliderSlidevue_type_style_index_0_lang_scss_ = __webpack_require__("b90e");
 
 var SliderSlide_component = normalizeComponent(
   components_SliderSlidevue_type_script_lang_js_,
-  SliderSlidevue_type_template_id_12ee92ba_render,
-  SliderSlidevue_type_template_id_12ee92ba_staticRenderFns,
+  SliderSlidevue_type_template_id_a1fbc630_render,
+  SliderSlidevue_type_template_id_a1fbc630_staticRenderFns,
   false,
   null,
   null,
@@ -2561,24 +2578,13 @@ var SliderSlide_component = normalizeComponent(
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* eslint-disable no-param-reassign */
 
 
 
 /* harmony default export */ var Slidervue_type_script_lang_js_ = ({
-  name: 'Slider',
+  name: "Slider",
   components: {
     SliderFrame: SliderFrame,
     SliderSlides: SliderSlides,
@@ -2619,7 +2625,7 @@ var SliderSlide_component = normalizeComponent(
       var classes = this.options.sliderClass;
 
       if (this.options.fullscreen) {
-        classes += ' slider-fullscreen';
+        classes += " slider-fullscreen";
       }
 
       return classes;
@@ -2629,7 +2635,7 @@ var SliderSlide_component = normalizeComponent(
     return {
       activeIndex: 1,
       options: {
-        transition: 'slide',
+        transition: "slide",
         controls: true,
         dots: true,
         fullscreen: false,
@@ -2668,7 +2674,7 @@ var SliderSlide_component = normalizeComponent(
 
       if (this.$slots && this.$slots.default) {
         this.$slots.default.forEach(function (slide) {
-          if (typeof slide.tag !== 'undefined') {
+          if (typeof slide.tag !== "undefined") {
             _this2.slides.push(slide);
           }
         });
@@ -2731,8 +2737,8 @@ var Slidervue_type_style_index_0_lang_scss_ = __webpack_require__("6afe");
 
 var Slider_component = normalizeComponent(
   components_Slidervue_type_script_lang_js_,
-  Slidervue_type_template_id_fb4cccc6_render,
-  Slidervue_type_template_id_fb4cccc6_staticRenderFns,
+  Slidervue_type_template_id_197aed54_render,
+  Slidervue_type_template_id_197aed54_staticRenderFns,
   false,
   null,
   null,

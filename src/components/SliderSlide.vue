@@ -1,9 +1,6 @@
 <template>
   <transition :name="transition" mode="out-in">
-    <div
-      v-show="active || !loaded"
-      class="slider-slide"
-    >
+    <div v-show="active || !loaded" class="slider-slide">
       <slide-renderer
         v-for="(slide, key) in filteredGroup"
         :key="key"
@@ -16,10 +13,10 @@
 </template>
 
 <script>
-import SlideRenderer from './SlideRenderer';
+import SlideRenderer from "./SlideRenderer";
 
 export default {
-  name: 'Slide',
+  name: "Slide",
   components: {
     SlideRenderer
   },
@@ -34,49 +31,49 @@ export default {
     },
     options: {
       type: Object,
-      default () {
+      default() {
         return {
           lazy: false
-        }
+        };
       }
     }
   },
-  data () {
+  data() {
     return {
       active: false,
-      transition: '',
+      transition: ""
     };
   },
   computed: {
-    filteredGroup () {
+    filteredGroup() {
       return this.group.filter(slide => {
-        return typeof slide.tag !== 'undefined'
-      })
+        return typeof slide.tag !== "undefined";
+      });
     }
   },
-  mounted () {
-    // console.log(this.slide)
-  },
+  // mounted () {
+  // console.log(this.slide)
+  // },
   methods: {
     // Deactivate and hide the slide and
     // also activate the correct transition.
-    hide (direction) {
+    hide(direction) {
       this.transition = `slider-slide--transition-${direction}`;
       this.active = false;
     },
     // Activate and show the slide and
     // also activate the correct transition.
-    show (direction) {
+    show(direction) {
       this.transition = `slider-slide--transition-${direction}`;
       this.checkLazy();
       this.active = true;
     },
 
-    checkLazy () {
+    checkLazy() {
       if (this.options.lazy) {
         const lazyImages = this.$el.getElementsByClassName("slither-lazy");
         for (let image of lazyImages) {
-          if ('IntersectionObserver' in window) {
+          if ("IntersectionObserver" in window) {
             const lazyImageObserver = new IntersectionObserver(entries => {
               entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -94,28 +91,28 @@ export default {
       }
     },
 
-    setImage (image) {
-      if (image.hasAttribute('data-src')) {
-        const imageSrc = image.getAttribute('data-src')
-        image.setAttribute('src', imageSrc)
-        image.removeAttribute('data-src')
+    setImage(image) {
+      if (image.hasAttribute("data-src")) {
+        const imageSrc = image.getAttribute("data-src");
+        image.setAttribute("src", imageSrc);
+        image.removeAttribute("data-src");
       }
-      if (image.hasAttribute('data-bg-src')) {
-        const imageSrc = image.getAttribute('data-bg-src')
-        image.style.backgroundImage = `url('${imageSrc}')`
-        image.removeAttribute('data-bg-src')
+      if (image.hasAttribute("data-bg-src")) {
+        const imageSrc = image.getAttribute("data-bg-src");
+        image.style.backgroundImage = `url('${imageSrc}')`;
+        image.removeAttribute("data-bg-src");
       }
     }
-  },
+  }
 };
 </script>
 
 <style lang="scss">
 .slide-fade-enter-active {
-  transition: all .3s ease;
+  transition: all 0.3s ease;
 }
 .slide-fade-leave-active {
-  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
 }
 .slide-fade-enter, .slide-fade-leave-to
 /* .slide-fade-leave-active below version 2.1.8 */ {
@@ -124,11 +121,11 @@ export default {
 }
 
 .slider-slide {
-    position:absolute;
-    top:0;
-    left:0;
-    right:0;
-    bottom:0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .slider-slide--transition-left-enter-active,
@@ -164,12 +161,11 @@ export default {
   .slider-slide--transition-left-leave-active,
   .slider-slide--transition-right-enter {
     transform: translate(-100%, 0);
-
   }
 
   .slither-lazy {
-    min-height:1px;
-    min-width:1px;
+    min-height: 1px;
+    min-width: 1px;
   }
 }
 </style>
