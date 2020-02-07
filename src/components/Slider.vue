@@ -96,16 +96,33 @@ export default {
     slidesCount() {
       return this.slides.length;
     },
+    slideCount() {
+      if (typeof this.options.numberOfSlides === "number") {
+        return this.options.numberOfSlides;
+      }
+      const windowWidth = window.innerWidth;
+      let currentSize = {
+        number: 1,
+        min: -1
+      };
+      for (let i = 0; i < this.options.numberOfSlides.length; i++) {
+        const responsiveSize = this.options.numberOfSlides[i];
+        if (responsiveSize.min < windowWidth && responsiveSize.min > currentSize.min) {
+          currentSize = responsiveSize;
+        }
+      }
+      return currentSize.number;
+    },
     numberOfPages() {
-      return Math.ceil(this.slidesCount / this.options.numberOfSlides);
+      return Math.ceil(this.slidesCount / this.slideCount);
     },
     groups() {
       let groups = [];
       let _slides = this.slides.slice();
 
       for (let i = 0; i < this.numberOfPages; i++) {
-        const start = i * this.options.numberOfSlides;
-        const end = i * this.options.numberOfSlides + this.options.numberOfSlides;
+        const start = i * this.slideCount;
+        const end = i * this.slideCount + this.slideCount;
         let group = _slides.slice(start, end);
         groups.push(group);
       }

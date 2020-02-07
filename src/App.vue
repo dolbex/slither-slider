@@ -172,6 +172,24 @@
 
       <hr />
 
+      <h1>Slider with multiple items per slide / responsive</h1>
+      <slither-slider
+        :options="{
+          dots: true,
+          numberOfSlides: [
+            { number: 1, min: 0 },
+            { number: 2, min: 780 }
+          ],
+          slideClass: 'flex-demo-slide'
+        }"
+      >
+        <div v-for="n in 35" :key="n">
+          <h2>Slide {{ n }}</h2>
+        </div>
+      </slither-slider>
+
+      <hr />
+
       <h1>Lazy slider</h1>
       <slither-slider :options="{ lazy: true, dots: false }">
         <div>

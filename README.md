@@ -44,6 +44,8 @@ Vue.use(SlitherSlider)
   numberOfSlides:1,
   sliderClass:null,
   slideClass:null,
+  autoplay:false,
+  secondsOnSlide:4,
 }
 ```
 
@@ -55,7 +57,7 @@ Vue.use(SlitherSlider)
 | fullscreenOffset | null    | When fullscreen is true it adds this number -200 would subtract 200 pixels this works well for heros with consideration for the nav                                                                                                                                                     |
 | lazy             | false   | Attempts to lazy load images. * You *must* add .slither-lazy to all images * Set the url of the image to 'data-src' attribute for images _ For background images (like on a div) set the url to 'data-bg-src' _ It is highly advisable to add the height of the image to the image tag. |
 | controls         | true    | Show the previous and next buttons                                                                                                                                                                                                                                                      |
-| numberOfSlides   | 1       | Creates pages and shows n number of slides at a time                                                                                                                                                                                                                                    |
+| numberOfSlides   | 1       | Creates pages and shows n number of slides at a time. Optionally, you can add an object with "number" and "min" properties to define the number of slides and minimum width respectively. See examples.                                                                                 |
 | sliderClass      | null    | Adds these classes to the parent of the slides                                                                                                                                                                                                                                          |
 | slideClass       | null    | Adds these classes to each slide                                                                                                                                                                                                                                                        |
 | autoplay         | false   | You know what this does.                                                                                                                                                                                                                                                                |
@@ -117,9 +119,28 @@ In your component you can add a couple of slots that will override the control b
 </slither-slider>
 ```
 
-## ToDo
+### Responsive Slide Numbers
 
-- Responsive "numberOfSlides"
+You can control how many slides show per page at different responsive sizes like so:
+
+```html
+<slither-slider
+  :options="{
+          dots: true,
+          numberOfSlides: [
+            { number: 1, min: 0 },
+            { number: 2, min: 780 }
+          ]}"
+>
+  <div>Slide 1</div>
+  <div>Slide 2</div>
+  <div>Slide 4</div>
+  <div>Slide 5</div>
+  <div>Slide 6</div>
+  <div>Slide 7</div>
+  <div>Slide 8</div>
+</slither-slider>
+```
 
 ## Development
 
