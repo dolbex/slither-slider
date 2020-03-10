@@ -63,7 +63,6 @@ Vue.use(SlitherSlider)
 | slideClass       | null    | Adds these classes to each slide                                                                                                                                                                                                                                                        |
 | autoplay         | false   | You know what this does.                                                                                                                                                                                                                                                                |
 | secondsOnSlide   | 4       | This is the number of seconds slither will pause on a slide before moving foward (autoplay must be set to true)                                                                                                                                                                         |
-| peeking          | false   | Setting this to true will disable the display:none on the next and previous slides                                                                                                                                                                                                      |
 
 ### Styles
 
