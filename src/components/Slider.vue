@@ -27,8 +27,8 @@
           class="slides"
           :options="options"
           :class="[options.sliderClass]"
-          v-touch:swipe.left="prev"
-          v-touch:swipe.right="next"
+          v-touch:swipe.left="next"
+          v-touch:swipe.right="prev"
         >
           <slider-slide
             v-for="(group, key) in groups"
@@ -37,6 +37,7 @@
             :group="group"
             :options="options"
             :class="options.slideClass"
+            :is-next="isNext(key)"
             @contentChanged="contentChanged"
           >
           </slider-slide>
@@ -94,6 +95,25 @@ export default {
       default: () => ({})
     }
   },
+  data() {
+    return {
+      activeIndex: 1,
+      options: {
+        transition: "slide",
+        controls: true,
+        dots: true,
+        fullscreen: false,
+        fullscreenOffset: null,
+        lazy: true,
+        numberOfSlides: 1,
+        slideClass: null,
+        sliderClass: null
+      },
+      slides: [],
+      inlineHeight: 0,
+      loaded: false
+    };
+  },
   computed: {
     slidesCount() {
       return this.slides.length;
@@ -141,25 +161,7 @@ export default {
       return classes;
     }
   },
-  data() {
-    return {
-      activeIndex: 1,
-      options: {
-        transition: "slide",
-        controls: true,
-        dots: true,
-        fullscreen: false,
-        fullscreenOffset: null,
-        lazy: true,
-        numberOfSlides: 1,
-        slideClass: null,
-        sliderClass: null
-      },
-      slides: [],
-      inlineHeight: 0,
-      loaded: false
-    };
-  },
+
   mounted() {
     this.setOptions();
     this.addSlides();
@@ -222,6 +224,9 @@ export default {
       setTimeout(() => {
         this.calculateHeight();
       }, 500);
+    },
+    isNext(index) {
+      return index === this.activeIndex + 1;
     }
   }
 };

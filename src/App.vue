@@ -408,6 +408,8 @@
           slide
         </div>
       </slither-slider>
+
+      <hr />
     </div>
   </div>
 </template>
