@@ -27,6 +27,8 @@
           class="slides"
           :options="options"
           :class="[options.sliderClass]"
+          v-touch:swipe.left="prev"
+          v-touch:swipe.right="next"
         >
           <slider-slide
             v-for="(group, key) in groups"

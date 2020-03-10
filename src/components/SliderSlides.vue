@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'Slides',
+  name: "Slides",
   props: {
     options: {
       type: Object,

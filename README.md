@@ -16,7 +16,7 @@ Vue.use(SlitherSlider)
 ### In your component
 
 ```html
-<slither-slider :config="{fullscreen:true, lazy:true}">
+<slither-slider :options="{fullscreen:true, lazy:true}">
   <!-- Slide 1 -->
   <div :style="{backgroundColor: 'red', height:'10000px'}">Oh</div>
 
@@ -92,7 +92,7 @@ Styles are fairly minimal out of the box so here are some that you may want to u
 
 ### Lazy Loading
 
-Ensure that you have lazy set to true in the configuration and then use the following syntax on any images you want to lazy load. You must have the class and data-src set for lazy loading to work.
+Ensure that you have lazy set to true in the configuration options and then use the following syntax on any images you want to lazy load. You must have the class and data-src set for lazy loading to work.
 
 ```html
 <img data-src="https://picsum.photos/id/237/200/300" class="slither-lazy" />

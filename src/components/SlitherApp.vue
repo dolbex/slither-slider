@@ -13,26 +13,20 @@
 </template>
 
 <script>
-import Slider from './Slider.vue';
+import Slider from "./Slider.vue";
 
 export default {
-  name: 'SlitherSlider',
+  name: "SlitherSlider",
   components: {
-    Slider,
+    Slider
   },
   props: {
     options: {
       type: Object,
-      default () {
+      default() {
         return {};
-      },
-    },
-  },
+      }
+    }
+  }
 };
 </script>
-
-<style>
-.slither-slider {
-  overflow: hidden;
-}
-</style>
