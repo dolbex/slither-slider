@@ -1,10 +1,16 @@
 <template>
-  <transition :name="transition" mode="out-in">
+  <transition
+    mode="out-in"
+    @before-enter="beforeEnter"
+    @enter="enter"
+    @before-leave="beforeLeave"
+    @leave="leave"
+  >
     <div v-show="active || !loaded" class="slider-slide">
       <slide-renderer
-        v-for="(slide, key) in filteredGroup"
-        :key="key"
-        :slide="slide"
+        v-for="slideData in filteredGroup"
+        :key="slideData.key"
+        :slide="slideData.slide"
         :options="options"
         @contentChanged="$emit('contentChanged')"
       ></slide-renderer>
@@ -14,6 +20,7 @@
 
 <script>
 import SlideRenderer from "./SlideRenderer";
+import anime from "animejs/lib/anime.es.js";
 
 export default {
   name: "Slide",
@@ -41,14 +48,24 @@ export default {
   data() {
     return {
       active: false,
-      transition: ""
+      transition: "",
+      direction: "right"
     };
   },
   computed: {
     filteredGroup() {
-      return this.group.filter(slide => {
+      const filteredGroup = this.group.filter(slide => {
         return typeof slide.tag !== "undefined";
       });
+      const slideData = [];
+      filteredGroup.forEach(slideInGroup => {
+        slideData.push({
+          slide: slideInGroup,
+          key: this.randomString()
+        });
+      });
+
+      return slideData;
     }
   },
   // mounted () {
@@ -58,15 +75,55 @@ export default {
     // Deactivate and hide the slide and
     // also activate the correct transition.
     hide(direction) {
-      this.transition = `slider-slide--transition-${direction}`;
+      this.direction = direction;
       this.active = false;
     },
     // Activate and show the slide and
     // also activate the correct transition.
     show(direction) {
-      this.transition = `slider-slide--transition-${direction}`;
+      this.direction = direction;
       this.checkLazy();
       this.active = true;
+    },
+
+    beforeEnter(el) {
+      let translateX = "-100%";
+      if (this.direction === "left") {
+        translateX = "100%";
+      }
+
+      anime.set(el, { translateX: translateX, opacity: 0 });
+    },
+
+    enter(el) {
+      anime({
+        targets: el,
+        opacity: 1,
+        duration: 750,
+        translateX: 0,
+        easing: "easeOutExpo"
+      });
+    },
+
+    beforeLeave(el) {
+      anime.set(el, { translateX: 0, opacity: 1 });
+    },
+
+    leave(el, done) {
+      let translateX = "-100%";
+      if (this.direction === "right") {
+        translateX = "100%";
+      }
+      anime({
+        targets: el,
+        opacity: 0,
+        duration: 750,
+        translateX: translateX,
+        easing: "easeOutExpo",
+        complete: () => {
+          done();
+        }
+      });
     },
 
     checkLazy() {
@@ -102,70 +159,28 @@ export default {
         image.style.backgroundImage = `url('${imageSrc}')`;
         image.removeAttribute("data-bg-src");
       }
+    },
+
+    randomString() {
+      return (
+        Math.random()
+          .toString(36)
+          .substring(2, 15) +
+        Math.random()
+          .toString(36)
+          .substring(2, 15)
+      );
     }
   }
 };
 </script>
 
 <style lang="scss">
-.slide-fade-enter-active {
-  transition: all 0.3s ease;
-}
-.slide-fade-leave-active {
-  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
-}
-.slide-fade-enter, .slide-fade-leave-to
-/* .slide-fade-leave-active below version 2.1.8 */ {
-  transform: translateX(10px);
-  opacity: 0;
-}
-
 .slider-slide {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-}
-
-.slider-slide--transition-left-enter-active,
-.slider-slide--transition-right-enter-active,
-.slider-slide--transition-left-leave-active,
-.slider-slide--transition-right-leave-active {
-  transition-duration: 750ms;
-  transition-property: height, opacity, transform;
-  transition-timing-function: cubic-bezier(0.55, 0, 0.1, 1);
-  overflow: hidden;
-}
-
-.fade {
-  .slider-slide--transition-left-enter,
-  .slider-slide--transition-right-leave-active {
-    opacity: 0;
-    transform: translate(0em, 0);
-  }
-
-  .slider-slide--transition-left-leave-active,
-  .slider-slide--transition-right-enter {
-    opacity: 0;
-    transform: translate(-0em, 0);
-  }
-}
-
-.slide {
-  .slider-slide--transition-left-enter,
-  .slider-slide--transition-right-leave-active {
-    transform: translate(100%, 0);
-  }
-
-  .slider-slide--transition-left-leave-active,
-  .slider-slide--transition-right-enter {
-    transform: translate(-100%, 0);
-  }
-
-  .slither-lazy {
-    min-height: 1px;
-    min-width: 1px;
-  }
 }
 </style>

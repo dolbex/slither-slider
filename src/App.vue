@@ -165,9 +165,6 @@
 
       <h1>Slider with multiple items per slide</h1>
       <slither-slider :options="{ dots: true, numberOfSlides: 3, slideClass: 'flex-demo-slide' }">
-        <div v-for="n in 35" :key="n">
-          <h2>Slide {{ n }}</h2>
-        </div>
       </slither-slider>
 
       <hr />
@@ -183,9 +180,6 @@
           slideClass: 'flex-demo-slide'
         }"
       >
-        <div v-for="n in 35" :key="n">
-          <h2>Slide {{ n }}</h2>
-        </div>
       </slither-slider>
 
       <hr />

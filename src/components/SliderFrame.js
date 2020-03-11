@@ -44,10 +44,10 @@ export default {
     this.startAutoplay();
   },
   methods: {
-    goToIndex(index) {
+    goToIndex(index, buttonClicked) {
       // Find out the direction we're moving.
       // This is useful for animations.
-      const direction = index > this.activeIndex ? "left" : "right";
+      const direction = buttonClicked === "next" ? "left" : "right";
 
       this.showSingleSlide(index, direction);
 
@@ -63,10 +63,10 @@ export default {
       this.slides[index].show(direction);
     },
     next() {
-      this.goToIndex(this.nextIndex);
+      this.goToIndex(this.nextIndex, "next");
     },
     prev() {
-      this.goToIndex(this.prevIndex);
+      this.goToIndex(this.prevIndex, "prev");
     },
     startAutoplay() {
       if (this.options.autoplay) {

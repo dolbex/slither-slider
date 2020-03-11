@@ -27,6 +27,14 @@ export default {
         return {};
       }
     }
+  },
+  data() {
+    return {
+      defaultSlot: []
+    };
+  },
+  mounted() {
+    this.defaultSlot = this.$slots.default;
   }
 };
 </script>

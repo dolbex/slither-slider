@@ -31,10 +31,10 @@
           v-touch:swipe.right="prev"
         >
           <slider-slide
-            v-for="(group, key) in groups"
-            :key="key"
+            v-for="(groupData, key) in groups"
+            :key="groupData.key"
             :loaded="loaded"
-            :group="group"
+            :group="groupData.group"
             :options="options"
             :class="options.slideClass"
             :is-next="isNext(key)"
@@ -58,6 +58,7 @@
         </template>
 
         <!-- Dots at the bottom of the slider -->
+        <!-- eslint-disable vue/valid-v-for -->
         <template v-if="options.dots && slides.length > 1">
           <ol class="slider-dots">
             <li
@@ -146,7 +147,7 @@ export default {
         const start = i * this.slideCount;
         const end = i * this.slideCount + this.slideCount;
         let group = _slides.slice(start, end);
-        groups.push(group);
+        groups.push({ group: group, key: this.randomString() });
       }
 
       return groups;
@@ -227,6 +228,16 @@ export default {
     },
     isNext(index) {
       return index === this.activeIndex + 1;
+    },
+    randomString() {
+      return (
+        Math.random()
+          .toString(36)
+          .substring(2, 15) +
+        Math.random()
+          .toString(36)
+          .substring(2, 15)
+      );
     }
   }
 };
