@@ -62,10 +62,10 @@
         <template v-if="options.dots && slides.length > 1">
           <ol class="slider-dots">
             <li
-              v-for="n in numberOfPages"
+              v-for="n in numberOfDots"
               :key="n"
               class="slider-dot"
-              :class="{ 'active-slide': n - 1 === activeIndex }"
+              :class="dotClass(n)"
               @click="goToIndex(n - 1)"
             >
               {{ n }}
@@ -78,6 +78,8 @@
 </template>
 
 <script>
+import anime from "animejs/lib/anime.es.js";
+
 /* eslint-disable no-param-reassign */
 import SliderFrame from "./SliderFrame";
 import SliderSlides from "./SliderSlides.vue";
@@ -98,11 +100,13 @@ export default {
   },
   data() {
     return {
-      activeIndex: 1,
+      activeIndex: 0,
       options: {
         transition: "slide",
         controls: true,
         dots: true,
+        animatedDots: false,
+        dotLimit: false,
         fullscreen: false,
         fullscreenOffset: null,
         lazy: true,
@@ -138,6 +142,9 @@ export default {
     },
     numberOfPages() {
       return Math.ceil(this.slidesCount / this.slideCount);
+    },
+    numberOfDots() {
+      return this.numberOfPages;
     },
     groups() {
       let groups = [];
@@ -238,6 +245,26 @@ export default {
           .toString(36)
           .substring(2, 15)
       );
+    },
+    dotClass(dotIndex) {
+      let classes = { "active-slide": this.activeIndex + 1 === dotIndex };
+
+      if (this.options.animatedDots) {
+        const dotDistance = this.activeIndex + 1 - dotIndex;
+        if (this.options.dotLimit) {
+          classes["large-dot"] = dotDistance === 0 || dotDistance === 1 || dotDistance === 2;
+          classes["medium-dot"] = dotDistance === -1 || dotDistance === 3;
+          classes["small-dot"] = dotDistance === -2 || dotDistance === -3;
+          classes["hidden-dot"] = dotDistance > 4 || dotDistance < -2;
+          // classes[dotDistance] = true;
+        } else {
+          classes["large-dot"] = dotDistance === 0;
+          classes["medium-dot"] = dotDistance === -1 || dotDistance === 1;
+          classes["small-dot"] = dotDistance === -2 || dotDistance === 2;
+        }
+      }
+
+      return classes;
     }
   }
 };
@@ -289,6 +316,11 @@ export default {
   overflow: hidden;
 }
 
+.limit-dot-width {
+  width: 50px;
+  overflow: hidden;
+}
+
 .slider-dots {
   position: absolute;
   right: 0;
@@ -303,22 +335,33 @@ export default {
 }
 
 .slider-dot {
-  width: 12px;
-  height: 12px;
+  width: 8px;
+  height: 8px;
   font-size: 0.1em;
-  background-color: #ddd;
-  color: #ddd;
-  border-radius: 12px;
+  background-color: #9b9b9b;
+  color: #9b9b9b;
+  border-radius: 8px;
   overflow: hidden;
-  margin-right: 1em;
-  border: 1px solid white;
+  margin-right: 0.75rem;
   transition: all 1s;
-  box-shadow: 0 4px 6px 3px rgba(0, 0, 0, 0.06), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   cursor: pointer;
 
   &.active-slide {
-    background-color: #4caf50;
-    color: #4caf50;
+    background-color: #4a4a4a;
+    color: #4a4a4a;
+  }
+
+  &.large-dot {
+    transform: scale(1.7);
+  }
+  &.medium-dot {
+    transform: scale(1.2);
+  }
+  &.small-dot {
+    transform: scale(0.7);
+  }
+  &.hidden-dot {
+    display: none;
   }
 }
 </style>

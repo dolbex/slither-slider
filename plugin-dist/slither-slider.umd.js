@@ -1603,7 +1603,7 @@ NAME in FProto || __webpack_require__("9e1e") && dP(FProto, NAME, {
 /***/ "8378":
 /***/ (function(module, exports) {
 
-var core = module.exports = { version: '2.6.9' };
+var core = module.exports = { version: '2.6.11' };
 if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 
 
@@ -2397,6 +2397,7 @@ module.exports = document && document.documentElement;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+// ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
 
 // CONCATENATED MODULE: ./node_modules/@vue/cli-service/lib/commands/build/setPublicPath.js
@@ -2416,25 +2417,25 @@ if (typeof window !== 'undefined') {
 // Indicate to webpack that this file can be concatenated
 /* harmony default export */ var setPublicPath = (null);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"c978af84-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SlitherApp.vue?vue&type=template&id=508a7294&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"2c3c18d4-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SlitherApp.vue?vue&type=template&id=508a7294&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"slither-slider"},[_c('slider',{attrs:{"config":_vm.options}},[_vm._t("default"),_c('template',{slot:"previous"},[_vm._t("previous")],2),_c('template',{slot:"next"},[_vm._t("next")],2)],2)],1)}
 var staticRenderFns = []
 
 
 // CONCATENATED MODULE: ./src/components/SlitherApp.vue?vue&type=template&id=508a7294&
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"c978af84-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Slider.vue?vue&type=template&id=714df1d5&
-var Slidervue_type_template_id_714df1d5_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.slides)?_c('div',{class:[_vm.options.transition, _vm.options.sliderClass]},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(false),expression:"false"}],ref:"allSlidesSlot"},[_vm._t("default")],2),(_vm.slides.length > 0)?_c('slider-frame',{ref:"sliderframe",attrs:{"options":_vm.options,"number-of-slides":_vm.options.numberOfSlides},on:{"active-index-changed":_vm.activeIndexChanged},scopedSlots:_vm._u([{key:"default",fn:function(ref){
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"2c3c18d4-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Slider.vue?vue&type=template&id=77060a1c&
+var Slidervue_type_template_id_77060a1c_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.slides)?_c('div',{class:[_vm.options.transition, _vm.options.sliderClass]},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(false),expression:"false"}],ref:"allSlidesSlot"},[_vm._t("default")],2),(_vm.slides.length > 0)?_c('slider-frame',{ref:"sliderframe",attrs:{"options":_vm.options,"number-of-slides":_vm.options.numberOfSlides},on:{"active-index-changed":_vm.activeIndexChanged},scopedSlots:_vm._u([{key:"default",fn:function(ref){
 var goToIndex = ref.goToIndex;
 var next = ref.next;
 var prev = ref.prev;
 var pauseInterval = ref.pauseInterval;
 var startAutoplay = ref.startAutoplay;
-return _c('div',{staticClass:"slider",class:_vm.sliderClasses,on:{"mouseenter":pauseInterval,"mouseleave":startAutoplay}},[_c('slider-slides',{directives:[{name:"touch",rawName:"v-touch:swipe.left",value:(next),expression:"next",arg:"swipe",modifiers:{"left":true}},{name:"touch",rawName:"v-touch:swipe.right",value:(prev),expression:"prev",arg:"swipe",modifiers:{"right":true}}],ref:"slides",staticClass:"slides",class:[_vm.options.sliderClass],attrs:{"options":_vm.options}},_vm._l((_vm.groups),function(groupData,key){return _c('slider-slide',{key:groupData.key,class:_vm.options.slideClass,attrs:{"loaded":_vm.loaded,"group":groupData.group,"options":_vm.options,"is-next":_vm.isNext(key)},on:{"contentChanged":_vm.contentChanged}})}),1),(_vm.options.controls && _vm.slides.length > 1)?[_c('button',{staticClass:"slider-direction slider-direction--prev",on:{"click":prev}},[_vm._t("previous",[_vm._v("\n            « Prev\n          ")])],2),_c('button',{staticClass:"slider-direction slider-direction--next",on:{"click":next}},[_vm._t("next",[_vm._v("\n            Next »\n          ")])],2)]:_vm._e(),(_vm.options.dots && _vm.slides.length > 1)?[_c('ol',{staticClass:"slider-dots"},_vm._l((_vm.numberOfPages),function(n){return _c('li',{key:n,staticClass:"slider-dot",class:{ 'active-slide': n - 1 === _vm.activeIndex },on:{"click":function($event){return goToIndex(n - 1)}}},[_vm._v("\n            "+_vm._s(n)+"\n          ")])}),0)]:_vm._e()],2)}}],null,true)}):_vm._e()],1):_vm._e()}
-var Slidervue_type_template_id_714df1d5_staticRenderFns = []
+return _c('div',{staticClass:"slider",class:_vm.sliderClasses,on:{"mouseenter":pauseInterval,"mouseleave":startAutoplay}},[_c('slider-slides',{directives:[{name:"touch",rawName:"v-touch:swipe.left",value:(next),expression:"next",arg:"swipe",modifiers:{"left":true}},{name:"touch",rawName:"v-touch:swipe.right",value:(prev),expression:"prev",arg:"swipe",modifiers:{"right":true}}],ref:"slides",staticClass:"slides",class:[_vm.options.sliderClass],attrs:{"options":_vm.options}},_vm._l((_vm.groups),function(groupData,key){return _c('slider-slide',{key:groupData.key,class:_vm.options.slideClass,attrs:{"loaded":_vm.loaded,"group":groupData.group,"options":_vm.options,"is-next":_vm.isNext(key)},on:{"contentChanged":_vm.contentChanged}})}),1),(_vm.options.controls && _vm.slides.length > 1)?[_c('button',{staticClass:"slider-direction slider-direction--prev",on:{"click":prev}},[_vm._t("previous",[_vm._v("\n            « Prev\n          ")])],2),_c('button',{staticClass:"slider-direction slider-direction--next",on:{"click":next}},[_vm._t("next",[_vm._v("\n            Next »\n          ")])],2)]:_vm._e(),(_vm.options.dots && _vm.slides.length > 1)?[_c('ol',{staticClass:"slider-dots"},_vm._l((_vm.numberOfDots),function(n){return _c('li',{key:n,staticClass:"slider-dot",class:_vm.dotClass(n),on:{"click":function($event){return goToIndex(n - 1)}}},[_vm._v("\n            "+_vm._s(n)+"\n          ")])}),0)]:_vm._e()],2)}}],null,true)}):_vm._e()],1):_vm._e()}
+var Slidervue_type_template_id_77060a1c_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Slider.vue?vue&type=template&id=714df1d5&
+// CONCATENATED MODULE: ./src/components/Slider.vue?vue&type=template&id=77060a1c&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.regexp.to-string.js
 var es6_regexp_to_string = __webpack_require__("6b54");
@@ -2451,302 +2452,6 @@ var web_dom_iterable = __webpack_require__("ac6a");
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.object.assign.js
 var es6_object_assign = __webpack_require__("f751");
 
-// CONCATENATED MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/readOnlyError.js
-function _readOnlyError(name) {
-  throw new Error("\"" + name + "\" is read-only");
-}
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.function.name.js
-var es6_function_name = __webpack_require__("7f7f");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.array.find.js
-var es6_array_find = __webpack_require__("7514");
-
-// CONCATENATED MODULE: ./src/components/SliderFrame.js
-
-
-
-/* harmony default export */ var SliderFrame = ({
-  name: "SliderFrame",
-  props: {
-    options: {
-      type: Object,
-      required: true
-    }
-  },
-  data: function data() {
-    return {
-      activeIndex: 0,
-      autoplayInterval: null
-    };
-  },
-  computed: {
-    slides: function slides() {
-      // All slides must be children of the `SliderSlides` component.
-      return this.$children.find(function (x) {
-        return x.$options.name === "Slides";
-      }).$children;
-    },
-    slidesCount: function slidesCount() {
-      return this.slides.length;
-    },
-    nextIndex: function nextIndex() {
-      var nextIndex = this.activeIndex + 1;
-      return nextIndex <= this.slidesCount - 1 ? nextIndex : 0;
-    },
-    prevIndex: function prevIndex() {
-      var prevIndex = this.activeIndex - 1;
-      return prevIndex >= 0 ? prevIndex : this.slidesCount - 1;
-    },
-    sliderClasses: function sliderClasses() {
-      var classes = this.options.sliderClass;
-
-      if (options.fullscreen) {
-        classes += (_readOnlyError("classes"), " slider-fullscreen");
-      }
-
-      return classes;
-    }
-  },
-  mounted: function mounted() {
-    // Immediately activate the first slide.
-    this.goToIndex(this.activeIndex);
-    this.startAutoplay();
-  },
-  methods: {
-    goToIndex: function goToIndex(index, buttonClicked) {
-      // Find out the direction we're moving.
-      // This is useful for animations.
-      var direction = buttonClicked === "next" ? "left" : "right";
-      this.showSingleSlide(index, direction);
-      this.activeIndex = index;
-      this.$emit("active-index-changed", index);
-    },
-    showSingleSlide: function showSingleSlide(index, direction) {
-      // Call the `hide()` method on the currently
-      // active `SliderSlide` component.
-      this.slides[this.activeIndex].hide(direction); // Call the `show()` method on the `SliderSlide`
-      // component with the correspondign index.
-
-      this.slides[index].show(direction);
-    },
-    next: function next() {
-      this.goToIndex(this.nextIndex, "next");
-    },
-    prev: function prev() {
-      this.goToIndex(this.prevIndex, "prev");
-    },
-    startAutoplay: function startAutoplay() {
-      var _this = this;
-
-      if (this.options.autoplay) {
-        var interval = this.options.secondsOnSlide ? this.options.secondsOnSlide * 1000 : 4000;
-        this.autoplayInterval = setInterval(function () {
-          _this.next();
-        }, interval);
-      }
-    },
-    pauseInterval: function pauseInterval() {
-      clearInterval(this.autoplayInterval);
-    }
-  },
-  render: function render() {
-    return this.$scopedSlots.default({
-      // Data
-      activeIndex: this.activeIndex,
-      numberOfSlides: this.numberOfSlides,
-      // Methods
-      goToIndex: this.goToIndex,
-      next: this.next,
-      prev: this.prev,
-      pauseInterval: this.pauseInterval,
-      startAutoplay: this.startAutoplay
-    });
-  }
-});
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"c978af84-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SliderSlides.vue?vue&type=template&id=2b97a0aa&
-var SliderSlidesvue_type_template_id_2b97a0aa_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"slider-slides"},[_vm._t("default")],2)}
-var SliderSlidesvue_type_template_id_2b97a0aa_staticRenderFns = []
-
-
-// CONCATENATED MODULE: ./src/components/SliderSlides.vue?vue&type=template&id=2b97a0aa&
-
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SliderSlides.vue?vue&type=script&lang=js&
-//
-//
-//
-//
-//
-//
-/* harmony default export */ var SliderSlidesvue_type_script_lang_js_ = ({
-  name: "Slides",
-  props: {
-    options: {
-      type: Object,
-      required: true
-    }
-  }
-});
-// CONCATENATED MODULE: ./src/components/SliderSlides.vue?vue&type=script&lang=js&
- /* harmony default export */ var components_SliderSlidesvue_type_script_lang_js_ = (SliderSlidesvue_type_script_lang_js_); 
-// EXTERNAL MODULE: ./src/components/SliderSlides.vue?vue&type=style&index=0&lang=scss&
-var SliderSlidesvue_type_style_index_0_lang_scss_ = __webpack_require__("5088");
-
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/runtime/componentNormalizer.js
-/* globals __VUE_SSR_CONTEXT__ */
-
-// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
-// This module is a runtime utility for cleaner component module output and will
-// be included in the final webpack user bundle.
-
-function normalizeComponent (
-  scriptExports,
-  render,
-  staticRenderFns,
-  functionalTemplate,
-  injectStyles,
-  scopeId,
-  moduleIdentifier, /* server only */
-  shadowMode /* vue-cli only */
-) {
-  // Vue.extend constructor export interop
-  var options = typeof scriptExports === 'function'
-    ? scriptExports.options
-    : scriptExports
-
-  // render functions
-  if (render) {
-    options.render = render
-    options.staticRenderFns = staticRenderFns
-    options._compiled = true
-  }
-
-  // functional template
-  if (functionalTemplate) {
-    options.functional = true
-  }
-
-  // scopedId
-  if (scopeId) {
-    options._scopeId = 'data-v-' + scopeId
-  }
-
-  var hook
-  if (moduleIdentifier) { // server build
-    hook = function (context) {
-      // 2.3 injection
-      context =
-        context || // cached call
-        (this.$vnode && this.$vnode.ssrContext) || // stateful
-        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
-      // 2.2 with runInNewContext: true
-      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
-        context = __VUE_SSR_CONTEXT__
-      }
-      // inject component styles
-      if (injectStyles) {
-        injectStyles.call(this, context)
-      }
-      // register component module identifier for async chunk inferrence
-      if (context && context._registeredComponents) {
-        context._registeredComponents.add(moduleIdentifier)
-      }
-    }
-    // used by ssr in case component is cached and beforeCreate
-    // never gets called
-    options._ssrRegister = hook
-  } else if (injectStyles) {
-    hook = shadowMode
-      ? function () { injectStyles.call(this, this.$root.$options.shadowRoot) }
-      : injectStyles
-  }
-
-  if (hook) {
-    if (options.functional) {
-      // for template-only hot-reload because in that case the render fn doesn't
-      // go through the normalizer
-      options._injectStyles = hook
-      // register for functioal component in vue file
-      var originalRender = options.render
-      options.render = function renderWithStyleInjection (h, context) {
-        hook.call(context)
-        return originalRender(h, context)
-      }
-    } else {
-      // inject component registration as beforeCreate hook
-      var existing = options.beforeCreate
-      options.beforeCreate = existing
-        ? [].concat(existing, hook)
-        : [hook]
-    }
-  }
-
-  return {
-    exports: scriptExports,
-    options: options
-  }
-}
-
-// CONCATENATED MODULE: ./src/components/SliderSlides.vue
-
-
-
-
-
-
-/* normalize component */
-
-var component = normalizeComponent(
-  components_SliderSlidesvue_type_script_lang_js_,
-  SliderSlidesvue_type_template_id_2b97a0aa_render,
-  SliderSlidesvue_type_template_id_2b97a0aa_staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* harmony default export */ var SliderSlides = (component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"c978af84-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SliderSlide.vue?vue&type=template&id=184b5780&
-var SliderSlidevue_type_template_id_184b5780_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('transition',{attrs:{"mode":"out-in"},on:{"before-enter":_vm.beforeEnter,"enter":_vm.enter,"before-leave":_vm.beforeLeave,"leave":_vm.leave}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.active || !_vm.loaded),expression:"active || !loaded"}],staticClass:"slider-slide"},_vm._l((_vm.filteredGroup),function(slideData){return _c('slide-renderer',{key:slideData.key,attrs:{"slide":slideData.slide,"options":_vm.options},on:{"contentChanged":function($event){return _vm.$emit('contentChanged')}}})}),1)])}
-var SliderSlidevue_type_template_id_184b5780_staticRenderFns = []
-
-
-// CONCATENATED MODULE: ./src/components/SliderSlide.vue?vue&type=template&id=184b5780&
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es7.symbol.async-iterator.js
-var es7_symbol_async_iterator = __webpack_require__("ac4d");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.symbol.js
-var es6_symbol = __webpack_require__("8a81");
-
-// CONCATENATED MODULE: ./src/components/SlideRenderer.js
-/* harmony default export */ var SlideRenderer = ({
-  name: 'SlideRenderer',
-  props: {
-    slide: {
-      type: Object,
-      required: true
-    },
-    options: {
-      type: Object
-    }
-  },
-  render: function render() {
-    return this.slide;
-  },
-  mounted: function mounted() {
-    this.observer = new MutationObserver(function (mutations) {
-      this.$emit('contentChanged');
-    }.bind(this)); // Setup the observer
-
-    this.observer.observe(this.$el, {
-      attributes: true,
-      childList: true,
-      subtree: true
-    });
-  }
-});
 // CONCATENATED MODULE: ./node_modules/animejs/lib/anime.es.js
 /*
  * anime.js v3.1.0
@@ -4029,6 +3734,302 @@ anime.random = function (min, max) { return Math.floor(Math.random() * (max - mi
 
 /* harmony default export */ var anime_es = (anime);
 
+// CONCATENATED MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/readOnlyError.js
+function _readOnlyError(name) {
+  throw new Error("\"" + name + "\" is read-only");
+}
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.function.name.js
+var es6_function_name = __webpack_require__("7f7f");
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.array.find.js
+var es6_array_find = __webpack_require__("7514");
+
+// CONCATENATED MODULE: ./src/components/SliderFrame.js
+
+
+
+/* harmony default export */ var SliderFrame = ({
+  name: "SliderFrame",
+  props: {
+    options: {
+      type: Object,
+      required: true
+    }
+  },
+  data: function data() {
+    return {
+      activeIndex: 0,
+      autoplayInterval: null
+    };
+  },
+  computed: {
+    slides: function slides() {
+      // All slides must be children of the `SliderSlides` component.
+      return this.$children.find(function (x) {
+        return x.$options.name === "Slides";
+      }).$children;
+    },
+    slidesCount: function slidesCount() {
+      return this.slides.length;
+    },
+    nextIndex: function nextIndex() {
+      var nextIndex = this.activeIndex + 1;
+      return nextIndex <= this.slidesCount - 1 ? nextIndex : 0;
+    },
+    prevIndex: function prevIndex() {
+      var prevIndex = this.activeIndex - 1;
+      return prevIndex >= 0 ? prevIndex : this.slidesCount - 1;
+    },
+    sliderClasses: function sliderClasses() {
+      var classes = this.options.sliderClass;
+
+      if (options.fullscreen) {
+        classes += (_readOnlyError("classes"), " slider-fullscreen");
+      }
+
+      return classes;
+    }
+  },
+  mounted: function mounted() {
+    // Immediately activate the first slide.
+    this.goToIndex(this.activeIndex);
+    this.startAutoplay();
+  },
+  methods: {
+    goToIndex: function goToIndex(index, buttonClicked) {
+      // Find out the direction we're moving.
+      // This is useful for animations.
+      var direction = buttonClicked === "next" ? "left" : "right";
+      this.showSingleSlide(index, direction);
+      this.activeIndex = index;
+      this.$emit("active-index-changed", index);
+    },
+    showSingleSlide: function showSingleSlide(index, direction) {
+      // Call the `hide()` method on the currently
+      // active `SliderSlide` component.
+      this.slides[this.activeIndex].hide(direction); // Call the `show()` method on the `SliderSlide`
+      // component with the correspondign index.
+
+      this.slides[index].show(direction);
+    },
+    next: function next() {
+      this.goToIndex(this.nextIndex, "next");
+    },
+    prev: function prev() {
+      this.goToIndex(this.prevIndex, "prev");
+    },
+    startAutoplay: function startAutoplay() {
+      var _this = this;
+
+      if (this.options.autoplay) {
+        var interval = this.options.secondsOnSlide ? this.options.secondsOnSlide * 1000 : 4000;
+        this.autoplayInterval = setInterval(function () {
+          _this.next();
+        }, interval);
+      }
+    },
+    pauseInterval: function pauseInterval() {
+      clearInterval(this.autoplayInterval);
+    }
+  },
+  render: function render() {
+    return this.$scopedSlots.default({
+      // Data
+      activeIndex: this.activeIndex,
+      numberOfSlides: this.numberOfSlides,
+      // Methods
+      goToIndex: this.goToIndex,
+      next: this.next,
+      prev: this.prev,
+      pauseInterval: this.pauseInterval,
+      startAutoplay: this.startAutoplay
+    });
+  }
+});
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"2c3c18d4-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SliderSlides.vue?vue&type=template&id=2b97a0aa&
+var SliderSlidesvue_type_template_id_2b97a0aa_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"slider-slides"},[_vm._t("default")],2)}
+var SliderSlidesvue_type_template_id_2b97a0aa_staticRenderFns = []
+
+
+// CONCATENATED MODULE: ./src/components/SliderSlides.vue?vue&type=template&id=2b97a0aa&
+
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SliderSlides.vue?vue&type=script&lang=js&
+//
+//
+//
+//
+//
+//
+/* harmony default export */ var SliderSlidesvue_type_script_lang_js_ = ({
+  name: "Slides",
+  props: {
+    options: {
+      type: Object,
+      required: true
+    }
+  }
+});
+// CONCATENATED MODULE: ./src/components/SliderSlides.vue?vue&type=script&lang=js&
+ /* harmony default export */ var components_SliderSlidesvue_type_script_lang_js_ = (SliderSlidesvue_type_script_lang_js_); 
+// EXTERNAL MODULE: ./src/components/SliderSlides.vue?vue&type=style&index=0&lang=scss&
+var SliderSlidesvue_type_style_index_0_lang_scss_ = __webpack_require__("5088");
+
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/runtime/componentNormalizer.js
+/* globals __VUE_SSR_CONTEXT__ */
+
+// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
+// This module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle.
+
+function normalizeComponent (
+  scriptExports,
+  render,
+  staticRenderFns,
+  functionalTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier, /* server only */
+  shadowMode /* vue-cli only */
+) {
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // render functions
+  if (render) {
+    options.render = render
+    options.staticRenderFns = staticRenderFns
+    options._compiled = true
+  }
+
+  // functional template
+  if (functionalTemplate) {
+    options.functional = true
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = 'data-v-' + scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) { // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = shadowMode
+      ? function () { injectStyles.call(this, this.$root.$options.shadowRoot) }
+      : injectStyles
+  }
+
+  if (hook) {
+    if (options.functional) {
+      // for template-only hot-reload because in that case the render fn doesn't
+      // go through the normalizer
+      options._injectStyles = hook
+      // register for functional component in vue file
+      var originalRender = options.render
+      options.render = function renderWithStyleInjection (h, context) {
+        hook.call(context)
+        return originalRender(h, context)
+      }
+    } else {
+      // inject component registration as beforeCreate hook
+      var existing = options.beforeCreate
+      options.beforeCreate = existing
+        ? [].concat(existing, hook)
+        : [hook]
+    }
+  }
+
+  return {
+    exports: scriptExports,
+    options: options
+  }
+}
+
+// CONCATENATED MODULE: ./src/components/SliderSlides.vue
+
+
+
+
+
+
+/* normalize component */
+
+var component = normalizeComponent(
+  components_SliderSlidesvue_type_script_lang_js_,
+  SliderSlidesvue_type_template_id_2b97a0aa_render,
+  SliderSlidesvue_type_template_id_2b97a0aa_staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* harmony default export */ var SliderSlides = (component.exports);
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"2c3c18d4-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SliderSlide.vue?vue&type=template&id=184b5780&
+var SliderSlidevue_type_template_id_184b5780_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('transition',{attrs:{"mode":"out-in"},on:{"before-enter":_vm.beforeEnter,"enter":_vm.enter,"before-leave":_vm.beforeLeave,"leave":_vm.leave}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.active || !_vm.loaded),expression:"active || !loaded"}],staticClass:"slider-slide"},_vm._l((_vm.filteredGroup),function(slideData){return _c('slide-renderer',{key:slideData.key,attrs:{"slide":slideData.slide,"options":_vm.options},on:{"contentChanged":function($event){return _vm.$emit('contentChanged')}}})}),1)])}
+var SliderSlidevue_type_template_id_184b5780_staticRenderFns = []
+
+
+// CONCATENATED MODULE: ./src/components/SliderSlide.vue?vue&type=template&id=184b5780&
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es7.symbol.async-iterator.js
+var es7_symbol_async_iterator = __webpack_require__("ac4d");
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.symbol.js
+var es6_symbol = __webpack_require__("8a81");
+
+// CONCATENATED MODULE: ./src/components/SlideRenderer.js
+/* harmony default export */ var SlideRenderer = ({
+  name: 'SlideRenderer',
+  props: {
+    slide: {
+      type: Object,
+      required: true
+    },
+    options: {
+      type: Object
+    }
+  },
+  render: function render() {
+    return this.slide;
+  },
+  mounted: function mounted() {
+    this.observer = new MutationObserver(function (mutations) {
+      this.$emit('contentChanged');
+    }.bind(this)); // Setup the observer
+
+    this.observer.observe(this.$el, {
+      attributes: true,
+      childList: true,
+      subtree: true
+    });
+  }
+});
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SliderSlide.vue?vue&type=script&lang=js&
 
 
@@ -4348,6 +4349,7 @@ var SliderSlide_component = normalizeComponent(
 
 
 
+
 /* harmony default export */ var Slidervue_type_script_lang_js_ = ({
   name: "Slider",
   components: {
@@ -4365,11 +4367,13 @@ var SliderSlide_component = normalizeComponent(
   },
   data: function data() {
     return {
-      activeIndex: 1,
+      activeIndex: 0,
       options: {
         transition: "slide",
         controls: true,
         dots: true,
+        animatedDots: false,
+        dotLimit: false,
         fullscreen: false,
         fullscreenOffset: null,
         lazy: true,
@@ -4409,6 +4413,9 @@ var SliderSlide_component = normalizeComponent(
     },
     numberOfPages: function numberOfPages() {
       return Math.ceil(this.slidesCount / this.slideCount);
+    },
+    numberOfDots: function numberOfDots() {
+      return this.numberOfPages;
     },
     groups: function groups() {
       var groups = [];
@@ -4513,6 +4520,28 @@ var SliderSlide_component = normalizeComponent(
     },
     randomString: function randomString() {
       return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+    },
+    dotClass: function dotClass(dotIndex) {
+      var classes = {
+        "active-slide": this.activeIndex + 1 === dotIndex
+      };
+
+      if (this.options.animatedDots) {
+        var dotDistance = this.activeIndex + 1 - dotIndex;
+
+        if (this.options.dotLimit) {
+          classes["large-dot"] = dotDistance === 0 || dotDistance === 1 || dotDistance === 2;
+          classes["medium-dot"] = dotDistance === -1 || dotDistance === 3;
+          classes["small-dot"] = dotDistance === -2 || dotDistance === -3;
+          classes["hidden-dot"] = dotDistance > 4 || dotDistance < -2; // classes[dotDistance] = true;
+        } else {
+          classes["large-dot"] = dotDistance === 0;
+          classes["medium-dot"] = dotDistance === -1 || dotDistance === 1;
+          classes["small-dot"] = dotDistance === -2 || dotDistance === 2;
+        }
+      }
+
+      return classes;
     }
   }
 });
@@ -4532,8 +4561,8 @@ var Slidervue_type_style_index_0_lang_scss_ = __webpack_require__("6afe");
 
 var Slider_component = normalizeComponent(
   components_Slidervue_type_script_lang_js_,
-  Slidervue_type_template_id_714df1d5_render,
-  Slidervue_type_template_id_714df1d5_staticRenderFns,
+  Slidervue_type_template_id_77060a1c_render,
+  Slidervue_type_template_id_77060a1c_staticRenderFns,
   false,
   null,
   null,

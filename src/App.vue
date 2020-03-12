@@ -165,6 +165,9 @@
 
       <h1>Slider with multiple items per slide</h1>
       <slither-slider :options="{ dots: true, numberOfSlides: 3, slideClass: 'flex-demo-slide' }">
+        <div v-for="n in 35" :key="n">
+          <h2>Slide {{ n }}</h2>
+        </div>
       </slither-slider>
 
       <hr />
@@ -180,6 +183,9 @@
           slideClass: 'flex-demo-slide'
         }"
       >
+        <div v-for="n in 35" :key="n">
+          <h2>Slide {{ n }}</h2>
+        </div>
       </slither-slider>
 
       <hr />
@@ -234,6 +240,8 @@
         </template>
       </slither-slider>
 
+      <hr />
+
       <h1>Fullscreen with Offset of -200</h1>
       <slither-slider :options="{ fullscreen: true, fullscreenOffset: -200 }">
         <div :style="{ backgroundColor: 'blue', height: '100%' }">
@@ -244,6 +252,30 @@
         </div>
         <div :style="{ backgroundColor: 'yellow', height: '100%' }">
           <h2>Slide 3</h2>
+        </div>
+      </slither-slider>
+
+      <hr />
+
+      <h1>Animated Dots</h1>
+      <slither-slider :options="{ fullscreen: true, animatedDots: true }">
+        <div :style="{ backgroundColor: 'blue', height: '100%', width: '100%' }">
+          <h2>Slide 1</h2>
+        </div>
+        <div :style="{ backgroundColor: 'green', height: '100%', width: '100%' }">
+          <h2>Slide 2</h2>
+        </div>
+        <div :style="{ backgroundColor: 'yellow', height: '100%', width: '100%' }">
+          <h2>Slide 3</h2>
+        </div>
+      </slither-slider>
+
+      <hr />
+
+      <h1>Dot Limit</h1>
+      <slither-slider :options="{ animatedDots: true, dotLimit: true }">
+        <div v-for="n in 37" :key="n">
+          <h2>Slide {{ n }}</h2>
         </div>
       </slither-slider>
 
