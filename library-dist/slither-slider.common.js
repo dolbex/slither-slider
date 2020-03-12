@@ -3430,7 +3430,14 @@ var es6_array_find = __webpack_require__("7514");
     goToIndex: function goToIndex(index, buttonClicked) {
       // Find out the direction we're moving.
       // This is useful for animations.
-      var direction = buttonClicked === "next" ? "left" : "right";
+      var direction = "left";
+
+      if (buttonClicked) {
+        direction = buttonClicked === "next" ? "left" : "right";
+      } else {
+        direction = this.activeIndex < index ? "left" : "right";
+      }
+
       this.showSingleSlide(index, direction);
       this.activeIndex = index;
       this.$emit("active-index-changed", index);

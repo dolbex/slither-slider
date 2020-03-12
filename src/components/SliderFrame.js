@@ -47,7 +47,12 @@ export default {
     goToIndex(index, buttonClicked) {
       // Find out the direction we're moving.
       // This is useful for animations.
-      const direction = buttonClicked === "next" ? "left" : "right";
+      let direction = "left";
+      if (buttonClicked) {
+        direction = buttonClicked === "next" ? "left" : "right";
+      } else {
+        direction = this.activeIndex < index ? "left" : "right";
+      }
 
       this.showSingleSlide(index, direction);
 
