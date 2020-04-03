@@ -65,6 +65,8 @@ Vue.use(SlitherSlider)
 | slideClass       | null    | Adds these classes to each slide                                                                                                                                                                                                                                                        |
 | autoplay         | false   | You know what this does.                                                                                                                                                                                                                                                                |
 | secondsOnSlide   | 4       | This is the number of seconds slither will pause on a slide before moving foward (autoplay must be set to true)                                                                                                                                                                         |
+| endless          | false   | Display all the slides next to each other regardless of their width                                                                                                                                                                                                                     |
+| gap              | 10      | ("endless" parameter must be true) The gap between each of the slides in an endless presentation                                                                                                                                                                                        |
 
 ### Styles
 

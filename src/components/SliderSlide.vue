@@ -6,7 +6,7 @@
     @before-leave="beforeLeave"
     @leave="leave"
   >
-    <div v-show="active || !loaded" class="slider-slide">
+    <div v-show="active || options.endless || !loaded" class="slider-slide" :style="slideStyles">
       <slide-renderer
         v-for="slideData in filteredGroup"
         :key="slideData.key"
@@ -66,11 +66,25 @@ export default {
       });
 
       return slideData;
+    },
+
+    slideStyles() {
+      if (this.options.endless) {
+        return {
+          position: "relative"
+        };
+      } else {
+        return {
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0
+        };
+      }
     }
   },
-  // mounted () {
-  // console.log(this.slide)
-  // },
+
   methods: {
     // Deactivate and hide the slide and
     // also activate the correct transition.
@@ -92,7 +106,7 @@ export default {
         translateX = "100%";
       }
 
-      anime.set(el, { translateX: translateX, opacity: 0 });
+      anime.set(el, { translateX: translateX, opacity: 1 });
     },
 
     enter(el) {
@@ -106,7 +120,7 @@ export default {
     },
 
     beforeLeave(el) {
-      anime.set(el, { translateX: 0, opacity: 1 });
+      anime.set(el, { translateX: 0, opacity: this.options.endless ? 1 : 0 });
     },
 
     leave(el, done) {
@@ -116,7 +130,7 @@ export default {
       }
       anime({
         targets: el,
-        opacity: 0,
+        opacity: this.options.endless ? 1 : 0,
         duration: 750,
         translateX: translateX,
         easing: "easeOutExpo",
@@ -174,13 +188,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss">
-.slider-slide {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-</style>

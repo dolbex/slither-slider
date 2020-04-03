@@ -190,6 +190,23 @@
 
       <hr />
 
+      <h1>Variable Width Endless Slider</h1>
+      <slither-slider :options="{ dots: true, endless: true, gap: 20 }">
+        <div
+          v-for="n in 35"
+          :key="n"
+          :style="{
+            backgroundColor: 'red',
+            width: randomWidth(n),
+            height: '200px'
+          }"
+        >
+          {{ n }}
+        </div>
+      </slither-slider>
+
+      <hr />
+
       <h1>Lazy slider</h1>
       <slither-slider :options="{ lazy: true, dots: false }">
         <div>
@@ -459,6 +476,12 @@ export default {
     setInterval(() => {
       this.dynamicHeightDim = (Math.floor(Math.random() * Math.floor(4)) + 1) * 100;
     }, 2000);
+  },
+  methods: {
+    randomWidth(index) {
+      const widths = [200, 300, 400, 500];
+      return widths[index % 4] + "px";
+    }
   }
 };
 </script>

@@ -39,6 +39,7 @@
             :class="options.slideClass"
             :is-next="isNext(key)"
             @contentChanged="contentChanged"
+            :style="slideStyles"
           >
           </slider-slide>
         </slider-slides>
@@ -112,7 +113,9 @@ export default {
         lazy: true,
         numberOfSlides: 1,
         slideClass: null,
-        sliderClass: null
+        sliderClass: null,
+        endless: false,
+        gap: 10
       },
       slides: [],
       inlineHeight: 0,
@@ -167,11 +170,36 @@ export default {
       }
 
       return classes;
+    },
+    // This sums the total width of the slides (plus gap) of the slides we've seen until now
+    totalOffsetWidth() {
+      let totalWidth = 0;
+
+      for (let i = 0; i < this.activeIndex; i++) {
+        const element = this.$refs.sliderframe.slides[i];
+        const rect = element.$el.getBoundingClientRect();
+        totalWidth += rect.width;
+        totalWidth += this.options.gap;
+      }
+
+      return totalWidth;
+    },
+    slideStyles() {
+      let styles = {};
+
+      if (this.options.endless) {
+        styles.marginRight = `${this.options.gap}px`;
+      }
+
+      return styles;
     }
   },
 
-  mounted() {
+  created() {
     this.setOptions();
+  },
+
+  mounted() {
     this.addSlides();
     this.$nextTick(() => {
       this.calculateHeight();
@@ -227,6 +255,16 @@ export default {
     },
     activeIndexChanged(index) {
       this.activeIndex = index;
+
+      if (this.options.endless) {
+        anime({
+          targets: this.$refs.slides.$el,
+          opacity: 1,
+          duration: 750,
+          translateX: -this.totalOffsetWidth,
+          easing: "easeOutExpo"
+        });
+      }
     },
     contentChanged() {
       setTimeout(() => {
@@ -312,7 +350,7 @@ export default {
   right: 0.5em;
 }
 
-.slides {
+.slider {
   overflow: hidden;
 }
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="slider-slides">
+  <div class="slider-slides" :style="slidesStyles">
     <slot />
   </div>
 </template>
@@ -12,12 +12,19 @@ export default {
       type: Object,
       required: true
     }
+  },
+  computed: {
+    slidesStyles() {
+      let styles = {
+        position: "relative"
+      };
+
+      if (this.options.endless) {
+        styles.display = "flex";
+      }
+
+      return styles;
+    }
   }
 };
 </script>
-
-<style lang="scss">
-.slider-slides {
-  position: relative;
-}
-</style>

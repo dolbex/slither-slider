@@ -95,7 +95,8 @@ export default {
       next: this.next,
       prev: this.prev,
       pauseInterval: this.pauseInterval,
-      startAutoplay: this.startAutoplay
+      startAutoplay: this.startAutoplay,
+      totalSlideWidthToActive: this.totalSlideWidthToActive
     });
   }
 };
