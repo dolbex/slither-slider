@@ -4,6 +4,12 @@ Simple Vue JS slider for Vue JS that pretty much takes what you throw at it. Fea
 
 ![Snakes.... I hate snakes](https://github.com/dolbex/slither-slider/blob/master/snake.png?raw=true)
 
+## Demo
+
+Super ugly demo but just want to give you an idea of what you can do
+
+[https://dolbex.github.io/slither-slider/](Demo)
+
 ## Usage
 
 ### Register the plugin
