@@ -193,12 +193,43 @@
       <h1>Variable Width Endless Slider</h1>
       <slither-slider :options="{ dots: true, endless: true, gap: 20 }">
         <div
-          v-for="n in 35"
+          v-for="n in 4"
           :key="n"
           :style="{
-            backgroundColor: 'red',
+            backgroundColor: '#434190',
+            color: '#fff',
             width: randomWidth(n),
-            height: '200px'
+            height: '200px',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            fontSize: '6rem',
+            fontWeight: 'bold',
+            borderRadius: '0.25rem'
+          }"
+        >
+          {{ n }}
+        </div>
+      </slither-slider>
+
+      <hr />
+
+      <h1>Variable Width Endless Slider (Doesn't Loop)</h1>
+      <slither-slider :options="{ dots: true, endless: true, gap: 20, loop: false }">
+        <div
+          v-for="n in 8"
+          :key="n"
+          :style="{
+            backgroundColor: '#E53E3E',
+            color: '#fff',
+            width: randomWidth(n),
+            height: '200px',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            fontSize: '6rem',
+            fontWeight: 'bold',
+            borderRadius: '0.25rem'
           }"
         >
           {{ n }}
@@ -238,15 +269,48 @@
       <hr />
 
       <h1>Custom Controls</h1>
-      <slither-slider :options="{ fullscreen: true }">
-        <div :style="{ backgroundColor: 'blue', height: '100%', width: '100%' }">
-          <h2>Slide 1</h2>
+      <slither-slider style="color:#fff">
+        <div
+          :style="{
+            backgroundColor: '#434190',
+            height: '400px',
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            fontSize: '10rem',
+            fontWeight: 'bold'
+          }"
+        >
+          <div>Slide 1</div>
         </div>
-        <div :style="{ backgroundColor: 'green', height: '100%', width: '100%' }">
-          <h2>Slide 2</h2>
+        <div
+          :style="{
+            backgroundColor: '#285E61',
+            height: '400px',
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            fontSize: '10rem',
+            fontWeight: 'bold'
+          }"
+        >
+          <div>Slide 2</div>
         </div>
-        <div :style="{ backgroundColor: 'yellow', height: '100%', width: '100%' }">
-          <h2>Slide 3</h2>
+        <div
+          :style="{
+            backgroundColor: '#276749',
+            height: '400px',
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            fontSize: '10rem',
+            fontWeight: 'bold'
+          }"
+        >
+          <div>Slide 3</div>
         </div>
 
         <template slot="previous">
@@ -261,13 +325,40 @@
 
       <h1>Fullscreen with Offset of -200</h1>
       <slither-slider :options="{ fullscreen: true, fullscreenOffset: -200 }">
-        <div :style="{ backgroundColor: 'blue', height: '100%' }">
+        <div
+          :style="{
+            color: '#fff',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: '#434190',
+            height: '100%'
+          }"
+        >
           <h2>Slide 1</h2>
         </div>
-        <div :style="{ backgroundColor: 'green', height: '100%' }">
+        <div
+          :style="{
+            color: '#fff',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: '#285E61',
+            height: '100%'
+          }"
+        >
           <h2>Slide 2</h2>
         </div>
-        <div :style="{ backgroundColor: 'yellow', height: '100%' }">
+        <div
+          :style="{
+            color: '#fff',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: '#276749',
+            height: '100%'
+          }"
+        >
           <h2>Slide 3</h2>
         </div>
       </slither-slider>
@@ -276,13 +367,43 @@
 
       <h1>Animated Dots</h1>
       <slither-slider :options="{ fullscreen: true, animatedDots: true }">
-        <div :style="{ backgroundColor: 'blue', height: '100%', width: '100%' }">
+        <div
+          :style="{
+            color: '#fff',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: '#434190',
+            height: '100%',
+            width: '100%'
+          }"
+        >
           <h2>Slide 1</h2>
         </div>
-        <div :style="{ backgroundColor: 'green', height: '100%', width: '100%' }">
+        <div
+          :style="{
+            color: '#fff',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: '#285E61',
+            height: '100%',
+            width: '100%'
+          }"
+        >
           <h2>Slide 2</h2>
         </div>
-        <div :style="{ backgroundColor: 'yellow', height: '100%', width: '100%' }">
+        <div
+          :style="{
+            color: '#fff',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: '#276749',
+            height: '100%',
+            width: '100%'
+          }"
+        >
           <h2>Slide 3</h2>
         </div>
       </slither-slider>

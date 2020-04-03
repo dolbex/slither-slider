@@ -11,7 +11,9 @@
       v-if="slides.length > 0"
       :options="options"
       :number-of-slides="options.numberOfSlides"
+      :number-of-pages="numberOfPages"
       @active-index-changed="activeIndexChanged"
+      :animating="animating"
     >
       <!-- DIV container - parent of the outputted slider -->
       <div
@@ -102,8 +104,10 @@ export default {
   data() {
     return {
       activeIndex: 0,
+      animating: false, // Only used for endless
       options: {
         transition: "slide",
+        animationDuration: 300,
         controls: true,
         dots: true,
         animatedDots: false,
@@ -115,7 +119,9 @@ export default {
         slideClass: null,
         sliderClass: null,
         endless: false,
-        gap: 10
+        gap: 10,
+        loop: true,
+        extras: 3
       },
       slides: [],
       inlineHeight: 0,
@@ -149,6 +155,8 @@ export default {
     numberOfDots() {
       return this.numberOfPages;
     },
+
+    // Groups of slides - even if there are just one
     groups() {
       let groups = [];
       let _slides = this.slides.slice();
@@ -160,8 +168,18 @@ export default {
         groups.push({ group: group, key: this.randomString() });
       }
 
+      if (this.options.endless && this.options.loop) {
+        for (let i = 0; i < this.options.extras; i++) {
+          const start = i * this.slideCount;
+          const end = i * this.slideCount + this.slideCount;
+          let group = _slides.slice(start, end);
+          groups.push({ group: group, key: this.randomString() });
+        }
+      }
+
       return groups;
     },
+
     sliderClasses() {
       let classes = this.options.sliderClass;
 
@@ -257,12 +275,22 @@ export default {
       this.activeIndex = index;
 
       if (this.options.endless) {
+        this.animating = true;
         anime({
           targets: this.$refs.slides.$el,
           opacity: 1,
-          duration: 750,
+          duration: this.options.animationDuration,
           translateX: -this.totalOffsetWidth,
-          easing: "easeOutExpo"
+          easing: "easeOutExpo",
+          complete: () => {
+            this.animating = false;
+            if (this.options.loop) {
+              if (index + 1 > this.numberOfPages) {
+                this.$refs.sliderframe.setIndex(0);
+                anime.set(this.$refs.slides.$el, { translateX: 0 });
+              }
+            }
+          }
         });
       }
     },

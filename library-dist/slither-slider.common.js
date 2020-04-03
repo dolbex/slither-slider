@@ -844,6 +844,22 @@ module.exports = function (exec, skipClosing) {
 
 /***/ }),
 
+/***/ "5dbc":
+/***/ (function(module, exports, __webpack_require__) {
+
+var isObject = __webpack_require__("d3f4");
+var setPrototypeOf = __webpack_require__("8b97").set;
+module.exports = function (that, target, C) {
+  var S = target.constructor;
+  var P;
+  if (S !== C && typeof S == 'function' && (P = S.prototype) !== C.prototype && isObject(P) && setPrototypeOf) {
+    setPrototypeOf(that, P);
+  } return that;
+};
+
+
+/***/ }),
+
 /***/ "5df3":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1507,6 +1523,38 @@ setToStringTag(global.JSON, 'JSON', true);
 
 /***/ }),
 
+/***/ "8b97":
+/***/ (function(module, exports, __webpack_require__) {
+
+// Works with __proto__ only. Old v8 can't work with null proto objects.
+/* eslint-disable no-proto */
+var isObject = __webpack_require__("d3f4");
+var anObject = __webpack_require__("cb7c");
+var check = function (O, proto) {
+  anObject(O);
+  if (!isObject(proto) && proto !== null) throw TypeError(proto + ": can't set as prototype!");
+};
+module.exports = {
+  set: Object.setPrototypeOf || ('__proto__' in {} ? // eslint-disable-line
+    function (test, buggy, set) {
+      try {
+        set = __webpack_require__("9b43")(Function.call, __webpack_require__("11e9").f(Object.prototype, '__proto__').set, 2);
+        set(test, []);
+        buggy = !(test instanceof Array);
+      } catch (e) { buggy = true; }
+      return function setPrototypeOf(O, proto) {
+        check(O, proto);
+        if (buggy) O.__proto__ = proto;
+        else set(O, proto);
+        return O;
+      };
+    }({}, false) : undefined),
+  check: check
+};
+
+
+/***/ }),
+
 /***/ "9093":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1582,6 +1630,43 @@ module.exports = function (it) {
 module.exports = !__webpack_require__("79e5")(function () {
   return Object.defineProperty({}, 'a', { get: function () { return 7; } }).a != 7;
 });
+
+
+/***/ }),
+
+/***/ "aa77":
+/***/ (function(module, exports, __webpack_require__) {
+
+var $export = __webpack_require__("5ca1");
+var defined = __webpack_require__("be13");
+var fails = __webpack_require__("79e5");
+var spaces = __webpack_require__("fdef");
+var space = '[' + spaces + ']';
+var non = '\u200b\u0085';
+var ltrim = RegExp('^' + space + space + '*');
+var rtrim = RegExp(space + space + '*$');
+
+var exporter = function (KEY, exec, ALIAS) {
+  var exp = {};
+  var FORCE = fails(function () {
+    return !!spaces[KEY]() || non[KEY]() != non;
+  });
+  var fn = exp[KEY] = FORCE ? exec(trim) : spaces[KEY];
+  if (ALIAS) exp[ALIAS] = fn;
+  $export($export.P + $export.F * FORCE, 'String', exp);
+};
+
+// 1 -> String#trimLeft
+// 2 -> String#trimRight
+// 3 -> String#trim
+var trim = exporter.trim = function (string, TYPE) {
+  string = String(defined(string));
+  if (TYPE & 1) string = string.replace(ltrim, '');
+  if (TYPE & 2) string = string.replace(rtrim, '');
+  return string;
+};
+
+module.exports = exporter;
 
 
 /***/ }),
@@ -1697,6 +1782,83 @@ module.exports = function (IS_INCLUDES) {
     } return !IS_INCLUDES && -1;
   };
 };
+
+
+/***/ }),
+
+/***/ "c5f6":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var global = __webpack_require__("7726");
+var has = __webpack_require__("69a8");
+var cof = __webpack_require__("2d95");
+var inheritIfRequired = __webpack_require__("5dbc");
+var toPrimitive = __webpack_require__("6a99");
+var fails = __webpack_require__("79e5");
+var gOPN = __webpack_require__("9093").f;
+var gOPD = __webpack_require__("11e9").f;
+var dP = __webpack_require__("86cc").f;
+var $trim = __webpack_require__("aa77").trim;
+var NUMBER = 'Number';
+var $Number = global[NUMBER];
+var Base = $Number;
+var proto = $Number.prototype;
+// Opera ~12 has broken Object#toString
+var BROKEN_COF = cof(__webpack_require__("2aeb")(proto)) == NUMBER;
+var TRIM = 'trim' in String.prototype;
+
+// 7.1.3 ToNumber(argument)
+var toNumber = function (argument) {
+  var it = toPrimitive(argument, false);
+  if (typeof it == 'string' && it.length > 2) {
+    it = TRIM ? it.trim() : $trim(it, 3);
+    var first = it.charCodeAt(0);
+    var third, radix, maxCode;
+    if (first === 43 || first === 45) {
+      third = it.charCodeAt(2);
+      if (third === 88 || third === 120) return NaN; // Number('+0x1') should be NaN, old V8 fix
+    } else if (first === 48) {
+      switch (it.charCodeAt(1)) {
+        case 66: case 98: radix = 2; maxCode = 49; break; // fast equal /^0b[01]+$/i
+        case 79: case 111: radix = 8; maxCode = 55; break; // fast equal /^0o[0-7]+$/i
+        default: return +it;
+      }
+      for (var digits = it.slice(2), i = 0, l = digits.length, code; i < l; i++) {
+        code = digits.charCodeAt(i);
+        // parseInt parses a string to a first unavailable symbol
+        // but ToNumber should return NaN if a string contains unavailable symbols
+        if (code < 48 || code > maxCode) return NaN;
+      } return parseInt(digits, radix);
+    }
+  } return +it;
+};
+
+if (!$Number(' 0o1') || !$Number('0b1') || $Number('+0x1')) {
+  $Number = function Number(value) {
+    var it = arguments.length < 1 ? 0 : value;
+    var that = this;
+    return that instanceof $Number
+      // check on 1..constructor(foo) case
+      && (BROKEN_COF ? fails(function () { proto.valueOf.call(that); }) : cof(that) != NUMBER)
+        ? inheritIfRequired(new Base(toNumber(it)), that, $Number) : toNumber(it);
+  };
+  for (var keys = __webpack_require__("9e1e") ? gOPN(Base) : (
+    // ES3:
+    'MAX_VALUE,MIN_VALUE,NaN,NEGATIVE_INFINITY,POSITIVE_INFINITY,' +
+    // ES6 (in case, if modules with ES6 Number statics required before):
+    'EPSILON,isFinite,isInteger,isNaN,isSafeInteger,MAX_SAFE_INTEGER,' +
+    'MIN_SAFE_INTEGER,parseFloat,parseInt,isInteger'
+  ).split(','), j = 0, key; keys.length > j; j++) {
+    if (has(Base, key = keys[j]) && !has($Number, key)) {
+      dP($Number, key, gOPD(Base, key));
+    }
+  }
+  $Number.prototype = proto;
+  proto.constructor = $Number;
+  __webpack_require__("2aba")(global, NUMBER, $Number);
+}
 
 
 /***/ }),
@@ -2019,18 +2181,18 @@ var staticRenderFns = []
 
 // CONCATENATED MODULE: ./src/components/SlitherApp.vue?vue&type=template&id=508a7294&
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"2c3c18d4-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Slider.vue?vue&type=template&id=0cd1d553&
-var Slidervue_type_template_id_0cd1d553_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.slides)?_c('div',{class:[_vm.options.transition, _vm.options.sliderClass]},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(false),expression:"false"}],ref:"allSlidesSlot"},[_vm._t("default")],2),(_vm.slides.length > 0)?_c('slider-frame',{ref:"sliderframe",attrs:{"options":_vm.options,"number-of-slides":_vm.options.numberOfSlides},on:{"active-index-changed":_vm.activeIndexChanged},scopedSlots:_vm._u([{key:"default",fn:function(ref){
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"2c3c18d4-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Slider.vue?vue&type=template&id=624113ca&
+var Slidervue_type_template_id_624113ca_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.slides)?_c('div',{class:[_vm.options.transition, _vm.options.sliderClass]},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(false),expression:"false"}],ref:"allSlidesSlot"},[_vm._t("default")],2),(_vm.slides.length > 0)?_c('slider-frame',{ref:"sliderframe",attrs:{"options":_vm.options,"number-of-slides":_vm.options.numberOfSlides,"number-of-pages":_vm.numberOfPages,"animating":_vm.animating},on:{"active-index-changed":_vm.activeIndexChanged},scopedSlots:_vm._u([{key:"default",fn:function(ref){
 var goToIndex = ref.goToIndex;
 var next = ref.next;
 var prev = ref.prev;
 var pauseInterval = ref.pauseInterval;
 var startAutoplay = ref.startAutoplay;
 return _c('div',{staticClass:"slider",class:_vm.sliderClasses,on:{"mouseenter":pauseInterval,"mouseleave":startAutoplay}},[_c('slider-slides',{directives:[{name:"touch",rawName:"v-touch:swipe.left",value:(next),expression:"next",arg:"swipe",modifiers:{"left":true}},{name:"touch",rawName:"v-touch:swipe.right",value:(prev),expression:"prev",arg:"swipe",modifiers:{"right":true}}],ref:"slides",staticClass:"slides",class:[_vm.options.sliderClass],attrs:{"options":_vm.options}},_vm._l((_vm.groups),function(groupData,key){return _c('slider-slide',{key:groupData.key,class:_vm.options.slideClass,style:(_vm.slideStyles),attrs:{"loaded":_vm.loaded,"group":groupData.group,"options":_vm.options,"is-next":_vm.isNext(key)},on:{"contentChanged":_vm.contentChanged}})}),1),(_vm.options.controls && _vm.slides.length > 1)?[_c('button',{staticClass:"slider-direction slider-direction--prev",on:{"click":prev}},[_vm._t("previous",[_vm._v("\n            « Prev\n          ")])],2),_c('button',{staticClass:"slider-direction slider-direction--next",on:{"click":next}},[_vm._t("next",[_vm._v("\n            Next »\n          ")])],2)]:_vm._e(),(_vm.options.dots && _vm.slides.length > 1)?[_c('ol',{staticClass:"slider-dots"},_vm._l((_vm.numberOfDots),function(n){return _c('li',{key:n,staticClass:"slider-dot",class:_vm.dotClass(n),on:{"click":function($event){return goToIndex(n - 1)}}},[_vm._v("\n            "+_vm._s(n)+"\n          ")])}),0)]:_vm._e()],2)}}],null,true)}):_vm._e()],1):_vm._e()}
-var Slidervue_type_template_id_0cd1d553_staticRenderFns = []
+var Slidervue_type_template_id_624113ca_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Slider.vue?vue&type=template&id=0cd1d553&
+// CONCATENATED MODULE: ./src/components/Slider.vue?vue&type=template&id=624113ca&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.regexp.to-string.js
 var es6_regexp_to_string = __webpack_require__("6b54");
@@ -3339,7 +3501,11 @@ var es6_function_name = __webpack_require__("7f7f");
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.array.find.js
 var es6_array_find = __webpack_require__("7514");
 
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.number.constructor.js
+var es6_number_constructor = __webpack_require__("c5f6");
+
 // CONCATENATED MODULE: ./src/components/SliderFrame.js
+
 
 
 
@@ -3348,6 +3514,14 @@ var es6_array_find = __webpack_require__("7514");
   props: {
     options: {
       type: Object,
+      required: true
+    },
+    numberOfPages: {
+      type: Number,
+      required: true
+    },
+    animating: {
+      type: Boolean,
       required: true
     }
   },
@@ -3365,10 +3539,15 @@ var es6_array_find = __webpack_require__("7514");
       }).$children;
     },
     slidesCount: function slidesCount() {
-      return this.slides.length;
+      return this.numberOfPages;
     },
     nextIndex: function nextIndex() {
       var nextIndex = this.activeIndex + 1;
+
+      if (this.options.endless && this.options.loop) {
+        return nextIndex <= this.slidesCount ? nextIndex : 0;
+      }
+
       return nextIndex <= this.slidesCount - 1 ? nextIndex : 0;
     },
     prevIndex: function prevIndex() {
@@ -3391,6 +3570,9 @@ var es6_array_find = __webpack_require__("7514");
     this.startAutoplay();
   },
   methods: {
+    setIndex: function setIndex(index) {
+      this.activeIndex = index;
+    },
     goToIndex: function goToIndex(index, buttonClicked) {
       // Find out the direction we're moving.
       // This is useful for animations.
@@ -3415,10 +3597,10 @@ var es6_array_find = __webpack_require__("7514");
       this.slides[index].show(direction);
     },
     next: function next() {
-      this.goToIndex(this.nextIndex, "next");
+      if (!this.animating) this.goToIndex(this.nextIndex, "next");
     },
     prev: function prev() {
-      this.goToIndex(this.prevIndex, "prev");
+      if (!this.animating) this.goToIndex(this.prevIndex, "prev");
     },
     startAutoplay: function startAutoplay() {
       var _this = this;
@@ -3965,6 +4147,8 @@ var SliderSlide_component = normalizeComponent(
 //
 //
 //
+//
+//
 
 /* eslint-disable no-param-reassign */
 
@@ -3989,8 +4173,11 @@ var SliderSlide_component = normalizeComponent(
   data: function data() {
     return {
       activeIndex: 0,
+      animating: false,
+      // Only used for endless
       options: {
         transition: "slide",
+        animationDuration: 300,
         controls: true,
         dots: true,
         animatedDots: false,
@@ -4002,7 +4189,9 @@ var SliderSlide_component = normalizeComponent(
         slideClass: null,
         sliderClass: null,
         endless: false,
-        gap: 10
+        gap: 10,
+        loop: true,
+        extras: 3
       },
       slides: [],
       inlineHeight: 0,
@@ -4040,6 +4229,7 @@ var SliderSlide_component = normalizeComponent(
     numberOfDots: function numberOfDots() {
       return this.numberOfPages;
     },
+    // Groups of slides - even if there are just one
     groups: function groups() {
       var groups = [];
 
@@ -4055,6 +4245,21 @@ var SliderSlide_component = normalizeComponent(
           group: group,
           key: this.randomString()
         });
+      }
+
+      if (this.options.endless && this.options.loop) {
+        for (var _i = 0; _i < this.options.extras; _i++) {
+          var _start = _i * this.slideCount;
+
+          var _end = _i * this.slideCount + this.slideCount;
+
+          var _group = _slides.slice(_start, _end);
+
+          groups.push({
+            group: _group,
+            key: this.randomString()
+          });
+        }
       }
 
       return groups;
@@ -4153,23 +4358,39 @@ var SliderSlide_component = normalizeComponent(
       }
     },
     activeIndexChanged: function activeIndexChanged(index) {
+      var _this5 = this;
+
       this.activeIndex = index;
 
       if (this.options.endless) {
+        this.animating = true;
         anime_es({
           targets: this.$refs.slides.$el,
           opacity: 1,
-          duration: 750,
+          duration: this.options.animationDuration,
           translateX: -this.totalOffsetWidth,
-          easing: "easeOutExpo"
+          easing: "easeOutExpo",
+          complete: function complete() {
+            _this5.animating = false;
+
+            if (_this5.options.loop) {
+              if (index + 1 > _this5.numberOfPages) {
+                _this5.$refs.sliderframe.setIndex(0);
+
+                anime_es.set(_this5.$refs.slides.$el, {
+                  translateX: 0
+                });
+              }
+            }
+          }
         });
       }
     },
     contentChanged: function contentChanged() {
-      var _this5 = this;
+      var _this6 = this;
 
       setTimeout(function () {
-        _this5.calculateHeight();
+        _this6.calculateHeight();
       }, 500);
     },
     isNext: function isNext(index) {
@@ -4218,8 +4439,8 @@ var Slidervue_type_style_index_0_lang_scss_ = __webpack_require__("6afe");
 
 var Slider_component = normalizeComponent(
   components_Slidervue_type_script_lang_js_,
-  Slidervue_type_template_id_0cd1d553_render,
-  Slidervue_type_template_id_0cd1d553_staticRenderFns,
+  Slidervue_type_template_id_624113ca_render,
+  Slidervue_type_template_id_624113ca_staticRenderFns,
   false,
   null,
   null,
@@ -4298,6 +4519,15 @@ var SlitherApp_component = normalizeComponent(
 
 /* harmony default export */ var entry_lib = __webpack_exports__["default"] = (library_entry);
 
+
+
+/***/ }),
+
+/***/ "fdef":
+/***/ (function(module, exports) {
+
+module.exports = '\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003' +
+  '\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF';
 
 
 /***/ })

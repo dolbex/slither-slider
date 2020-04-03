@@ -4,6 +4,14 @@ export default {
     options: {
       type: Object,
       required: true
+    },
+    numberOfPages: {
+      type: Number,
+      required: true
+    },
+    animating: {
+      type: Boolean,
+      required: true
     }
   },
   data() {
@@ -18,10 +26,13 @@ export default {
       return this.$children.find(x => x.$options.name === "Slides").$children;
     },
     slidesCount() {
-      return this.slides.length;
+      return this.numberOfPages;
     },
     nextIndex() {
       const nextIndex = this.activeIndex + 1;
+      if (this.options.endless && this.options.loop) {
+        return nextIndex <= this.slidesCount ? nextIndex : 0;
+      }
       return nextIndex <= this.slidesCount - 1 ? nextIndex : 0;
     },
     prevIndex() {
@@ -44,6 +55,9 @@ export default {
     this.startAutoplay();
   },
   methods: {
+    setIndex(index) {
+      this.activeIndex = index;
+    },
     goToIndex(index, buttonClicked) {
       // Find out the direction we're moving.
       // This is useful for animations.
@@ -68,10 +82,10 @@ export default {
       this.slides[index].show(direction);
     },
     next() {
-      this.goToIndex(this.nextIndex, "next");
+      if (!this.animating) this.goToIndex(this.nextIndex, "next");
     },
     prev() {
-      this.goToIndex(this.prevIndex, "prev");
+      if (!this.animating) this.goToIndex(this.prevIndex, "prev");
     },
     startAutoplay() {
       if (this.options.autoplay) {
