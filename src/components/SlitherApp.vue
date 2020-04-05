@@ -5,7 +5,7 @@
     </slider>
 
     <!-- Next/Prev controls -->
-    <template v-if="finalOptions.controls && slidesCount > 1">
+    <template v-if="finalOptions.controls && numberOfSlides > 1">
       <div @click="prev">
         <slot name="previous">
           <button class="slider-direction slider-direction--prev">
@@ -72,7 +72,7 @@ export default {
   },
   computed: {
     numberOfSlides() {
-      return this.$refs.slider.$refs.sliderframe.numberOfSlides;
+      return this.defaultSlot.length;
     },
   },
   methods: {

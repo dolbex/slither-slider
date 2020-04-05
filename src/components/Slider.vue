@@ -230,7 +230,6 @@ export default {
       if (this.$refs.slides) {
         Array.from(this.$refs.slides.$el.childNodes).forEach((node) => {
           let bottomPaddingCorrection = this.getPaddingBottom(node);
-          console.log(bottomPaddingCorrection);
           // find THE HIGHEST!!!
           this.inlineHeight =
             this.inlineHeight > node.scrollHeight + bottomPaddingCorrection
@@ -248,7 +247,6 @@ export default {
     getPaddingBottom(node) {
       let bottomPaddingCorrection = 0;
       Array.from(node.childNodes).forEach((childnode) => {
-        console.log(window.getComputedStyle(childnode).paddingBottom);
         const paddingBottom = window.getComputedStyle(childnode).paddingBottom;
         const paddingBottomInt = parseInt(paddingBottom.substring(0, paddingBottom.length - 2));
         if (paddingBottomInt > bottomPaddingCorrection) {
