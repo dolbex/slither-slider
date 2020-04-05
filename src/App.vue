@@ -1,10 +1,10 @@
 <template>
   <div id="app" class="demo">
     <div>
-      <h1>Basic slider</h1>
+      <div class="headline-1">Basic slider</div>
       <slither-slider>
-        <div>
-          <h2>Slide 1</h2>
+        <div class="slider-card">
+          <div class="headline-2">Slide 1</div>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed maximus lacinia tellus,
             vitae commodo ligula ultrices vitae. Duis rhoncus, lectus eget sollicitudin pretium,
@@ -31,8 +31,8 @@
             amet tristique ultricies.
           </p>
         </div>
-        <div>
-          <h2>Slide 2</h2>
+        <div class="slider-card">
+          <div class="headline-2">Slide 2</div>
           <p>
             Vestibulum vitae leo suscipit, consectetur magna vel, suscipit nulla. Aenean mattis
             risus eget mauris auctor, et cursus odio porttitor. Quisque vel accumsan augue. Vivamus
@@ -57,8 +57,8 @@
             vulputate eu elit.
           </p>
         </div>
-        <div>
-          <h2>Slide 3</h2>
+        <div class="slider-card">
+          <div class="headline-2">Slide 3</div>
           <p>
             Pellentesque ornare urna turpis, in feugiat augue consectetur nec. Mauris non lobortis
             arcu, ut mattis metus. In dictum, leo vel dignissim ornare, dui justo congue massa, id
@@ -82,10 +82,10 @@
 
       <hr />
 
-      <h1>Autoplay Slider</h1>
+      <div class="headline-1">Autoplay Slider</div>
       <slither-slider :options="{ autoplay: true, secondsOnSlide: 5 }">
-        <div>
-          <h2>Slide 1</h2>
+        <div class="slider-card">
+          <div class="headline-2">Slide 1</div>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed maximus lacinia tellus,
             vitae commodo ligula ultrices vitae. Duis rhoncus, lectus eget sollicitudin pretium,
@@ -112,8 +112,8 @@
             amet tristique ultricies.
           </p>
         </div>
-        <div>
-          <h2>Slide 2</h2>
+        <div class="slider-card">
+          <div class="headline-2">Slide 2</div>
           <p>
             Vestibulum vitae leo suscipit, consectetur magna vel, suscipit nulla. Aenean mattis
             risus eget mauris auctor, et cursus odio porttitor. Quisque vel accumsan augue. Vivamus
@@ -138,8 +138,8 @@
             vulputate eu elit.
           </p>
         </div>
-        <div>
-          <h2>Slide 3</h2>
+        <div class="slider-card">
+          <div class="headline-2">Slide 3</div>
           <p>
             Pellentesque ornare urna turpis, in feugiat augue consectetur nec. Mauris non lobortis
             arcu, ut mattis metus. In dictum, leo vel dignissim ornare, dui justo congue massa, id
@@ -163,34 +163,62 @@
 
       <hr />
 
-      <h1>Slider with multiple items per slide</h1>
+      <div class="headline-1">Slider with multiple items per slide</div>
       <slither-slider :options="{ dots: true, numberOfSlides: 3, slideClass: 'flex-demo-slide' }">
-        <div v-for="n in 35" :key="n">
-          <h2>Slide {{ n }}</h2>
+        <div
+          v-for="n in 35"
+          :key="n"
+          class="slider-card"
+          style="margin-right: 30px; padding: 30px;"
+        >
+          <div class="headline-2">Slide {{ n }}</div>
+          <p>
+            Aenean dignissim et nunc ut fermentum. Nulla hendrerit risus eu nulla pharetra
+            vulputate. Donec semper est sed diam dictum, quis scelerisque odio ultricies. Maecenas
+            feugiat rutrum accumsan. Etiam semper mi lacus. Nam ac facilisis quam, ut blandit metus.
+            Aliquam dapibus sed risus eget bibendum. Nam in odio sed ante lacinia sollicitudin eu ac
+            nunc. Integer quam orci, eleifend et quam quis, gravida luctus augue. Integer magna
+            neque, ullamcorper vel erat sed, varius volutpat metus. Sed faucibus sed ex nec
+            pharetra.
+          </p>
         </div>
       </slither-slider>
 
       <hr />
 
-      <h1>Slider with multiple items per slide / responsive</h1>
+      <div class="headline-1">Slider with multiple items per slide / responsive</div>
       <slither-slider
         :options="{
           dots: true,
           numberOfSlides: [
             { number: 1, min: 0 },
-            { number: 2, min: 780 }
+            { number: 2, min: 780 },
           ],
-          slideClass: 'flex-demo-slide'
+          slideClass: 'flex-demo-slide',
         }"
       >
-        <div v-for="n in 35" :key="n">
-          <h2>Slide {{ n }}</h2>
+        <div
+          v-for="n in 35"
+          :key="n"
+          class="slider-card"
+          style="margin-right: 30px; padding: 30px;"
+        >
+          <div class="headline-2">Slide {{ n }}</div>
+          <p>
+            Pellentesque ornare urna turpis, in feugiat augue consectetur nec. Mauris non lobortis
+            arcu, ut mattis metus. In dictum, leo vel dignissim ornare, dui justo congue massa, id
+            pretium quam turpis quis enim. Vivamus efficitur ex nec lectus luctus, ac pretium dui
+            semper. Vestibulum vehicula augue at odio fermentum, eget ultrices leo bibendum. Donec
+            feugiat ex sed gravida consequat. Integer vitae ullamcorper neque, sit amet mattis eros.
+            Donec in ligula ac massa rutrum pretium lacinia eu odio. Maecenas pretium commodo augue,
+            vitae pellentesque velit mollis et. Donec tempus ante in venenatis ultricies.
+          </p>
         </div>
       </slither-slider>
 
       <hr />
 
-      <h1>Variable Width Endless Slider</h1>
+      <div class="headline-1">Variable Width Endless Slider</div>
       <slither-slider :options="{ dots: true, endless: true, gap: 20 }">
         <div
           v-for="n in 4"
@@ -205,7 +233,7 @@
             alignItems: 'center',
             fontSize: '6rem',
             fontWeight: 'bold',
-            borderRadius: '0.25rem'
+            borderRadius: '0.25rem',
           }"
         >
           {{ n }}
@@ -214,7 +242,7 @@
 
       <hr />
 
-      <h1>Variable Width Endless Slider (Doesn't Loop)</h1>
+      <div class="headline-1">Variable Width Endless Slider (Doesn't Loop)</div>
       <slither-slider :options="{ dots: true, endless: true, gap: 20, loop: false }">
         <div
           v-for="n in 8"
@@ -229,7 +257,7 @@
             alignItems: 'center',
             fontSize: '6rem',
             fontWeight: 'bold',
-            borderRadius: '0.25rem'
+            borderRadius: '0.25rem',
           }"
         >
           {{ n }}
@@ -238,17 +266,21 @@
 
       <hr />
 
-      <h1>Lazy slider</h1>
+      <div class="headline-1">Lazy slider</div>
       <slither-slider :options="{ lazy: true, dots: false }">
         <div>
-          <h2>Slide 1</h2>
-          <img data-src="https://picsum.photos/id/237/200/300" class="slither-lazy" />
+          <div class="headline-2">Slide 1</div>
+          <img
+            data-src="https://picsum.photos/id/237/1000/500"
+            style="width: 100%;"
+            class="slither-lazy"
+          />
         </div>
         <div>
-          <h2>Slide 2</h2>
+          <div class="headline-2">Slide 2</div>
           <img
-            data-bg-src="https://picsum.photos/id/238/500/500"
-            style="width:500px;height:500px;"
+            data-bg-src="https://picsum.photos/id/238/1000/500"
+            style="width: 100%; height: 500px;"
             class="slither-lazy"
           />
         </div>
@@ -256,20 +288,32 @@
 
       <hr />
 
-      <h1>Background Images</h1>
+      <div class="headline-1">Background Images</div>
       <slither-slider :options="{ dots: false }">
         <div
-          style="background-image:url('https://picsum.photos/id/450/600/500');background-size:cover;background-position:center;height:500px;width:100%"
+          style="
+            background-image: url('https://picsum.photos/id/450/1200/500');
+            background-size: cover;
+            background-position: center;
+            height: 500px;
+            width: 100%;
+          "
         ></div>
         <div
-          style="background-image:url('https://picsum.photos/id/451/600/500');background-size:cover;background-position:center;height:500px;width:100%"
+          style="
+            background-image: url('https://picsum.photos/id/451/1200/500');
+            background-size: cover;
+            background-position: center;
+            height: 500px;
+            width: 100%;
+          "
         ></div>
       </slither-slider>
 
       <hr />
 
-      <h1>Custom Controls</h1>
-      <slither-slider style="color:#fff">
+      <div class="headline-1">Custom Controls</div>
+      <slither-slider style="color: #fff;">
         <div
           :style="{
             backgroundColor: '#434190',
@@ -279,7 +323,7 @@
             justifyContent: 'center',
             alignItems: 'center',
             fontSize: '10rem',
-            fontWeight: 'bold'
+            fontWeight: 'bold',
           }"
         >
           <div>Slide 1</div>
@@ -293,7 +337,7 @@
             justifyContent: 'center',
             alignItems: 'center',
             fontSize: '10rem',
-            fontWeight: 'bold'
+            fontWeight: 'bold',
           }"
         >
           <div>Slide 2</div>
@@ -307,23 +351,45 @@
             justifyContent: 'center',
             alignItems: 'center',
             fontSize: '10rem',
-            fontWeight: 'bold'
+            fontWeight: 'bold',
           }"
         >
           <div>Slide 3</div>
         </div>
 
         <template slot="previous">
-          <div>Hey, go back!</div>
+          <div
+            style="
+              width: 100px;
+              height: 100px;
+              background-color: #c53030;
+              cursor: pointer;
+              border-radius: 5px;
+              margin-top: 8px;
+              margin-bottom: 8px;
+            "
+          >
+            Previous
+          </div>
         </template>
         <template slot="next">
-          <div>Only look forward!</div>
+          <div
+            style="
+              width: 100px;
+              height: 100px;
+              background-color: #38a169;
+              cursor: pointer;
+              border-radius: 5px;
+            "
+          >
+            Next
+          </div>
         </template>
       </slither-slider>
 
       <hr />
 
-      <h1>Fullscreen with Offset of -200</h1>
+      <div class="headline-1">Fullscreen with Offset of -200</div>
       <slither-slider :options="{ fullscreen: true, fullscreenOffset: -200 }">
         <div
           :style="{
@@ -332,10 +398,10 @@
             justifyContent: 'center',
             alignItems: 'center',
             backgroundColor: '#434190',
-            height: '100%'
+            height: '100%',
           }"
         >
-          <h2>Slide 1</h2>
+          <div class="headline-2">Slide 1</div>
         </div>
         <div
           :style="{
@@ -344,10 +410,10 @@
             justifyContent: 'center',
             alignItems: 'center',
             backgroundColor: '#285E61',
-            height: '100%'
+            height: '100%',
           }"
         >
-          <h2>Slide 2</h2>
+          <div class="headline-2">Slide 2</div>
         </div>
         <div
           :style="{
@@ -356,17 +422,17 @@
             justifyContent: 'center',
             alignItems: 'center',
             backgroundColor: '#276749',
-            height: '100%'
+            height: '100%',
           }"
         >
-          <h2>Slide 3</h2>
+          <div class="headline-2">Slide 3</div>
         </div>
       </slither-slider>
 
       <hr />
 
-      <h1>Animated Dots</h1>
-      <slither-slider :options="{ fullscreen: true, animatedDots: true }">
+      <div class="headline-1">Animated Dots</div>
+      <slither-slider :options="{ animatedDots: true }">
         <div
           :style="{
             color: '#fff',
@@ -374,11 +440,11 @@
             justifyContent: 'center',
             alignItems: 'center',
             backgroundColor: '#434190',
-            height: '100%',
-            width: '100%'
+            height: '500px',
+            width: '100%',
           }"
         >
-          <h2>Slide 1</h2>
+          <div class="headline-2">Slide 1</div>
         </div>
         <div
           :style="{
@@ -387,11 +453,10 @@
             justifyContent: 'center',
             alignItems: 'center',
             backgroundColor: '#285E61',
-            height: '100%',
-            width: '100%'
+            width: '100%',
           }"
         >
-          <h2>Slide 2</h2>
+          <div class="headline-2">Slide 2</div>
         </div>
         <div
           :style="{
@@ -400,29 +465,45 @@
             justifyContent: 'center',
             alignItems: 'center',
             backgroundColor: '#276749',
-            height: '100%',
-            width: '100%'
+            height: '500px',
+            width: '100%',
           }"
         >
-          <h2>Slide 3</h2>
+          <div class="headline-2">Slide 3</div>
         </div>
       </slither-slider>
 
       <hr />
 
-      <h1>Dot Limit</h1>
+      <div class="headline-1">Limit Number of Dots</div>
+      <p>
+        With dotLimit set to true we prevent a million dots appearing. Here there are 37 slides.
+      </p>
       <slither-slider :options="{ animatedDots: true, dotLimit: true }">
-        <div v-for="n in 37" :key="n">
-          <h2>Slide {{ n }}</h2>
+        <div v-for="n in 37" :key="n" class="slider-card">
+          <div class="headline-2">Slide {{ n }}</div>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed maximus lacinia tellus,
+            vitae commodo ligula ultrices vitae. Duis rhoncus, lectus eget sollicitudin pretium,
+            enim libero egestas mi, ut bibendum lacus lectus in sapien. Vivamus ullamcorper lorem ac
+            vestibulum tempor. Aenean dignissim et nunc ut fermentum. Nulla hendrerit risus eu nulla
+            pharetra vulputate. Donec semper est sed diam dictum, quis scelerisque odio ultricies.
+            Maecenas feugiat rutrum accumsan. Etiam semper mi lacus. Nam ac facilisis quam, ut
+            blandit metus. Aliquam dapibus sed risus eget bibendum. Nam in odio sed ante lacinia
+            sollicitudin eu ac nunc. Integer quam orci, eleifend et quam quis, gravida luctus augue.
+            Integer magna neque, ullamcorper vel erat sed, varius volutpat metus. Sed faucibus sed
+            ex nec pharetra.
+          </p>
         </div>
       </slither-slider>
 
       <hr />
 
-      <h1>Fade Animation</h1>
+      <div class="headline-1">Fade Animation (wip)</div>
+      <p>Recently we made some changes that broke the fade animation. Working on this asap.</p>
       <slither-slider :options="{ transition: 'fade' }">
         <div>
-          <h2>Slide 1</h2>
+          <div class="headline-2">Slide 1</div>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed maximus lacinia tellus,
             vitae commodo ligula ultrices vitae. Duis rhoncus, lectus eget sollicitudin pretium,
@@ -450,7 +531,7 @@
           </p>
         </div>
         <div>
-          <h2>Slide 2</h2>
+          <div class="headline-2">Slide 2</div>
           <p>
             Vestibulum vitae leo suscipit, consectetur magna vel, suscipit nulla. Aenean mattis
             risus eget mauris auctor, et cursus odio porttitor. Quisque vel accumsan augue. Vivamus
@@ -476,7 +557,7 @@
           </p>
         </div>
         <div>
-          <h2>Slide 3</h2>
+          <div class="headline-2">Slide 3</div>
           <p>
             Pellentesque ornare urna turpis, in feugiat augue consectetur nec. Mauris non lobortis
             arcu, ut mattis metus. In dictum, leo vel dignissim ornare, dui justo congue massa, id
@@ -500,76 +581,80 @@
 
       <hr />
 
-      <h1>Slider that changes heights</h1>
-      <slither-slider>
-        <div>
-          <h2>Slide 1</h2>
-          <img :src="`https://picsum.photos/id/400/${dynamicHeightDim}/${dynamicHeightDim}`" />
-        </div>
-        <div ref="heightChanger2">
-          <h2>Slide 2</h2>
-          <img :src="`https://picsum.photos/id/401/${dynamicHeightDim}/${dynamicHeightDim}`" />
-        </div>
-      </slither-slider>
-
-      <hr />
-
-      <h1>Single Slide</h1>
+      <div class="headline-1">Single Slide</div>
+      <p>We hide controls when there is only one slide</p>
       <slither-slider>
         <div
+          class="slider-card"
           :style="{
-            backgroundColor: 'blue',
+            backgroundColor: '#276749',
             color: 'white',
             padding: '20px',
-            height: '50px',
-            width: '500px'
           }"
         >
-          <h2>Slide 1</h2>
+          <div class="headline-2">Slide 1</div>
         </div>
       </slither-slider>
 
       <hr />
 
-      <h1>Slider with components</h1>
+      <div class="headline-1">Slider with components</div>
+      <p>
+        You can pass components into the slider that have dynamic elements to them. This was a
+        problem for many other sliders that we wanted to address.
+      </p>
       <slither-slider>
-        <div :style="{ height: '50px' }">
-          <h2>Slide 1</h2>
+        <div class="slider-card" :style="{ height: '50px' }">
+          <div class="headline-2">Slide 1</div>
           <test-render-component></test-render-component>
         </div>
-        <div :style="{ height: '50px' }">
-          <h2>Slide 2</h2>
+        <div class="slider-card" :style="{ height: '50px' }">
+          <div class="headline-2">Slide 2</div>
           <test-render-component></test-render-component>
         </div>
-        <div :style="{ height: '50px' }">
-          <h2>Slide 3</h2>
+        <div class="slider-card" :style="{ height: '50px' }">
+          <div class="headline-2">Slide 3</div>
           <test-render-component></test-render-component>
         </div>
       </slither-slider>
 
       <hr />
 
-      <h1>Slider with custom classes</h1>
+      <div class="headline-1">Slider with custom classes</div>
       <slither-slider
         :options="{
           sliderClass: 'slider-container-custom-class',
-          slideClass: 'custom-slide-class'
+          slideClass: 'slider-card-custom',
         }"
       >
         <div :style="{ height: '50px' }">
-          <h2>Slide 1</h2>
+          <div class="headline-2">Slide 1</div>
           "slider-container-custom-class" added to this slider "custom-slide-class" added to this
           slide
         </div>
         <div :style="{ height: '50px' }">
-          <h2>Slide 2</h2>
+          <div class="headline-2">Slide 2</div>
           "slider-container-custom-class" added to this slider "custom-slide-class" added to this
           slide
         </div>
         <div :style="{ height: '50px' }">
-          <h2>Slide 3</h2>
+          <div class="headline-2">Slide 3</div>
           "slider-container-custom-class" added to this slider "custom-slide-class" added to this
           slide
+        </div>
+      </slither-slider>
+
+      <hr />
+
+      <div class="headline-1">Slider that changes heights</div>
+      <slither-slider>
+        <div class="slider-card">
+          <div class="headline-2">Slide 1</div>
+          <img :src="`https://picsum.photos/id/400/${dynamicHeightDim}/${dynamicHeightDim}`" />
+        </div>
+        <div class="slider-card" ref="heightChanger2">
+          <div class="headline-2">Slide 2</div>
+          <img :src="`https://picsum.photos/id/401/${dynamicHeightDim}/${dynamicHeightDim}`" />
         </div>
       </slither-slider>
 
@@ -586,11 +671,11 @@ export default {
   name: "App",
   components: {
     SlitherSlider,
-    TestRenderComponent
+    TestRenderComponent,
   },
   data() {
     return {
-      dynamicHeightDim: 100
+      dynamicHeightDim: 100,
     };
   },
   created() {
@@ -602,7 +687,7 @@ export default {
     randomWidth(index) {
       const widths = [200, 300, 400, 500];
       return widths[index % 4] + "px";
-    }
-  }
+    },
+  },
 };
 </script>

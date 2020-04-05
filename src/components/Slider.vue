@@ -21,6 +21,7 @@
         @mouseleave="startAutoplay"
         slot-scope="{ goToIndex, next, prev, pauseInterval, startAutoplay }"
         class="slider"
+        :style="sliderStyles"
         :class="sliderClasses"
       >
         <!-- Slides -->
@@ -45,20 +46,6 @@
           >
           </slider-slide>
         </slider-slides>
-
-        <!-- Next/Prev controls -->
-        <template v-if="options.controls && slides.length > 1">
-          <button class="slider-direction slider-direction--prev" @click="prev">
-            <slot name="previous">
-              &laquo; Prev
-            </slot>
-          </button>
-          <button class="slider-direction slider-direction--next" @click="next">
-            <slot name="next">
-              Next &raquo;
-            </slot>
-          </button>
-        </template>
 
         <!-- Dots at the bottom of the slider -->
         <!-- eslint-disable vue/valid-v-for -->
@@ -93,39 +80,21 @@ export default {
   components: {
     SliderFrame,
     SliderSlides,
-    SliderSlide
+    SliderSlide,
   },
   props: {
-    config: {
+    options: {
       type: Object,
-      default: () => ({})
-    }
+      default: () => ({}),
+    },
   },
   data() {
     return {
       activeIndex: 0,
       animating: false, // Only used for endless
-      options: {
-        transition: "slide",
-        animationDuration: 300,
-        controls: true,
-        dots: true,
-        animatedDots: false,
-        dotLimit: false,
-        fullscreen: false,
-        fullscreenOffset: null,
-        lazy: true,
-        numberOfSlides: 1,
-        slideClass: null,
-        sliderClass: null,
-        endless: false,
-        gap: 10,
-        loop: true,
-        extras: 3
-      },
       slides: [],
       inlineHeight: 0,
-      loaded: false
+      loaded: false,
     };
   },
   computed: {
@@ -139,7 +108,7 @@ export default {
       const windowWidth = window.innerWidth;
       let currentSize = {
         number: 1,
-        min: -1
+        min: -1,
       };
       for (let i = 0; i < this.options.numberOfSlides.length; i++) {
         const responsiveSize = this.options.numberOfSlides[i];
@@ -189,6 +158,13 @@ export default {
 
       return classes;
     },
+    sliderStyles() {
+      if (this.options.endless) {
+        return { overflow: "hidden" };
+      }
+      return {};
+    },
+
     // This sums the total width of the slides (plus gap) of the slides we've seen until now
     totalOffsetWidth() {
       let totalWidth = 0;
@@ -210,11 +186,7 @@ export default {
       }
 
       return styles;
-    }
-  },
-
-  created() {
-    this.setOptions();
+    },
   },
 
   mounted() {
@@ -230,12 +202,9 @@ export default {
     }, 1000);
   },
   methods: {
-    setOptions() {
-      this.options = Object.assign({}, this.options, this.config);
-    },
     addSlides() {
       if (this.$slots && this.$slots.default) {
-        this.$slots.default.forEach(slide => {
+        this.$slots.default.forEach((slide) => {
           if (typeof slide.tag !== "undefined") {
             this.slides.push(slide);
           }
@@ -250,27 +219,45 @@ export default {
       }
     },
     setFullScreen() {
-      Array.from(this.$refs.slides.$el.childNodes).forEach(node => {
+      Array.from(this.$refs.slides.$el.childNodes).forEach((node) => {
         node.style.height = `${window.innerHeight + this.options.fullscreenOffset}px`;
-        this.$refs.slides.$el.style.height = `${window.innerHeight +
-          this.options.fullscreenOffset}px`;
+        this.$refs.slides.$el.style.height = `${
+          window.innerHeight + this.options.fullscreenOffset
+        }px`;
       });
     },
     setInlineHeight() {
       if (this.$refs.slides) {
-        Array.from(this.$refs.slides.$el.childNodes).forEach(node => {
+        Array.from(this.$refs.slides.$el.childNodes).forEach((node) => {
+          let bottomPaddingCorrection = this.getPaddingBottom(node);
+          console.log(bottomPaddingCorrection);
           // find THE HIGHEST!!!
           this.inlineHeight =
-            this.inlineHeight > node.scrollHeight ? this.inlineHeight : node.scrollHeight;
+            this.inlineHeight > node.scrollHeight + bottomPaddingCorrection
+              ? this.inlineHeight
+              : node.scrollHeight + bottomPaddingCorrection;
         });
 
-        Array.from(this.$refs.slides.$el.childNodes).forEach(node => {
+        Array.from(this.$refs.slides.$el.childNodes).forEach((node) => {
           node.style.height = `${this.inlineHeight}px`;
         });
 
         this.$refs.slides.$el.style.height = `${this.inlineHeight}px`;
       }
     },
+    getPaddingBottom(node) {
+      let bottomPaddingCorrection = 0;
+      Array.from(node.childNodes).forEach((childnode) => {
+        console.log(window.getComputedStyle(childnode).paddingBottom);
+        const paddingBottom = window.getComputedStyle(childnode).paddingBottom;
+        const paddingBottomInt = parseInt(paddingBottom.substring(0, paddingBottom.length - 2));
+        if (paddingBottomInt > bottomPaddingCorrection) {
+          bottomPaddingCorrection = paddingBottomInt;
+        }
+      });
+      return bottomPaddingCorrection;
+    },
+
     activeIndexChanged(index) {
       this.activeIndex = index;
 
@@ -290,7 +277,7 @@ export default {
                 anime.set(this.$refs.slides.$el, { translateX: 0 });
               }
             }
-          }
+          },
         });
       }
     },
@@ -304,12 +291,7 @@ export default {
     },
     randomString() {
       return (
-        Math.random()
-          .toString(36)
-          .substring(2, 15) +
-        Math.random()
-          .toString(36)
-          .substring(2, 15)
+        Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
       );
     },
     dotClass(dotIndex) {
@@ -331,8 +313,8 @@ export default {
       }
 
       return classes;
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -351,10 +333,10 @@ export default {
   transform: translateY(-50%);
   z-index: 5000;
 
-  border: 0;
-  background-color: #fafafa;
-  color: #222;
-  padding: 0.7em 2em;
+  border: 1px solid #718096;
+  border-radius: 9999px;
+  height: 50px;
+  width: 50px;
   font-size: 1em;
   opacity: 0.75;
 
@@ -378,10 +360,6 @@ export default {
   right: 0.5em;
 }
 
-.slider {
-  overflow: hidden;
-}
-
 .limit-dot-width {
   width: 50px;
   overflow: hidden;
@@ -390,7 +368,7 @@ export default {
 .slider-dots {
   position: absolute;
   right: 0;
-  bottom: 0.5em;
+  bottom: -2em;
   left: 0;
   display: flex;
   justify-content: center;
