@@ -5,22 +5,24 @@
     </slider>
 
     <!-- Next/Prev controls -->
-    <template v-if="finalOptions.controls && numberOfSlides > 1">
-      <div @click="prev">
-        <slot name="previous">
-          <button class="slider-direction slider-direction--prev">
-            &laquo;
-          </button>
-        </slot>
-      </div>
-      <div @click="next">
-        <slot name="next">
-          <button class="slider-direction slider-direction--next">
-            &raquo;
-          </button>
-        </slot>
-      </div>
-    </template>
+    <div class="slither-slider-controls" :class="finalOptions.controlsWrapperClass">
+      <template v-if="finalOptions.controls && numberOfSlides > 1">
+        <div @click="prev">
+          <slot name="previous">
+            <button class="slider-direction slider-direction--prev">
+              &laquo;
+            </button>
+          </slot>
+        </div>
+        <div @click="next">
+          <slot name="next">
+            <button class="slider-direction slider-direction--next">
+              &raquo;
+            </button>
+          </slot>
+        </div>
+      </template>
+    </div>
   </div>
 </template>
 
@@ -54,6 +56,7 @@ export default {
         numberOfSlides: 1,
         slideClass: null,
         sliderClass: null,
+        controlsWrapperClass: null,
         endless: false,
         gap: 10,
         loop: true,

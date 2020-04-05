@@ -2201,28 +2201,28 @@ if (typeof window !== 'undefined') {
 // Indicate to webpack that this file can be concatenated
 /* harmony default export */ var setPublicPath = (null);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"2c3c18d4-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SlitherApp.vue?vue&type=template&id=62223783&
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.finalOptions.transition)?_c('div',{staticClass:"slither-slider"},[_c('slider',{ref:"slider",attrs:{"options":_vm.finalOptions}},[_vm._t("default")],2),(_vm.finalOptions.controls && _vm.numberOfSlides > 1)?[_c('div',{on:{"click":_vm.prev}},[_vm._t("previous",[_c('button',{staticClass:"slider-direction slider-direction--prev"},[_vm._v("\n          «\n        ")])])],2),_c('div',{on:{"click":_vm.next}},[_vm._t("next",[_c('button',{staticClass:"slider-direction slider-direction--next"},[_vm._v("\n          »\n        ")])])],2)]:_vm._e()],2):_vm._e()}
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"2c3c18d4-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SlitherApp.vue?vue&type=template&id=d52f7b4a&
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.finalOptions.transition)?_c('div',{staticClass:"slither-slider"},[_c('slider',{ref:"slider",attrs:{"options":_vm.finalOptions}},[_vm._t("default")],2),_c('div',{staticClass:"slither-slider-controls",class:_vm.finalOptions.controlsWrapperClass},[(_vm.finalOptions.controls && _vm.numberOfSlides > 1)?[_c('div',{on:{"click":_vm.prev}},[_vm._t("previous",[_c('button',{staticClass:"slider-direction slider-direction--prev"},[_vm._v("\n            «\n          ")])])],2),_c('div',{on:{"click":_vm.next}},[_vm._t("next",[_c('button',{staticClass:"slider-direction slider-direction--next"},[_vm._v("\n            »\n          ")])])],2)]:_vm._e()],2)],1):_vm._e()}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/SlitherApp.vue?vue&type=template&id=62223783&
+// CONCATENATED MODULE: ./src/components/SlitherApp.vue?vue&type=template&id=d52f7b4a&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.object.assign.js
 var es6_object_assign = __webpack_require__("f751");
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"2c3c18d4-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Slider.vue?vue&type=template&id=134457f6&
-var Slidervue_type_template_id_134457f6_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.slides)?_c('div',{class:[_vm.options.transition, _vm.options.sliderClass]},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(false),expression:"false"}],ref:"allSlidesSlot"},[_vm._t("default")],2),(_vm.slides.length > 0)?_c('slider-frame',{ref:"sliderframe",attrs:{"options":_vm.options,"number-of-slides":_vm.options.numberOfSlides,"number-of-pages":_vm.numberOfPages,"animating":_vm.animating},on:{"active-index-changed":_vm.activeIndexChanged},scopedSlots:_vm._u([{key:"default",fn:function(ref){
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"2c3c18d4-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Slider.vue?vue&type=template&id=33d23b4e&
+var Slidervue_type_template_id_33d23b4e_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.slides)?_c('div',{class:[_vm.options.transition, _vm.options.sliderClass]},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(false),expression:"false"}],ref:"allSlidesSlot"},[_vm._t("default")],2),(_vm.slides.length > 0)?_c('slider-frame',{ref:"sliderframe",attrs:{"options":_vm.options,"number-of-slides":_vm.options.numberOfSlides,"number-of-pages":_vm.numberOfPages,"animating":_vm.animating},on:{"active-index-changed":_vm.activeIndexChanged},scopedSlots:_vm._u([{key:"default",fn:function(ref){
 var goToIndex = ref.goToIndex;
 var next = ref.next;
 var prev = ref.prev;
 var pauseInterval = ref.pauseInterval;
 var startAutoplay = ref.startAutoplay;
 return _c('div',{staticClass:"slider",class:_vm.sliderClasses,style:(_vm.sliderStyles),on:{"mouseenter":pauseInterval,"mouseleave":startAutoplay}},[_c('slider-slides',{directives:[{name:"touch",rawName:"v-touch:swipe.left",value:(next),expression:"next",arg:"swipe",modifiers:{"left":true}},{name:"touch",rawName:"v-touch:swipe.right",value:(prev),expression:"prev",arg:"swipe",modifiers:{"right":true}}],ref:"slides",staticClass:"slides",class:[_vm.options.sliderClass],attrs:{"options":_vm.options}},_vm._l((_vm.groups),function(groupData,key){return _c('slider-slide',{key:groupData.key,class:_vm.options.slideClass,style:(_vm.slideStyles),attrs:{"loaded":_vm.loaded,"group":groupData.group,"options":_vm.options,"is-next":_vm.isNext(key)},on:{"contentChanged":_vm.contentChanged}})}),1),(_vm.options.dots && _vm.slides.length > 1)?[_c('ol',{staticClass:"slider-dots"},_vm._l((_vm.numberOfDots),function(n){return _c('li',{key:n,staticClass:"slider-dot",class:_vm.dotClass(n),on:{"click":function($event){return goToIndex(n - 1)}}},[_vm._v("\n            "+_vm._s(n)+"\n          ")])}),0)]:_vm._e()],2)}}],null,false,435626855)}):_vm._e()],1):_vm._e()}
-var Slidervue_type_template_id_134457f6_staticRenderFns = []
+var Slidervue_type_template_id_33d23b4e_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Slider.vue?vue&type=template&id=134457f6&
+// CONCATENATED MODULE: ./src/components/Slider.vue?vue&type=template&id=33d23b4e&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.regexp.to-string.js
 var es6_regexp_to_string = __webpack_require__("6b54");
@@ -4345,11 +4345,12 @@ var SliderSlide_component = normalizeComponent(
       var _this4 = this;
 
       if (this.$refs.slides) {
+        this.inlineHeight = 0;
         Array.from(this.$refs.slides.$el.childNodes).forEach(function (node) {
           var bottomPaddingCorrection = _this4.getPaddingBottom(node); // find THE HIGHEST!!!
 
 
-          _this4.inlineHeight = _this4.inlineHeight > node.scrollHeight + bottomPaddingCorrection ? _this4.inlineHeight : node.scrollHeight + bottomPaddingCorrection;
+          _this4.inlineHeight = _this4.inlineHeight > node.childNodes[0].scrollHeight + bottomPaddingCorrection ? _this4.inlineHeight : node.childNodes[0].scrollHeight + bottomPaddingCorrection;
         });
         Array.from(this.$refs.slides.$el.childNodes).forEach(function (node) {
           node.style.height = "".concat(_this4.inlineHeight, "px");
@@ -4451,8 +4452,8 @@ var Slidervue_type_style_index_0_lang_scss_ = __webpack_require__("6afe");
 
 var Slider_component = normalizeComponent(
   components_Slidervue_type_script_lang_js_,
-  Slidervue_type_template_id_134457f6_render,
-  Slidervue_type_template_id_134457f6_staticRenderFns,
+  Slidervue_type_template_id_33d23b4e_render,
+  Slidervue_type_template_id_33d23b4e_staticRenderFns,
   false,
   null,
   null,
@@ -4463,6 +4464,8 @@ var Slider_component = normalizeComponent(
 /* harmony default export */ var Slider = (Slider_component.exports);
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SlitherApp.vue?vue&type=script&lang=js&
 
+//
+//
 //
 //
 //
@@ -4519,6 +4522,7 @@ var Slider_component = normalizeComponent(
         numberOfSlides: 1,
         slideClass: null,
         sliderClass: null,
+        controlsWrapperClass: null,
         endless: false,
         gap: 10,
         loop: true,

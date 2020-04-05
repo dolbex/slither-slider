@@ -313,7 +313,12 @@
       <hr />
 
       <div class="headline-1">Custom Controls</div>
-      <slither-slider style="color: #fff;">
+      <slither-slider
+        style="color: #fff;"
+        :options="{
+          controlsWrapperClass: 'controls-custom',
+        }"
+      >
         <div
           :style="{
             backgroundColor: '#434190',
@@ -360,13 +365,14 @@
         <template slot="previous">
           <div
             style="
-              width: 100px;
-              height: 100px;
+              width: 75px;
+              height: 50px;
               background-color: #c53030;
               cursor: pointer;
               border-radius: 5px;
-              margin-top: 8px;
-              margin-bottom: 8px;
+              margin: 8px;
+              margin-left: 0;
+              padding: 10px;
             "
           >
             Previous
@@ -375,11 +381,13 @@
         <template slot="next">
           <div
             style="
-              width: 100px;
-              height: 100px;
+              width: 75px;
+              height: 50px;
               background-color: #38a169;
               cursor: pointer;
               border-radius: 5px;
+              margin: 8px;
+              padding: 10px;
             "
           >
             Next
@@ -600,8 +608,8 @@
 
       <div class="headline-1">Slider with components</div>
       <p>
-        You can pass components into the slider that have dynamic elements to them. This was a
-        problem for many other sliders that we wanted to address.
+        You can pass components into the slider that have dynamic elements to them through render
+        components. This was a problem for many other sliders that we wanted to address.
       </p>
       <slither-slider>
         <div class="slider-card" :style="{ height: '50px' }">

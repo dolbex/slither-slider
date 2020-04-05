@@ -228,13 +228,15 @@ export default {
     },
     setInlineHeight() {
       if (this.$refs.slides) {
+        this.inlineHeight = 0;
         Array.from(this.$refs.slides.$el.childNodes).forEach((node) => {
           let bottomPaddingCorrection = this.getPaddingBottom(node);
           // find THE HIGHEST!!!
+
           this.inlineHeight =
-            this.inlineHeight > node.scrollHeight + bottomPaddingCorrection
+            this.inlineHeight > node.childNodes[0].scrollHeight + bottomPaddingCorrection
               ? this.inlineHeight
-              : node.scrollHeight + bottomPaddingCorrection;
+              : node.childNodes[0].scrollHeight + bottomPaddingCorrection;
         });
 
         Array.from(this.$refs.slides.$el.childNodes).forEach((node) => {

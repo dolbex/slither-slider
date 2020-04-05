@@ -44,6 +44,10 @@ hr {
   border-radius: 10px;
 }
 
+.controls-custom {
+  display: flex;
+}
+
 .flex-demo-slide {
   display: flex;
 }
