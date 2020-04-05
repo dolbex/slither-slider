@@ -1,10 +1,47 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,900;1,400&display=swap");
+
 .demo {
-  font-family: Arial;
+  font-family: "Playfair Display", "Times New Roman", "Times", serif;
   padding: 1em;
+  color: #4a5568;
+  background-color: #f7fafc;
+  padding: 100px;
+  margin: -8px;
 }
 
 hr {
   margin: 8em;
+  background-color: #e2e8f0;
+  border: 0;
+  height: 1px;
+}
+
+.headline-1 {
+  font-size: 5em;
+  margin-bottom: 0.25em;
+}
+
+.headline-2 {
+  font-size: 2em;
+}
+
+.slider-card {
+  background-color: #fff;
+  padding: 50px 100px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.03), 0 2px 2px rgba(0, 0, 0, 0.03),
+    0 4px 4px rgba(0, 0, 0, 0.03), 0 8px 8px rgba(0, 0, 0, 0.03),
+    0 16px 16px rgba(0, 0, 0, 0.03);
+}
+
+.slider-card-custom {
+  background: linear-gradient(
+    317deg,
+    rgba(42, 192, 224, 1) 0%,
+    rgba(33, 215, 122, 1) 100%
+  );
+  color: white;
+  padding: 30px;
+  border-radius: 10px;
 }
 
 .flex-demo-slide {
