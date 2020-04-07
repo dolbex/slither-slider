@@ -3,27 +3,28 @@ export default {
   props: {
     options: {
       type: Object,
-      required: true
+      required: true,
     },
     numberOfPages: {
       type: Number,
-      required: true
+      required: true,
     },
     animating: {
       type: Boolean,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
       activeIndex: 0,
-      autoplayInterval: null
+      autoplayInterval: null,
     };
   },
   computed: {
     slides() {
       // All slides must be children of the `SliderSlides` component.
-      return this.$children.find(x => x.$options.name === "Slides").$children;
+      const sliderSlidesComponent = this.$children.find((x) => x.$options.name === "Slides");
+      return sliderSlidesComponent.$children;
     },
     slidesCount() {
       return this.numberOfPages;
@@ -47,7 +48,7 @@ export default {
       }
 
       return classes;
-    }
+    },
   },
   mounted() {
     // Immediately activate the first slide.
@@ -76,6 +77,7 @@ export default {
     showSingleSlide(index, direction) {
       // Call the `hide()` method on the currently
       // active `SliderSlide` component.
+      console.log(this.slides);
       this.slides[this.activeIndex].hide(direction);
       // Call the `show()` method on the `SliderSlide`
       // component with the correspondign index.
@@ -97,7 +99,7 @@ export default {
     },
     pauseInterval() {
       clearInterval(this.autoplayInterval);
-    }
+    },
   },
   render() {
     return this.$scopedSlots.default({
@@ -110,7 +112,7 @@ export default {
       prev: this.prev,
       pauseInterval: this.pauseInterval,
       startAutoplay: this.startAutoplay,
-      totalSlideWidthToActive: this.totalSlideWidthToActive
+      totalSlideWidthToActive: this.totalSlideWidthToActive,
     });
-  }
+  },
 };

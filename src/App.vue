@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="demo">
     <div>
-      <div class="headline-1">Basic slider</div>
+      <!-- <div class="headline-1">Basic slider</div>
       <slither-slider>
         <div class="slider-card">
           <div class="headline-2">Slide 1</div>
@@ -185,7 +185,7 @@
       </slither-slider>
 
       <hr />
-
+-->
       <div class="headline-1">Slider with multiple items per slide / responsive</div>
       <slither-slider
         :options="{
@@ -197,26 +197,14 @@
           slideClass: 'flex-demo-slide',
         }"
       >
-        <div
-          v-for="n in 35"
-          :key="n"
-          class="slider-card"
-          style="margin-right: 30px; padding: 30px;"
-        >
+        <div v-for="n in 35" :key="n" class="slider-card" style="padding: 30px;">
           <div class="headline-2">Slide {{ n }}</div>
-          <p>
-            Pellentesque ornare urna turpis, in feugiat augue consectetur nec. Mauris non lobortis
-            arcu, ut mattis metus. In dictum, leo vel dignissim ornare, dui justo congue massa, id
-            pretium quam turpis quis enim. Vivamus efficitur ex nec lectus luctus, ac pretium dui
-            semper. Vestibulum vehicula augue at odio fermentum, eget ultrices leo bibendum. Donec
-            feugiat ex sed gravida consequat. Integer vitae ullamcorper neque, sit amet mattis eros.
-            Donec in ligula ac massa rutrum pretium lacinia eu odio. Maecenas pretium commodo augue,
-            vitae pellentesque velit mollis et. Donec tempus ante in venenatis ultricies.
-          </p>
+          <p v-for="(paragraph, key) in getRandomParagraphs(3)" :key="key">{{ paragraph }}</p>
         </div>
       </slither-slider>
 
       <hr />
+      <!--
 
       <div class="headline-1">Variable Width Endless Slider</div>
       <slither-slider :options="{ dots: true, endless: true, gap: 20 }">
@@ -604,12 +592,40 @@
         </div>
       </slither-slider>
 
-      <hr />
+      <hr /> -->
 
       <div class="headline-1">Slider with components</div>
       <p>
+        Another test with the components at the root and endless turned on.
+        <strong>Important</strong>: You <strong>must</strong> wrap components in a div or other
+        valid html element.
+      </p>
+      <slither-slider>
+        <div v-for="n in 6" :key="n">
+          <another-test-component :number="n" :full-width="true"></another-test-component>
+        </div>
+      </slither-slider>
+
+      <hr />
+
+      <div class="headline-1">Endless Slider with components</div>
+      <p>
+        Another test with the components at the root and endless turned on.
+        <strong>Important</strong>: You <strong>must</strong> wrap components in a div or other
+        valid html element.
+      </p>
+      <slither-slider :options="{ endless: true }" v-if="loaded">
+        <another-test-component v-for="n in 20" :key="n" :number="n"></another-test-component>
+      </slither-slider>
+      <hr />
+
+      <!-- 
+      <div class="headline-1">Slider with complex render components</div>
+      <p>
         You can pass components into the slider that have dynamic elements to them through render
         components. This was a problem for many other sliders that we wanted to address.
+        <strong>Important</strong>: You <strong>must</strong> wrap components in a div or other
+        valid html element.
       </p>
       <slither-slider>
         <div class="slider-card" :style="{ height: '50px' }">
@@ -666,24 +682,39 @@
         </div>
       </slither-slider>
 
-      <hr />
+      <hr /> -->
     </div>
   </div>
 </template>
 
 <script>
 import SlitherSlider from "./components/SlitherApp.vue";
-import TestRenderComponent from "./components/TestRenderComponent";
+import TestRenderComponent from "./components/testing-demo/TestRenderComponent";
+import AnotherTestComponent from "./components/testing-demo/AnotherTestComponent";
 
 export default {
   name: "App",
   components: {
     SlitherSlider,
+    AnotherTestComponent,
     TestRenderComponent,
   },
   data() {
     return {
       dynamicHeightDim: 100,
+      loaded: true,
+      paragraphs: [
+        `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus consequat dolor eu lorem commodo interdum. Praesent ut dictum neque. Duis bibendum, lorem bibendum congue volutpat, felis risus consectetur ipsum, eget varius lacus lacus id massa. Fusce suscipit leo eget lorem porta, nec tempor tellus cursus. Curabitur pellentesque vitae nisi finibus gravida. Praesent id lectus ac lacus tristique consectetur. Integer hendrerit odio vel erat varius, et fermentum arcu dignissim.`,
+        `Sed ac lacinia mi. Aenean mollis aliquam tortor, eget vulputate eros. Nulla luctus ullamcorper tristique. Curabitur ex magna, tincidunt et ante a, sodales vestibulum mi. Proin luctus turpis vel tempus rutrum. Curabitur nec euismod nibh. Suspendisse id ante odio. Cras euismod lacus vel venenatis bibendum. Nulla sit amet semper est.`,
+        `Donec blandit nibh vitae consequat rhoncus. Phasellus a nibh a leo tempor pellentesque nec in ex. Quisque feugiat interdum nulla. Maecenas ac justo aliquam, feugiat ipsum a, sodales leo. Ut fermentum sodales lacus at ullamcorper. Fusce quis tellus eget ipsum dignissim euismod. Duis dignissim nisi mi, ac luctus metus viverra non. Mauris velit nibh, porttitor id felis at, fermentum maximus erat. Donec eget nisi ultrices nisl eleifend cursus. Cras nec sem ut lectus egestas tincidunt. Curabitur laoreet eget erat gravida congue. In vehicula dolor nec metus tempor aliquet.`,
+        `Ut vestibulum, eros eget vestibulum efficitur, nunc sem sagittis nisl, in dapibus lectus ex nec sem. Curabitur eleifend luctus purus, sed sodales odio luctus ac. Pellentesque egestas sed neque vel vehicula. Vivamus aliquet lectus et massa luctus laoreet. Nulla pellentesque purus in metus posuere molestie. Sed porta, arcu nec vehicula lobortis, eros eros feugiat arcu, vel venenatis sem nisi vitae velit. Mauris ligula velit, varius non diam in, fermentum viverra lorem. Donec vel sodales augue. Aliquam tristique nunc risus. In malesuada non urna a ultricies. Aliquam egestas commodo nisl, at semper libero efficitur ac. Praesent enim lorem, hendrerit eget pellentesque quis, vestibulum non tellus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Pellentesque nisi purus, efficitur et neque ac, condimentum accumsan libero. Vestibulum consectetur nibh non auctor ultrices. Integer sodales ligula non urna molestie, et feugiat quam eleifend.`,
+        `Aliquam iaculis eros sit amet purus rutrum, non laoreet mi scelerisque. Pellentesque nibh purus, iaculis in nisl a, consectetur molestie nibh. Mauris vitae lacus finibus, euismod dolor a, finibus neque. Morbi pharetra odio ut laoreet varius. Proin eu mattis arcu. Pellentesque commodo nulla odio, quis maximus sem laoreet sed. Vestibulum viverra aliquam enim, a porta justo venenatis ac. Etiam semper sem id hendrerit egestas. Donec tincidunt ultrices risus et sagittis. Fusce aliquet eu odio ac ullamcorper. Praesent at auctor erat.`,
+        `Maecenas vel porttitor dui. Vivamus feugiat tellus ac sapien dignissim volutpat. Praesent feugiat arcu augue, aliquam dapibus enim eleifend quis. Sed ultricies aliquam lobortis. Donec id nunc pulvinar diam porta efficitur. Donec risus lacus, malesuada vitae orci at, tincidunt pulvinar neque. Nam posuere suscipit mauris in venenatis. Nullam porta enim nisl, at lacinia tortor auctor a. Curabitur tempor enim nec finibus tristique. Cras auctor egestas posuere. Proin at est dapibus, imperdiet sem nec, bibendum libero. Ut ultricies, elit viverra rhoncus hendrerit, odio augue faucibus leo, a elementum lectus urna euismod neque.`,
+        `Vestibulum tristique turpis vel enim mollis, a vehicula neque dignissim. Duis ornare, nibh feugiat consequat mattis, odio dui iaculis nibh, et hendrerit metus nisi ac nibh. Etiam fringilla purus nec tincidunt mollis. Donec finibus neque a aliquam sollicitudin. Integer venenatis, dolor a posuere egestas, est neque sollicitudin lacus, ut feugiat erat neque vel augue. Aenean ac dui vel odio placerat rhoncus. Aliquam lectus libero, feugiat non turpis eu, ultrices dapibus leo.`,
+        `Ut semper justo fringilla, tempor felis et, eleifend lorem. In in porttitor ex. Cras vel lorem ut diam congue laoreet sed egestas augue. Nam bibendum mi at diam accumsan, eget ultrices enim ornare. Nunc luctus nisl quis est pellentesque fringilla. Cras semper elementum metus, quis porttitor quam gravida a. Nulla aliquam laoreet enim. Integer scelerisque arcu lorem, sed mattis libero venenatis non. Proin sit amet sagittis ligula, nec ornare lorem. Nulla elementum commodo maximus. Ut id nulla et nisl aliquam consequat. Curabitur mollis tempor diam, ornare feugiat ex egestas vel. Nunc volutpat odio non odio luctus ornare. Sed maximus suscipit mi, dignissim cursus ante eleifend in. Etiam massa elit, volutpat sit amet luctus vel, dignissim vel leo.`,
+        `Sed lectus est, lobortis quis congue eu, iaculis non leo. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse sit amet rhoncus justo, ut ullamcorper velit. Ut non ligula et erat gravida suscipit quis sit amet nunc. Nunc sagittis massa at dui sagittis feugiat. Proin posuere tortor pretium ipsum consectetur mollis. Quisque imperdiet porttitor scelerisque. Nullam quis pulvinar tellus, ac fringilla dolor. Donec euismod nisi risus, lacinia consequat quam condimentum in.`,
+        `Ut lacinia ullamcorper faucibus. Etiam euismod pretium dui, sit amet lacinia ante lacinia vitae. Donec nibh metus, vestibulum sed iaculis at, finibus sed orci. Donec ac sem et purus ultrices sagittis. Nulla rutrum felis id feugiat blandit. Sed ac lectus maximus, posuere diam sed, elementum enim. Proin feugiat dui at fringilla euismod. Donec ullamcorper massa et placerat pharetra. Curabitur hendrerit est ultrices odio sodales mattis. Pellentesque consequat mi eu nulla porttitor consequat. Etiam posuere, purus eget rhoncus rhoncus, lorem felis venenatis mauris, a vehicula nulla velit sed nulla. In hac habitasse platea dictumst. Etiam eu consequat odio. In fringilla semper sapien molestie scelerisque. Morbi convallis, elit a pellentesque cursus, neque metus porta quam, vitae malesuada dui mi sit amet risus.`,
+      ],
     };
   },
   created() {
@@ -695,6 +726,17 @@ export default {
     randomWidth(index) {
       const widths = [200, 300, 400, 500];
       return widths[index % 4] + "px";
+    },
+    getRandomParagraphs(numberOfParagraphs) {
+      const paragraphs = [];
+      for (let i = 0; i < numberOfParagraphs; i++) {
+        paragraphs.push(this.getRandomParagraph());
+      }
+      return paragraphs;
+    },
+    getRandomParagraph() {
+      const randomParagraph = Math.floor(Math.random() * Math.floor(9));
+      return this.paragraphs[randomParagraph];
     },
   },
 };
