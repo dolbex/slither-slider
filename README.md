@@ -171,6 +171,18 @@ yarn install
 yarn run serve
 ```
 
+### Compiles and minifies for docs, library and plugin
+
+```
+build-all
+```
+
+### Publishes the docs to gh-pages
+
+```
+publish-docs
+```
+
 ### Compiles and minifies for library and plugin
 
 ```
@@ -189,7 +201,7 @@ build-lib:library
 build-lib:plugin
 ```
 
-### Compiles and minifies for production
+### Compiles and minifies for documentation
 
 ```
 yarn run build
