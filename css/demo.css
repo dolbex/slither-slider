@@ -17,8 +17,9 @@ hr {
 }
 
 .headline-1 {
-  font-size: 5em;
-  margin-bottom: 0.25em;
+  font-size: 5rem;
+  margin-bottom: 0.75em;
+  line-height: 0.9em;
 }
 
 .headline-2 {
