@@ -1,4 +1,5 @@
 <script>
+import bus from "../bus";
 export default {
   name: "Slide",
   render(createElement) {
@@ -36,47 +37,38 @@ export default {
       required: true,
     },
   },
+  data() {
+    return {
+      height: "auto",
+    };
+  },
   mounted() {
-    if (!this.options.endless) {
-      this.$nextTick(() => {
-        setTimeout(() => {
-          if (this.$refs.slide) {
-            console.log(this.$refs.slide.children[0]);
-            this.$emit(
-              "slideDimensions",
-              this.$refs.slide.children[0].getBoundingClientRect().height
-            );
-          }
-        }, 200);
-      });
-    }
+    this.setHeight();
   },
   computed: {
-    isActive() {
-      return this.index === this.activeIndex;
-    },
     styles() {
       if (this.options.endless) {
         return {
           display: "flex",
         };
       }
+
       return {
-        position: "absolute",
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
+        position: "relative",
+        height: this.height,
         display: "grid",
         gridTemplateColumns: `repeat(${this.numberOfElementsPerSlide}, minmax(0, 1fr))`,
         gap: this.options.gap + "px",
       };
     },
   },
+  methods: {
+    setHeight() {
+      if (this.options.fullscreen) {
+        const fullscreenHeight = window.innerHeight + this.options.fullscreenOffset;
+        this.height = fullscreenHeight + "px";
+      }
+    },
+  },
 };
 </script>
-
-<style>
-.slither-slider-slide {
-}
-</style>

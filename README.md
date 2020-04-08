@@ -41,43 +41,48 @@ Vue.use(SlitherSlider)
 
 ```javascript
 {
-  transition: 'fade',
+  autoplay: false,
+  transition: "slide",
+  animationDuration: 500,
+  animationEasing: "easeOutQuint",
+  slidePosition: "center",
+  controls: true,
   dots: true,
+  animatedDots: false,
+  dotLimit: false,
   fullscreen: false,
   fullscreenOffset: null,
-  lazy: false,
-  controls: true,
-  numberOfSlides:1,
-  sliderClass:null,
-  slideClass:null,
-  autoplay:false,
-  secondsOnSlide:4,
-  peeking: true
+  numberOfSlides: 1,
+  slideClass: null,
+  sliderClass: null,
+  controlsWrapperClass: null,
+  endless: false,
+  gap: 30,
+  loop: true,
+  extras: 3,
 }
 ```
 
-| Option               | Default       | Effect                                                                                                                                                                                                                                                                                  |
-| -------------------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| transition           | 'slide'       | Transition can be set to 'fade' or 'slide' **(currently only slide working)**                                                                                                                                                                                                           |
-| dots                 | true          | Show dots at the bottom                                                                                                                                                                                                                                                                 |
-| animatedDots         | false         | Makes the dots scale up as they approach the slide it represents                                                                                                                                                                                                                        |
-| dotLimit             | false         | Limits the number of dots and scrolls in new ones as needed.                                                                                                                                                                                                                            |
-| fullscreen           | false         | Makes the slideshow fill the height of the screen                                                                                                                                                                                                                                       |
-| fullscreenOffset     | null          | When fullscreen is true it adds this number -200 would subtract 200 pixels this works well for heros with consideration for the nav                                                                                                                                                     |
-| lazy                 | false         | Attempts to lazy load images. * You *must* add .slither-lazy to all images * Set the url of the image to 'data-src' attribute for images _ For background images (like on a div) set the url to 'data-bg-src' _ It is highly advisable to add the height of the image to the image tag. |
-| controls             | true          | Show the previous and next buttons                                                                                                                                                                                                                                                      |
-| numberOfSlides       | 1             | Creates pages and shows n number of slides at a time. Optionally, you can add an object with "number" and "min" properties to define the number of slides and minimum width respectively. See examples.                                                                                 |
-| sliderClass          | null (String) | Adds these classes to the parent of the slides                                                                                                                                                                                                                                          |
-| slideClass           | null (String) | Adds these classes to each slide                                                                                                                                                                                                                                                        |
-| controlsWrapperClass | null (String) | Adds these classes to the wrapper around the controls                                                                                                                                                                                                                                   |
-| animationDuration    | 300           | How long the animation takes                                                                                                                                                                                                                                                            |
-| animationEasing      | "easeOutExpo" | The easing of the animation - options can be found at anime.js documentation page [here](https://animejs.com/documentation/#pennerFunctions)                                                                                                                                            |
-| autoplay             | false         | You know what this does.                                                                                                                                                                                                                                                                |
-| secondsOnSlide       | 4             | This is the number of seconds slither will pause on a slide before moving foward (autoplay must be set to true)                                                                                                                                                                         |
-| endless              | false         | Display all the slides next to each other regardless of their width                                                                                                                                                                                                                     |
-| gap                  | 10            | ("endless" parameter must be true) The gap between each of the slides in an endless presentation                                                                                                                                                                                        |
-| loop                 | true          | ("endless" parameter must be true) This gives the illusion that an endless slider appears as if it goes forever. If set to false the slider will appear to "rewind" to the beginning.                                                                                                   |
-| extras               | 3             | ("endless" and "loop" parameters must be true) This adjusts the number of slides slither appends to the end to give the illusion of infinite                                                                                                                                            |
+| Option                | Default                            | Effect                                                                                                                                                                                                  |
+| --------------------- | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| transition            | 'slide'                            | Transition can be set to 'fade' or 'slide' **(currently only slide working)**                                                                                                                           |
+| dots                  | true                               | Show dots at the bottom                                                                                                                                                                                 |
+| animatedDots          | false                              | Makes the dots scale up as they approach the slide it represents                                                                                                                                        |
+| dotLimit              | false                              | Limits the number of dots and scrolls in new ones as needed.                                                                                                                                            |
+| fullscreen            | false                              | Makes the slideshow fill the height of the screen                                                                                                                                                       |
+| fullscreenOffset      | null                               | When fullscreen is true it adds this number -200 would subtract 200 pixels this works well for heros with consideration for the nav                                                                     |
+| controls              | true                               | Show the previous and next buttons                                                                                                                                                                      |
+| numberOfSlides        | 1                                  | Creates pages and shows n number of slides at a time. Optionally, you can add an object with "number" and "min" properties to define the number of slides and minimum width respectively. See examples. |
+| controlsWrapperClass  | null (String)                      | Adds these classes to the wrapper around the controls                                                                                                                                                   |
+| animationDuration     | 500                                | How long the animation takes                                                                                                                                                                            |
+| animationEasing       | "easeOutQuint"                     | The easing of the animation - options can be found at anime.js documentation page [here](https://animejs.com/documentation/#pennerFunctions)                                                            |
+| autoplay              | false                              | You know what this does.                                                                                                                                                                                |
+| secondsOnSlide        | 4                                  | This is the number of seconds slither will pause on a slide before moving foward (autoplay must be set to true)                                                                                         |
+| endless               | false                              | Display all the slides next to each other regardless of their width                                                                                                                                     |
+| gap                   | 10                                 | ("endless" parameter must be true) The gap between each of the slides in an endless presentation                                                                                                        |
+| loop                  | true                               | ("endless" parameter must be true) This gives the illusion that an endless slider appears as if it goes forever. If set to false the slider will appear to "rewind" to the beginning.                   |
+| extras                | 3                                  | ("endless" and "loop" parameters must be true) This adjusts the number of slides slither appends to the end to give the illusion of infinite                                                            |
+| overflowHiddenPadding | {top:0, left:0, right:0, bottom:0} | If you have a dropshadow or something absolutely positioned relative that "hangs over" the spacing of your slide contents you may need to apply some padding.                                           |
 
 ### Styles
 
@@ -108,11 +113,7 @@ Styles are fairly minimal out of the box so here are some that you may want to u
 
 ### Lazy Loading
 
-Ensure that you have lazy set to true in the configuration options and then use the following syntax on any images you want to lazy load. You must have the class and data-src set for lazy loading to work.
-
-```html
-<img data-src="https://picsum.photos/id/237/200/300" class="slither-lazy" />
-```
+In 2.0 lazy loading happens by the very nature of how Vue works. There's nothing special you have to do here.
 
 ### Custom Controls
 

@@ -10,15 +10,21 @@ export default {
 
       const slidesElement = createElement(Slides, {
         class: "slither-slider-slides",
+        style: this.sliderStyles,
         props: {
           activeIndex: this.activeIndex,
           slideSets: slideSets,
           options: this.options,
           numberOfElementsPerSlide: this.numberOfElementsPerSlide,
+          slideDirection: this.slideDirection,
+          numberOfSlides: this.numberOfSlides,
         },
         on: {
           animating: (newValue) => {
             this.animating = newValue;
+          },
+          resetToStart: () => {
+            this.setIndex(0);
           },
         },
       });
@@ -55,6 +61,7 @@ export default {
       loaded: false,
       autoplayInterval: null,
       windowWidth: window.innerWidth,
+      slideDirection: null,
     };
   },
 
@@ -91,27 +98,38 @@ export default {
     nextIndex() {
       const nextIndex = this.activeIndex + 1;
       if (this.options.endless && this.options.loop) {
-        return nextIndex <= this.numberOfPages ? nextIndex : 0;
+        return nextIndex <= this.numberOfSlides ? nextIndex : 0;
+      } else if (this.options.endless && !this.options.loop) {
+        return nextIndex < this.numberOfSlides ? nextIndex : 0;
       }
       return nextIndex <= this.numberOfPages - 1 ? nextIndex : 0;
     },
 
     prevIndex() {
       const prevIndex = this.activeIndex - 1;
+      if (this.options.endless && this.options.loop) {
+        return prevIndex >= 0 ? prevIndex : this.numberOfSlides - 1;
+      } else if (this.options.endless && !this.options.loop) {
+        return prevIndex > 0 ? prevIndex : this.numberOfSlides - 1;
+      }
       return prevIndex >= 0 ? prevIndex : this.numberOfPages - 1;
     },
 
     barndoorStyles() {
       const styles = {
         position: "relative",
+        overflow: "hidden",
+        paddingTop: this.options.overflowHiddenPadding.top + "px",
+        paddingRight: this.options.overflowHiddenPadding.right + "px",
+        paddingBottom: this.options.overflowHiddenPadding.bottom + "px",
+        paddingLeft: this.options.overflowHiddenPadding.left + "px",
       };
 
-      if (this.options.endless) {
-        styles.overflow = "hidden";
-        styles.width = "30000px";
-      }
-
       return styles;
+    },
+
+    sliderStyles() {
+      return this.options.endless ? { width: "30000px" } : {};
     },
   },
 
@@ -119,7 +137,6 @@ export default {
     this.buildAndAddSlides();
     this.$nextTick(() => {
       this.loaded = true;
-      this.goToIndex(this.activeIndex);
       this.startAutoplay();
     });
 
@@ -143,18 +160,18 @@ export default {
       // This is useful for animations.
       let direction = "left";
       if (buttonClicked) {
-        direction = buttonClicked === "next" ? "left" : "right";
+        this.slideDirection = buttonClicked === "next" ? "left" : "right";
       } else {
-        direction = this.activeIndex < index ? "left" : "right";
+        this.slideDirection = this.activeIndex < index ? "left" : "right";
       }
 
       this.activeIndex = index;
     },
     next() {
-      if (!this.animating) this.goToIndex(this.nextIndex, "next");
+      if (!this.animating || this.options.endless) this.goToIndex(this.nextIndex, "next");
     },
     prev() {
-      if (!this.animating) this.goToIndex(this.prevIndex, "prev");
+      if (!this.animating || this.options.endless) this.goToIndex(this.prevIndex, "prev");
     },
     startAutoplay() {
       if (this.options.autoplay) {
@@ -172,7 +189,9 @@ export default {
       const slideSets = [];
 
       this.slideElements.forEach((slideElement) => {
-        const slide = createElement(SlideRenderer, {}, [slideElement]);
+        const slide = createElement(SlideRenderer, { props: { options: this.options } }, [
+          slideElement,
+        ]);
         renderedSlideElements.push(slide);
       });
 
@@ -181,110 +200,37 @@ export default {
 
         const startOfSet = (i - 1) * this.numberOfElementsPerSlide;
         for (let j = startOfSet; j < this.numberOfElementsPerSlide + startOfSet; j++) {
+          if (this.options.endless) {
+            renderedSlideElements[j].data.style = { marginRight: this.options.gap + "px" };
+          }
           slideSet.push(renderedSlideElements[j]);
         }
         slideSets.push(slideSet);
       }
+
+      // Add extras
+      if (this.options.endless && this.options.loop) {
+        for (let i = 0; i < this.options.extras; i++) {
+          const element = renderedSlideElements[i];
+          if (element) {
+            slideSets[0].push(element);
+          }
+        }
+      }
+
       return slideSets;
     },
-    // calculateHeight() {
-    //   if (this.options.fullscreen) {
-    //     this.setFullScreen();
-    //   } else {
-    //     this.setInlineHeight();
-    //   }
-    // },
-    // setFullScreen() {
-    //   Array.from(this.$refs.slides.$el.childNodes).forEach((node) => {
-    //     node.style.height = `${window.innerHeight + this.options.fullscreenOffset}px`;
-    //     this.$refs.slides.$el.style.height = `${
-    //       window.innerHeight + this.options.fullscreenOffset
-    //     }px`;
-    //   });
-    // },
-    // setInlineHeight() {
-    //   if (this.$refs.slides) {
-    //     this.inlineHeight = 0;
-    //     Array.from(this.$refs.slides.$el.childNodes).forEach((node) => {
-    //       let bottomPaddingCorrection = this.getPaddingBottom(node);
-    //       // find THE HIGHEST!!!
-
-    //       // console.log(node.childNodes[0]);
-
-    //       this.inlineHeight =
-    //         this.inlineHeight > node.childNodes[0].scrollHeight + bottomPaddingCorrection
-    //           ? this.inlineHeight
-    //           : node.childNodes[0].scrollHeight + bottomPaddingCorrection;
-    //     });
-
-    //     Array.from(this.$refs.slides.$el.childNodes).forEach((node) => {
-    //       node.style.height = `${this.inlineHeight}px`;
-    //     });
-
-    //     this.$refs.slides.$el.style.height = `${this.inlineHeight}px`;
-    //   }
-    // },
-    // getPaddingBottom(node) {
-    //   let bottomPaddingCorrection = 0;
-    //   Array.from(node.childNodes).forEach((childnode) => {
-    //     const paddingBottom = window.getComputedStyle(childnode).paddingBottom;
-    //     const paddingBottomInt = parseInt(paddingBottom.substring(0, paddingBottom.length - 2));
-    //     if (paddingBottomInt > bottomPaddingCorrection) {
-    //       bottomPaddingCorrection = paddingBottomInt;
-    //     }
-    //   });
-    //   return bottomPaddingCorrection;
-    // },
-
-    // activeIndexChanged(index) {
-    //   this.activeIndex = index;
-
-    //   if (this.options.endless) {
-    //     this.animating = true;
-    //     anime({
-    //       targets: this.$refs.slides.$el,
-    //       opacity: 1,
-    //       duration: this.options.animationDuration,
-    //       translateX: -this.totalOffsetWidth,
-    //       easing: "easeOutExpo",
-    //       complete: () => {
-    //         this.animating = false;
-    //         if (this.options.loop) {
-    //           if (index + 1 > this.numberOfPages) {
-    //             this.$refs.sliderframe.setIndex(0);
-    //             anime.set(this.$refs.slides.$el, { translateX: 0 });
-    //           }
-    //         }
-    //       },
-    //     });
-    //   }
-    // },
-    // contentChanged() {
-    //   setTimeout(() => {
-    //     this.calculateHeight();
-    //   }, 500);
-    // },
-
-    // dotClass(dotIndex) {
-    //   let classes = { "active-slide": this.activeIndex + 1 === dotIndex };
-
-    //   if (this.options.animatedDots) {
-    //     const dotDistance = this.activeIndex + 1 - dotIndex;
-    //     if (this.options.dotLimit) {
-    //       classes["large-dot"] = dotDistance === 0 || dotDistance === 1 || dotDistance === 2;
-    //       classes["medium-dot"] = dotDistance === -1 || dotDistance === 3;
-    //       classes["small-dot"] = dotDistance === -2 || dotDistance === -3;
-    //       classes["hidden-dot"] = dotDistance > 4 || dotDistance < -2;
-    //       // classes[dotDistance] = true;
-    //     } else {
-    //       classes["large-dot"] = dotDistance === 0;
-    //       classes["medium-dot"] = dotDistance === -1 || dotDistance === 1;
-    //       classes["small-dot"] = dotDistance === -2 || dotDistance === 2;
-    //     }
-    //   }
-
-    //   return classes;
-    // },
+  },
+  watch: {
+    numberOfSlides(newValue) {
+      this.$emit("newNumberOfSlides", newValue);
+    },
+    numberOfPages(newValue) {
+      this.$emit("newNumberOfPages", newValue);
+    },
+    activeIndex(newValue) {
+      this.$emit("newActiveIndex", newValue);
+    },
   },
 };
 </script>
@@ -292,6 +238,7 @@ export default {
 <style lang="scss">
 .slither-slider-slides {
   position: relative;
-  display: flex;
+  transform: scaleY(1);
+  transform-origin: top;
 }
 </style>

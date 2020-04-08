@@ -1,6 +1,24 @@
 <template>
   <div class="slither-slider" v-if="finalOptions.transition">
-    <slider-controller :options="finalOptions" ref="sliderController">
+    <slider-controller
+      :options="finalOptions"
+      ref="sliderController"
+      @newNumberOfPages="
+        (value) => {
+          this.numberOfPages = value;
+        }
+      "
+      @newNumberOfSlides="
+        (value) => {
+          this.numberOfSlides = value;
+        }
+      "
+      @newActiveIndex="
+        (value) => {
+          this.activeIndex = value;
+        }
+      "
+    >
       <slot></slot>
     </slider-controller>
 
@@ -10,62 +28,33 @@
       :show-controls="finalOptions.controls && hasSlides > 1"
       @next="next"
       @prev="prev"
-    ></slider-controls>
+      :previous="$slots.previous"
+      :next="$slots.next"
+    >
+    </slider-controls>
+
+    <slider-dots
+      :options="finalOptions"
+      :show-dots="finalOptions.dots"
+      :number-of-slides="this.numberOfSlides"
+      :number-of-pages="this.numberOfPages"
+      :active-index="this.activeIndex"
+      @goToIndex="goToIndex"
+    ></slider-dots>
   </div>
 </template>
 
 <script>
 import SliderController from "./SliderController.vue";
 import SliderControls from "./SliderControls.vue";
-
-/*
-      ****** COMPONENT STRUCTURE *******
-      <slither-slider>
-        <slider-controller>
-          <slides>
-            <slide></slide>
-          </slides>
-          <slide-dots></slide-dots>
-        </slider-controller>
-      </slither-slider>
-    /*
-
-
-    /*
-      ****** OUTPUT OF THIS WHOLE THING ******
-
-      // This is at the root
-      <div class="slither-slider">
-      
-        <div class="slither-slider-controller">
-
-          // Overflow hidden to shift for endless
-          <div class="slither-slider-barndoor">
-            <div class="slither-slider-slides">
-              <slide></slide>
-              <slide></slide>
-              <slide></slide>
-            </div>
-          </div>
-
-          <div class="slither-slider-dots">
-          </div>
-        </div>
-
-        <div class="slither-slider-controls">
-          // Left and Right conrols
-        </div>
-      </div>
-    */
-
-// Slither slider combines all of the options provided from the user and serves
-// as the entry component.
+import SliderDots from "./SliderDots.vue";
 
 export default {
   name: "SlitherSlider",
   components: {
     SliderController,
     SliderControls,
+    SliderDots,
   },
   props: {
     options: {
@@ -75,27 +64,28 @@ export default {
   },
   data() {
     return {
+      numberOfSlides: 0,
+      numberOfPages: 0,
+      activeIndex: 0,
       defaultSlot: [],
       defaultOptions: {
         autoplay: false,
-        transition: "fade",
-        animationDuration: 300,
-        animationEasing: "easeInExpo",
+        transition: "slide",
+        animationDuration: 500,
+        animationEasing: "easeOutQuint",
         controls: true,
         dots: true,
         animatedDots: false,
         dotLimit: false,
         fullscreen: false,
         fullscreenOffset: null,
-        lazy: true,
         numberOfSlides: 1,
-        slideClass: null,
-        sliderClass: null,
         controlsWrapperClass: null,
         endless: false,
         gap: 30,
         loop: true,
         extras: 3,
+        overflowHiddenPadding: { top: 0, left: 0, right: 0, bottom: 0 },
       },
       finalOptions: {},
     };
@@ -131,6 +121,11 @@ export default {
         this.$refs.sliderController.prev();
       }
     },
+    goToIndex(index) {
+      if (this.$refs.sliderController) {
+        this.$refs.sliderController.goToIndex(index);
+      }
+    },
   },
 };
 </script>
@@ -139,61 +134,4 @@ export default {
 .slither-slider {
   position: relative;
 }
-
-// .slider {
-//   position: relative;
-// }
-
-// .slider-fullscreen {
-//   overflow: hidden;
-// }
-
-// .limit-dot-width {
-//   width: 50px;
-//   overflow: hidden;
-// }
-
-// .slider-dots {
-//   position: absolute;
-//   right: 0;
-//   bottom: -2em;
-//   left: 0;
-//   display: flex;
-//   justify-content: center;
-//   padding: 0;
-//   margin: 0;
-//   list-style: none;
-//   padding: 0;
-// }
-
-// .slider-dot {
-//   width: 8px;
-//   height: 8px;
-//   font-size: 0.1em;
-//   background-color: #9b9b9b;
-//   color: #9b9b9b;
-//   border-radius: 8px;
-//   overflow: hidden;
-//   margin-right: 0.75rem;
-//   transition: all 1s;
-//   cursor: pointer;
-
-//   &.active-slide {
-//     background-color: #4a4a4a;
-//     color: #4a4a4a;
-//   }
-
-//   &.large-dot {
-//     transform: scale(1.7);
-//   }
-//   &.medium-dot {
-//     transform: scale(1.2);
-//   }
-//   &.small-dot {
-//     transform: scale(0.7);
-//   }
-//   &.hidden-dot {
-//     display: none;
-//   }
-// }
 </style>

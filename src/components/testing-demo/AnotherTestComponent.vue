@@ -1,8 +1,8 @@
 <template>
   <div style="background-color: white; border-radius: 5px;" :style="cardStyles">
     <img
-      :src="`https://picsum.photos/id/23${number}/${cardWidth}/500`"
-      style="width: 100%; height: 500px;"
+      :src="`https://picsum.photos/id/23${number}/${cardWidth}/200`"
+      style="width: 100%; height: 200px;"
     />
     <div style="padding: 30px;">
       <div class="headline-2">Title of {{ number }}</div>
@@ -33,13 +33,13 @@ export default {
       if (this.fullWidth) {
         return 1000;
       }
-      return 100;
+      return 250;
     },
     cardStyles() {
       if (this.fullWidth) {
         return { width: "100%" };
       }
-      return { width: "300px" };
+      return { width: "250px" };
     },
   },
 };

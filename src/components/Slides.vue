@@ -6,38 +6,45 @@ export default {
   name: "Slides",
   render(createElement) {
     const slides = [];
+
     this.slideSets.forEach((slideSet, index) => {
       const slideWrapper =
-        index === this.activeIndex
+        index === this.activeIndex || (this.options.endless && index === 0)
           ? createElement(Slide, {
               key: this.randomString(),
+              ref: "slide",
               style: this.styles,
+              class: "slither-slider-slide-wrapper",
               props: {
                 options: this.options,
                 slideSet: slideSet,
                 index: index,
                 activeIndex: this.activeIndex,
                 numberOfElementsPerSlide: this.numberOfElementsPerSlide,
-              },
-              on: {
-                slideDimensions: this.setNewHeight,
+                randothing: this.activeIndex === index,
               },
             })
           : null;
 
-      const transition = createElement(
-        "transition-group",
-        { css: "false", on: { enter: this.animateIn, leave: this.animateOut } },
-        [slideWrapper]
-      );
-      slides.push(transition);
+      if (!this.options.endless) {
+        const transition = createElement(
+          "transition-group",
+          {
+            tag: "div",
+            class: "slither-slider-transition-group",
+            style: "width:100%;",
+            css: "false",
+            on: { enter: this.animateIn, leave: this.animateOut },
+          },
+          [slideWrapper]
+        );
+        slides.push(transition);
+      } else {
+        slides.push(slideWrapper);
+      }
     });
 
-    return createElement(
-      "div",
-      { style: { transition: "height 300ms", height: this.height } },
-      slides
-    );
+    return createElement("div", { style: { transition: "height 300ms" } }, slides);
   },
   components: {
     Slide,
@@ -59,6 +66,14 @@ export default {
       type: Number,
       required: true,
     },
+    slideDirection: {
+      type: String,
+      default: "left",
+    },
+    numberOfSlides: {
+      type: Number,
+      required: true,
+    },
   },
   data() {
     return {
@@ -67,13 +82,13 @@ export default {
   },
   computed: {
     activeSlide() {
+      if (this.options.endless) {
+        return 0;
+      }
       return this.slideSets[this.activeIndex];
     },
-    activeSlideHeight() {
-      return this.$refs[`slide-${this.activeIndex}`];
-    },
     styles() {
-      const styles = { display: "hidden" };
+      const styles = {};
 
       if (this.options.endless) {
         styles.marginRight = this.options.gap + "px";
@@ -81,28 +96,67 @@ export default {
 
       return styles;
     },
+    totalOffsetWidth() {
+      let totalWidth = 0;
+      const slides = Array.from(this.$refs.slide.$el.children[0].children);
+
+      for (let i = 0; i < this.activeIndex; i++) {
+        const slideElement = slides[i];
+        const rect = slideElement.getBoundingClientRect();
+        totalWidth += rect.width;
+        totalWidth += this.options.gap;
+      }
+      return totalWidth;
+    },
+    endOffsetWidth() {
+      let totalWidth = 0;
+      const slides = Array.from(this.$refs.slide.$el.children[0].children);
+
+      for (let i = 0; i < slides.length - this.options.extras; i++) {
+        const slideElement = slides[i];
+        const rect = slideElement.getBoundingClientRect();
+        totalWidth += rect.width;
+        totalWidth += this.options.gap;
+      }
+      return totalWidth;
+    },
   },
   methods: {
     animateIn(el, done) {
       if (this.options.transition === "fade") {
-        this.fadeAnimation(el, done, "in");
-      } else {
-        done();
+        this.fadeAnimation(el, done, "in", this.slideDirection);
+      } else if (this.options.transition === "slide") {
+        this.slideAnimation(el, done, "in", this.slideDirection);
       }
     },
     animateOut(el, done) {
+      var parentPos = el.parentElement.getBoundingClientRect(),
+        childrenPos = el.getBoundingClientRect(),
+        elPosition = {};
+
+      (elPosition.top = childrenPos.top - parentPos.top),
+        (elPosition.right = childrenPos.right - parentPos.right),
+        (elPosition.bottom = childrenPos.bottom - parentPos.bottom),
+        (elPosition.left = childrenPos.left - parentPos.left);
+
+      anime.set(el, {
+        position: "absolute",
+        top: elPosition.y + "px",
+        left: elPosition.x + "px",
+        width: elPosition.width + "px",
+        height: elPosition.height + "px",
+      });
+
       if (this.options.transition === "fade") {
-        this.fadeAnimation(el, done, "out");
-      } else {
-        done();
+        this.fadeAnimation(el, done, "out", this.slideDirection);
+      } else if (this.options.transition === "slide") {
+        this.slideAnimation(el, done, "out", this.slideDirection);
       }
     },
 
-    fadeAnimation(el, done, direction) {
-      this.$emit("animating", true);
-
-      const startingOpacity = direction === "in" ? 0 : 1;
-      const destinationOpacity = direction === "in" ? 1 : 0;
+    fadeAnimation(el, done, inOut, direction) {
+      const startingOpacity = inOut === "in" ? 0 : 1;
+      const destinationOpacity = inOut === "in" ? 1 : 0;
 
       anime.set(el, { opacity: startingOpacity });
 
@@ -118,78 +172,75 @@ export default {
       });
     },
 
+    slideAnimation(el, done, inOut, direction) {
+      const startingOpacity = inOut === "in" ? 0 : 1;
+      const destinationOpacity = inOut === "in" ? 1 : 0;
+
+      let startingTransform = inOut === "in" ? "-100%" : 0;
+      let destinationTransform = inOut === "in" ? 0 : "100%";
+
+      if (direction === "left") {
+        startingTransform = inOut === "in" ? "100%" : 0;
+        destinationTransform = inOut === "in" ? 0 : "-100%";
+      }
+
+      this.$emit("animating", true);
+      anime.set(el, { translateX: startingTransform, opacity: startingOpacity });
+
+      const animation = anime({
+        targets: el,
+        translateX: destinationTransform,
+        opacity: destinationOpacity,
+        duration: this.options.animationDuration,
+        easing: this.options.animationEasing,
+        complete: () => {
+          this.$emit("animating", false);
+          done();
+        },
+      });
+      // For dubugging
+      // setTimeout(() => {
+      //   animation.pause();
+      // }, this.options.animationDuration / 2);
+    },
+
     randomString() {
       return (
         Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
       );
     },
+  },
+  watch: {
+    activeIndex(index, oldIndex) {
+      if (this.options.endless) {
+        this.animating = true;
 
-    setNewHeight(height) {
-      if (!this.options.endless) {
-        this.height = height + "px";
+        // If progressing back from first to last reset us to give us the illusion of
+        // infinite loop
+        if (oldIndex < index - 1) {
+          anime.set(this.$el, {
+            translateX: -this.endOffsetWidth,
+          });
+        }
+
+        anime({
+          targets: this.$el,
+          opacity: 1,
+          duration: this.options.animationDuration,
+          translateX: -this.totalOffsetWidth,
+          easing: "easeOutExpo",
+          complete: () => {
+            this.animating = false;
+            if (this.options.loop) {
+              if (index + 1 > this.numberOfSlides) {
+                this.$emit("resetToStart");
+                anime.set(this.$el, { translateX: 0 });
+              }
+            }
+          },
+        });
       }
     },
-    // /**
-    //  * Create component is a recursive function that takes a DOM structure
-    //  * and a rendering function (of vue.js) and returns a Vuejs component.
-    //  */
-    // createComponent: (dNode, h, self) => {
-    //   // Handle empty elements and return empty array in case the dNode passed in is empty
-    //   if (!dNode) {
-    //     return [];
-    //   }
-    //   // if the el is array call createComponent for all nodes
-    //   if (typeof dNode === "array") {
-    //     return dNode.map((child) => self.createComponent(child, h, self));
-    //   }
-    //   let children = [];
-    //   if (dNode.children && dNode.children.length > 0) {
-    //     for (let i = 0; i < dNode.children.length; i++) {
-    //       const c = dNode.children[i];
-    //       if (typeof c === "string") {
-    //         children.push(c);
-    //       } else {
-    //         children.push(c);
-    //       }
-    //     }
-    //   }
-    //   // Need to clone
-    //   const properties = dNode.properties ? JSON.parse(JSON.stringify(dNode.properties)) : {};
-    //   return h(dNode.tagName, properties, children.length > 0 ? children : dNode.textNode);
-    // },
-    // randomString() {
-    //   return (
-    //     Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
-    //   );
-    // },
-    // isNext(index) {
-    //   return index === this.activeIndex + 1;
-    // },
   },
-  // watch: {
-  //   activeIndex(index) {
-  //     this.activeIndex = index;
-
-  //     if (this.options.endless) {
-  //       this.animating = true;
-  //       anime({
-  //         targets: this.$refs.slides.$el,
-  //         opacity: 1,
-  //         duration: this.options.animationDuration,
-  //         translateX: -this.totalOffsetWidth,
-  //         easing: "easeOutExpo",
-  //         complete: () => {
-  //           this.animating = false;
-  //           if (this.options.loop) {
-  //             if (index + 1 > this.numberOfPages) {
-  //               this.$refs.sliderframe.setIndex(0);
-  //               anime.set(this.$refs.slides.$el, { translateX: 0 });
-  //             }
-  //           }
-  //         },
-  //       });
-  //     }
-  //   },
-  // },
 };
 </script>
