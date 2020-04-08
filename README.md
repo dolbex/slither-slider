@@ -1,12 +1,12 @@
 # Slither Slider
 
-Simple Vue JS slider for Vue JS that pretty much takes what you throw at it. Features 'fullscreen', lazy loading, and easy customization
+Simple Vue JS slider for Vue JS that pretty much takes what you throw at it.
 
 ![Snakes.... I hate snakes](https://github.com/dolbex/slither-slider/blob/master/snake.png?raw=true)
 
 ## Demo
 
-Super ugly demo but just want to give you an idea of what you can do
+Click below to see some examples of what you can pull off. All source for that demo is located in "App.vue"
 
 [Demo](https://dolbex.github.io/slither-slider/)
 
@@ -22,14 +22,14 @@ Vue.use(SlitherSlider)
 ### In your component
 
 ```html
-<slither-slider :options="{fullscreen:true, lazy:true}">
+<slither-slider :options="{fullscreen:true}">
   <!-- Slide 1 -->
-  <div :style="{backgroundColor: 'red', height:'10000px'}">Oh</div>
+  <div :style="{backgroundColor: 'red', height:'1000px'}">Oh</div>
 
   <!-- Slide 2 -->
   <div>
     Mah
-    <img data-src="https://picsum.photos/id/237/200/300" class="slither-lazy" />
+    <img src="https://picsum.photos/id/237/200/300" />
   </div>
 
   <!-- Slide 3 -->
