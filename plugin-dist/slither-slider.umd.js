@@ -5635,12 +5635,12 @@ var SliderController_component = normalizeComponent(
 )
 
 /* harmony default export */ var SliderController = (SliderController_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"2c3c18d4-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SliderControls.vue?vue&type=template&id=4ddce89c&
-var SliderControlsvue_type_template_id_4ddce89c_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.showControls)?_c('div',{staticClass:"slither-slider-controls",class:_vm.options.controlsWrapperClass},[_c('div',{on:{"click":function($event){return _vm.$emit('prev')}}},[(_vm.previous)?[_c('vnodes',{attrs:{"vnodes":_vm.previous}})]:[_c('button',{staticClass:"slider-direction slider-direction--prev"},[_vm._v("\n        «\n      ")])]],2),_c('div',{on:{"click":function($event){return _vm.$emit('next')}}},[void 0,(_vm.next)?[_c('vnodes',{attrs:{"vnodes":_vm.next}})]:[_c('button',{staticClass:"slider-direction slider-direction--next"},[_vm._v("\n        »\n      ")])]],2)]):_vm._e()}
-var SliderControlsvue_type_template_id_4ddce89c_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"2c3c18d4-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SliderControls.vue?vue&type=template&id=2268761e&
+var SliderControlsvue_type_template_id_2268761e_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.showControls)?_c('div',{staticClass:"slither-slider-controls",class:_vm.options.controlsWrapperClass},[_c('div',{on:{"click":function($event){return _vm.$emit('prev')}}},[(_vm.previous)?[_c('vnodes',{attrs:{"vnodes":_vm.previous}})]:[_c('button',{staticClass:"slider-direction slider-direction--prev"},[_vm._v("\n        «\n      ")])]],2),_c('div',{on:{"click":function($event){return _vm.$emit('next')}}},[void 0,(_vm.next)?[_c('vnodes',{attrs:{"vnodes":_vm.next}})]:[_c('button',{staticClass:"slider-direction slider-direction--next"},[_vm._v("\n        »\n      ")])]],2)]):_vm._e()}
+var SliderControlsvue_type_template_id_2268761e_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/SliderControls.vue?vue&type=template&id=4ddce89c&
+// CONCATENATED MODULE: ./src/components/SliderControls.vue?vue&type=template&id=2268761e&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SliderControls.vue?vue&type=script&lang=js&
 //
@@ -5671,7 +5671,6 @@ var SliderControlsvue_type_template_id_4ddce89c_staticRenderFns = []
     Vnodes: {
       functional: true,
       render: function render(h, ctx) {
-        console.log(ctx);
         return ctx.props.vnodes;
       },
       props: {
@@ -5717,8 +5716,8 @@ var SliderControlsvue_type_style_index_0_lang_scss_ = __webpack_require__("87bd"
 
 var SliderControls_component = normalizeComponent(
   components_SliderControlsvue_type_script_lang_js_,
-  SliderControlsvue_type_template_id_4ddce89c_render,
-  SliderControlsvue_type_template_id_4ddce89c_staticRenderFns,
+  SliderControlsvue_type_template_id_2268761e_render,
+  SliderControlsvue_type_template_id_2268761e_staticRenderFns,
   false,
   null,
   null,

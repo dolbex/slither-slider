@@ -27,7 +27,6 @@ export default {
     Vnodes: {
       functional: true,
       render: (h, ctx) => {
-        console.log(ctx);
         return ctx.props.vnodes;
       },
       props: {

@@ -37,6 +37,31 @@ Vue.use(SlitherSlider)
 </slither-slider>
 ```
 
+### Using components as Slides
+
+<aside class="notice">
+There is one thing to keep in mind when passing components a any part of your slides. Ensure that you are not loading your component through asynchronous methods. This is a bug I would **love** to fix so if you have any insights do let me know. 
+</aside>
+
+```html
+<slither-slider :options="{fullscreen:true}">
+  <!-- Slide 1 -->
+  <custom-component>
+    Component One
+  </custom-component>
+
+  <!-- Slide 2 -->
+  <custom-component>
+    Component Two
+  </custom-component>
+
+  <!-- Slide 3 -->
+  <other-custom-component>
+    Component Three
+  </other-custom-component>
+</slither-slider>
+```
+
 ### Options
 
 ```javascript
