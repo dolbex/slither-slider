@@ -9,6 +9,7 @@
       </template>
     </div>
     <div @click="$emit('next')">
+      <template v-html="next"></template>
       <template v-if="next"><vnodes :vnodes="next"></vnodes></template>
       <template v-else>
         <button class="slider-direction slider-direction--next">
@@ -25,7 +26,16 @@ export default {
   components: {
     Vnodes: {
       functional: true,
-      render: (h, ctx) => ctx.props.vnodes,
+      render: (h, ctx) => {
+        console.log(ctx);
+        return ctx.props.vnodes;
+      },
+      props: {
+        vnodes: {
+          type: Array,
+          required: true,
+        },
+      },
     },
   },
   props: {

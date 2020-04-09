@@ -1,6 +1,39 @@
 <template>
   <div id="app" class="demo">
     <div>
+      <slither-slider
+        :options="{
+          endless: true,
+          gap: 20,
+          dots: true,
+        }"
+      >
+        <div style="width: 455px;" class="bg-white body uppercase relative">
+          <img src="/imgs/placeholders-delete-after-launch/card.jpg" />
+          <div
+            class="px-32 pt-16 pb-10 flex justify-center items-center tracking-wider leading-relaxed text-center"
+          >
+            85+ ways to win big at our Casino
+          </div>
+        </div>
+        <div style="width: 455px;" class="bg-white body uppercase">
+          <img src="/imgs/placeholders-delete-after-launch/card.jpg" />
+          <div
+            class="px-32 pt-16 pb-10 flex justify-center items-center tracking-wider leading-relaxed text-center"
+          >
+            21 restaurants to savor worldly cuisines
+          </div>
+        </div>
+        <div style="width: 455px;" class="bg-white body uppercase">
+          <img src="/imgs/placeholders-delete-after-launch/card.jpg" />
+          <div
+            class="px-32 pt-16 pb-10 flex justify-center items-center tracking-wider leading-relaxed text-center"
+          >
+            19 Bars + Lounges to enjoy premium cocktails
+          </div>
+        </div>
+      </slither-slider>
+
       <div class="headline-1">Basic slider</div>
       <slither-slider>
         <div class="slider-card">
@@ -267,38 +300,6 @@
         >
           <div>Slide 3</div>
         </div>
-
-        <template slot="previous">
-          <div
-            style="
-              width: 75px;
-              height: 50px;
-              background-color: #c53030;
-              cursor: pointer;
-              border-radius: 5px;
-              margin: 8px;
-              margin-left: 0;
-              padding: 10px;
-            "
-          >
-            Previous
-          </div>
-        </template>
-        <template slot="next">
-          <div
-            style="
-              width: 75px;
-              height: 50px;
-              background-color: #38a169;
-              cursor: pointer;
-              border-radius: 5px;
-              margin: 8px;
-              padding: 10px;
-            "
-          >
-            Next
-          </div>
-        </template>
       </slither-slider>
 
       <hr />
