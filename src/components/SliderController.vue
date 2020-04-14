@@ -54,6 +54,7 @@ export default {
   },
   data() {
     return {
+      defaultSlot: null,
       activeIndex: 0,
       animating: false, // Only used for endless
       slideElements: [],
@@ -134,21 +135,29 @@ export default {
   },
 
   mounted() {
+    this.defaultSlot = this.$slots.default;
+    this.init();
+  },
+  beforeUpdate() {
     this.buildAndAddSlides();
-    this.$nextTick(() => {
-      this.loaded = true;
-      this.startAutoplay();
-    });
-
-    window.addEventListener("resize", () => {
-      this.windowWidth = window.innerWidth;
-    });
   },
   methods: {
+    init() {
+      this.buildAndAddSlides();
+      this.$nextTick(() => {
+        this.loaded = true;
+        this.startAutoplay();
+      });
+
+      window.addEventListener("resize", () => {
+        this.windowWidth = window.innerWidth;
+      });
+    },
     buildAndAddSlides() {
+      this.slideElements = [];
       if (this.$slots && this.$slots.default) {
-        this.$slots.default.forEach((slideElements) => {
-          this.slideElements.push(slideElements);
+        this.$slots.default.forEach((slideElement) => {
+          this.slideElements.push(slideElement);
         });
       }
     },

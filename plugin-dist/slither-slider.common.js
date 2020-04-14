@@ -5403,6 +5403,7 @@ var Slides_component = normalizeComponent(
   },
   data: function data() {
     return {
+      defaultSlot: null,
       activeIndex: 0,
       animating: false,
       // Only used for endless
@@ -5486,25 +5487,34 @@ var Slides_component = normalizeComponent(
     }
   },
   mounted: function mounted() {
-    var _this3 = this;
-
+    this.defaultSlot = this.$slots.default;
+    this.init();
+  },
+  beforeUpdate: function beforeUpdate() {
     this.buildAndAddSlides();
-    this.$nextTick(function () {
-      _this3.loaded = true;
-
-      _this3.startAutoplay();
-    });
-    window.addEventListener("resize", function () {
-      _this3.windowWidth = window.innerWidth;
-    });
   },
   methods: {
+    init: function init() {
+      var _this3 = this;
+
+      this.buildAndAddSlides();
+      this.$nextTick(function () {
+        _this3.loaded = true;
+
+        _this3.startAutoplay();
+      });
+      window.addEventListener("resize", function () {
+        _this3.windowWidth = window.innerWidth;
+      });
+    },
     buildAndAddSlides: function buildAndAddSlides() {
       var _this4 = this;
 
+      this.slideElements = [];
+
       if (this.$slots && this.$slots.default) {
-        this.$slots.default.forEach(function (slideElements) {
-          _this4.slideElements.push(slideElements);
+        this.$slots.default.forEach(function (slideElement) {
+          _this4.slideElements.push(slideElement);
         });
       }
     },

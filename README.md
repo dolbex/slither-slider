@@ -81,6 +81,7 @@ There is one thing to keep in mind when passing components a any part of your sl
   slideClass: null,
   sliderClass: null,
   controlsWrapperClass: null,
+  overflowHiddenPadding: { top: 0, left: 0, right: 0, bottom: 0 },
   endless: false,
   gap: 30,
   loop: true,
