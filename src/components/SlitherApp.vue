@@ -4,18 +4,19 @@
       :options="finalOptions"
       ref="sliderController"
       @newNumberOfPages="
-        (value) => {
+        value => {
           this.numberOfPages = value;
         }
       "
       @newNumberOfSlides="
-        (value) => {
+        value => {
           this.numberOfSlides = value;
         }
       "
       @newActiveIndex="
-        (value) => {
+        value => {
           this.activeIndex = value;
+          this.$emit('changed', value);
         }
       "
     >
@@ -54,13 +55,13 @@ export default {
   components: {
     SliderController,
     SliderControls,
-    SliderDots,
+    SliderDots
   },
   props: {
     options: {
       type: Object,
-      default: () => ({}),
-    },
+      default: () => ({})
+    }
   },
   data() {
     return {
@@ -85,9 +86,9 @@ export default {
         gap: 30,
         loop: true,
         extras: 3,
-        overflowHiddenPadding: { top: 0, left: 0, right: 0, bottom: 0 },
+        overflowHiddenPadding: { top: 0, left: 0, right: 0, bottom: 0 }
       },
-      finalOptions: {},
+      finalOptions: {}
     };
   },
 
@@ -97,6 +98,7 @@ export default {
 
   mounted() {
     this.defaultSlot = this.$slots.default;
+    this.$emit("changed", 0);
   },
   computed: {
     hasSlides() {
@@ -105,7 +107,7 @@ export default {
       }
       console.warn("Slither Slider: No slides found");
       return 0;
-    },
+    }
   },
   methods: {
     setOptions() {
@@ -125,8 +127,8 @@ export default {
       if (this.$refs.sliderController) {
         this.$refs.sliderController.goToIndex(index);
       }
-    },
-  },
+    }
+  }
 };
 </script>
 

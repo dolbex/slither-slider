@@ -110,6 +110,11 @@ There is one thing to keep in mind when passing components a any part of your sl
 | extras                | 3                                  | ("endless" and "loop" parameters must be true) This adjusts the number of slides slither appends to the end to give the illusion of infinite                                                            |
 | overflowHiddenPadding | {top:0, left:0, right:0, bottom:0} | If you have a dropshadow or something absolutely positioned relative that "hangs over" the spacing of your slide contents you may need to apply some padding.                                           |
 
+### Events
+
+| Event | Payload | Description |
+| changed | current slide index | Whenever the active index changes the event is emitted
+
 ### Styles
 
 Styles are fairly minimal out of the box so here are some that you may want to use to get started that represent what you're probably used to seeing and then you can modify from there.

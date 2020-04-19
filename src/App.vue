@@ -25,7 +25,7 @@
       <slither-slider
         :options="{
           transition: 'fade',
-          overflowHiddenPadding: { top: 0, left: 20, right: 20, bottom: 20 },
+          overflowHiddenPadding: { top: 0, left: 20, right: 20, bottom: 20 }
         }"
       >
         <div class="slider-card" style="background-color: pink;">
@@ -51,7 +51,7 @@
           secondsOnSlide: 5,
           controls: false,
           dots: false,
-          overflowHiddenPadding: { top: 0, left: 20, right: 20, bottom: 20 },
+          overflowHiddenPadding: { top: 0, left: 20, right: 20, bottom: 20 }
         }"
       >
         <div
@@ -132,10 +132,10 @@
           animatedDots: true,
           numberOfSlides: [
             { number: 1, min: 0 },
-            { number: 2, min: 780 },
+            { number: 2, min: 780 }
           ],
           slideClass: 'flex-demo-slide',
-          overflowHiddenPadding: { top: 0, left: 20, right: 20, bottom: 20 },
+          overflowHiddenPadding: { top: 0, left: 20, right: 20, bottom: 20 }
         }"
       >
         <div v-for="n in 35" :key="n" class="slider-card" style="padding: 30px;">
@@ -161,7 +161,7 @@
             alignItems: 'center',
             fontSize: '6rem',
             fontWeight: 'bold',
-            borderRadius: '0.25rem',
+            borderRadius: '0.25rem'
           }"
         >
           {{ n }}
@@ -185,7 +185,7 @@
             alignItems: 'center',
             fontSize: '6rem',
             fontWeight: 'bold',
-            borderRadius: '0.25rem',
+            borderRadius: '0.25rem'
           }"
         >
           {{ n }}
@@ -222,7 +222,7 @@
       <slither-slider
         style="color: #fff;"
         :options="{
-          controlsWrapperClass: 'controls-custom',
+          controlsWrapperClass: 'controls-custom'
         }"
       >
         <div
@@ -234,7 +234,7 @@
             justifyContent: 'center',
             alignItems: 'center',
             fontSize: '10rem',
-            fontWeight: 'bold',
+            fontWeight: 'bold'
           }"
         >
           <div>Slide 1</div>
@@ -248,7 +248,7 @@
             justifyContent: 'center',
             alignItems: 'center',
             fontSize: '10rem',
-            fontWeight: 'bold',
+            fontWeight: 'bold'
           }"
         >
           <div>Slide 2</div>
@@ -262,7 +262,7 @@
             justifyContent: 'center',
             alignItems: 'center',
             fontSize: '10rem',
-            fontWeight: 'bold',
+            fontWeight: 'bold'
           }"
         >
           <div>Slide 3</div>
@@ -286,7 +286,7 @@
               justifyContent: 'center',
               alignItems: 'center',
               backgroundColor: '#434190',
-              height: '100%',
+              height: '100%'
             }"
           >
             <div class="headline-2">Slide 1</div>
@@ -298,7 +298,7 @@
               justifyContent: 'center',
               alignItems: 'center',
               backgroundColor: '#285E61',
-              height: '100%',
+              height: '100%'
             }"
           >
             <div class="headline-2">Slide 2</div>
@@ -310,7 +310,7 @@
               justifyContent: 'center',
               alignItems: 'center',
               backgroundColor: '#276749',
-              height: '100%',
+              height: '100%'
             }"
           >
             <div class="headline-2">Slide 3</div>
@@ -329,7 +329,7 @@
               alignItems: 'center',
               backgroundColor: '#434190',
               height: '500px',
-              width: '100%',
+              width: '100%'
             }"
           >
             <div class="headline-2">Slide 1</div>
@@ -342,7 +342,7 @@
               alignItems: 'center',
               backgroundColor: '#285E61',
               height: '500px',
-              width: '100%',
+              width: '100%'
             }"
           >
             <div class="headline-2">Slide 2</div>
@@ -355,7 +355,7 @@
               alignItems: 'center',
               backgroundColor: '#276749',
               height: '500px',
-              width: '100%',
+              width: '100%'
             }"
           >
             <div class="headline-2">Slide 3</div>
@@ -386,7 +386,7 @@
           :style="{
             backgroundColor: '#276749',
             color: 'white',
-            padding: '20px',
+            padding: '20px'
           }"
         >
           <div class="headline-2">Slide 1</div>
@@ -446,6 +446,36 @@
       </slither-slider>
 
       <hr />
+      <div class="headline-1">Slider Events</div>
+      <slither-slider
+        :options="{
+          autoplay: true
+        }"
+        @changed="
+          newSlideIndex => {
+            exampleEventIndex = newSlideIndex;
+          }
+        "
+      >
+        <div class="slider-card">
+          <div class="headline-2">Slide 1</div>
+          <p v-for="(paragraph, key) in getRandomParagraphs(1)" :key="key">{{ paragraph }}</p>
+        </div>
+        <div>
+          <div class="slider-card">
+            <div class="headline-2">Slide 2</div>
+            <p v-for="(paragraph, key) in getRandomParagraphs(1)" :key="key">{{ paragraph }}</p>
+          </div>
+        </div>
+        <div class="slider-card">
+          <div class="headline-2">Slide 3</div>
+          <p v-for="(paragraph, key) in getRandomParagraphs(1)" :key="key">{{ paragraph }}</p>
+        </div>
+      </slither-slider>
+
+      <div>The current slide index is {{ exampleEventIndex }}</div>
+
+      <hr />
 
       <div class="headline-1">Slider with updated components</div>
       <button @click="dynamicSlides++">Add slide</button>
@@ -476,12 +506,13 @@ export default {
   components: {
     SlitherSlider,
     AnotherTestComponent,
-    TestRenderComponent,
+    TestRenderComponent
   },
   data() {
     return {
       dynamicHeightDim: 100,
       loaded: true,
+      exampleEventIndex: null,
       paragraphs: [
         `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus consequat dolor eu lorem commodo interdum. Praesent ut dictum neque. Duis bibendum, lorem bibendum congue volutpat, felis risus consectetur ipsum, eget varius lacus lacus id massa. Fusce suscipit leo eget lorem porta, nec tempor tellus cursus. Curabitur pellentesque vitae nisi finibus gravida. Praesent id lectus ac lacus tristique consectetur. Integer hendrerit odio vel erat varius, et fermentum arcu dignissim.`,
         `Sed ac lacinia mi. Aenean mollis aliquam tortor, eget vulputate eros. Nulla luctus ullamcorper tristique. Curabitur ex magna, tincidunt et ante a, sodales vestibulum mi. Proin luctus turpis vel tempus rutrum. Curabitur nec euismod nibh. Suspendisse id ante odio. Cras euismod lacus vel venenatis bibendum. Nulla sit amet semper est.`,
@@ -492,9 +523,9 @@ export default {
         `Vestibulum tristique turpis vel enim mollis, a vehicula neque dignissim. Duis ornare, nibh feugiat consequat mattis, odio dui iaculis nibh, et hendrerit metus nisi ac nibh. Etiam fringilla purus nec tincidunt mollis. Donec finibus neque a aliquam sollicitudin. Integer venenatis, dolor a posuere egestas, est neque sollicitudin lacus, ut feugiat erat neque vel augue. Aenean ac dui vel odio placerat rhoncus. Aliquam lectus libero, feugiat non turpis eu, ultrices dapibus leo.`,
         `Ut semper justo fringilla, tempor felis et, eleifend lorem. In in porttitor ex. Cras vel lorem ut diam congue laoreet sed egestas augue. Nam bibendum mi at diam accumsan, eget ultrices enim ornare. Nunc luctus nisl quis est pellentesque fringilla. Cras semper elementum metus, quis porttitor quam gravida a. Nulla aliquam laoreet enim. Integer scelerisque arcu lorem, sed mattis libero venenatis non. Proin sit amet sagittis ligula, nec ornare lorem. Nulla elementum commodo maximus. Ut id nulla et nisl aliquam consequat. Curabitur mollis tempor diam, ornare feugiat ex egestas vel. Nunc volutpat odio non odio luctus ornare. Sed maximus suscipit mi, dignissim cursus ante eleifend in. Etiam massa elit, volutpat sit amet luctus vel, dignissim vel leo.`,
         `Sed lectus est, lobortis quis congue eu, iaculis non leo. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse sit amet rhoncus justo, ut ullamcorper velit. Ut non ligula et erat gravida suscipit quis sit amet nunc. Nunc sagittis massa at dui sagittis feugiat. Proin posuere tortor pretium ipsum consectetur mollis. Quisque imperdiet porttitor scelerisque. Nullam quis pulvinar tellus, ac fringilla dolor. Donec euismod nisi risus, lacinia consequat quam condimentum in.`,
-        `Ut lacinia ullamcorper faucibus. Etiam euismod pretium dui, sit amet lacinia ante lacinia vitae. Donec nibh metus, vestibulum sed iaculis at, finibus sed orci. Donec ac sem et purus ultrices sagittis. Nulla rutrum felis id feugiat blandit. Sed ac lectus maximus, posuere diam sed, elementum enim. Proin feugiat dui at fringilla euismod. Donec ullamcorper massa et placerat pharetra. Curabitur hendrerit est ultrices odio sodales mattis. Pellentesque consequat mi eu nulla porttitor consequat. Etiam posuere, purus eget rhoncus rhoncus, lorem felis venenatis mauris, a vehicula nulla velit sed nulla. In hac habitasse platea dictumst. Etiam eu consequat odio. In fringilla semper sapien molestie scelerisque. Morbi convallis, elit a pellentesque cursus, neque metus porta quam, vitae malesuada dui mi sit amet risus.`,
+        `Ut lacinia ullamcorper faucibus. Etiam euismod pretium dui, sit amet lacinia ante lacinia vitae. Donec nibh metus, vestibulum sed iaculis at, finibus sed orci. Donec ac sem et purus ultrices sagittis. Nulla rutrum felis id feugiat blandit. Sed ac lectus maximus, posuere diam sed, elementum enim. Proin feugiat dui at fringilla euismod. Donec ullamcorper massa et placerat pharetra. Curabitur hendrerit est ultrices odio sodales mattis. Pellentesque consequat mi eu nulla porttitor consequat. Etiam posuere, purus eget rhoncus rhoncus, lorem felis venenatis mauris, a vehicula nulla velit sed nulla. In hac habitasse platea dictumst. Etiam eu consequat odio. In fringilla semper sapien molestie scelerisque. Morbi convallis, elit a pellentesque cursus, neque metus porta quam, vitae malesuada dui mi sit amet risus.`
       ],
-      dynamicSlides: 3,
+      dynamicSlides: 3
     };
   },
   created() {
@@ -517,7 +548,7 @@ export default {
     getRandomParagraph() {
       const randomParagraph = Math.floor(Math.random() * Math.floor(9));
       return this.paragraphs[randomParagraph];
-    },
-  },
+    }
+  }
 };
 </script>
