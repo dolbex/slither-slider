@@ -112,8 +112,9 @@ There is one thing to keep in mind when passing components a any part of your sl
 
 ### Events
 
-| Event | Payload | Description |
-| changed | current slide index | Whenever the active index changes the event is emitted
+| Event   | Payload             | Description                                            |
+| ------- | ------------------- | ------------------------------------------------------ |
+| changed | current slide index | Whenever the active index changes the event is emitted |
 
 ### Styles
 
