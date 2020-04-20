@@ -110,6 +110,13 @@ export default {
     this.$emit("changed", 0);
 
     this.setContainerWidth();
+
+    // Sometimes there is a delay or outside forces that change the container
+    // Let's do one more check to be sure we have the proper size
+    setTimeout(() => {
+      this.setContainerWidth();
+    }, 1000);
+
     window.addEventListener("resize", () => {
       this.setContainerWidth();
     });

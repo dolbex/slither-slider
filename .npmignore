@@ -1,0 +1,10 @@
+dist
+library-dist
+public
+src
+.editorconfig
+.eslintrc.js
+babel.config.js
+snake.png
+vue.config.js
+yarn.lock
