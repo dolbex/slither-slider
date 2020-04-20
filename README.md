@@ -2,7 +2,7 @@
 
 Simple Vue JS slider for Vue JS that pretty much takes what you throw at it.
 
-[Minified](https://badgen.net/bundlephobia/minzip/slither-slider)
+![Minified](https://badgen.net/bundlephobia/minzip/slither-slider)
 
 ![Snakes.... I hate snakes](https://github.com/dolbex/slither-slider/blob/master/snake.png?raw=true)
 
