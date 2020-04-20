@@ -1,5 +1,10 @@
 <template>
-  <div class="slither-slider" v-if="finalOptions.transition">
+  <div
+    class="slither-slider"
+    v-if="finalOptions.transition"
+    v-touch:swipe.left="leftSwipe"
+    v-touch:swipe.right="rightSwipe"
+  >
     <slider-controller
       :options="finalOptions"
       ref="sliderController"
@@ -86,7 +91,8 @@ export default {
         gap: 30,
         loop: true,
         extras: 3,
-        overflowHiddenPadding: { top: 0, left: 0, right: 0, bottom: 0 }
+        overflowHiddenPadding: { top: 0, left: 0, right: 0, bottom: 0 },
+        touch: true
       },
       finalOptions: {}
     };
@@ -112,6 +118,16 @@ export default {
   methods: {
     setOptions() {
       this.finalOptions = Object.assign({}, this.defaultOptions, this.options);
+    },
+    leftSwipe() {
+      if (this.finalOptions.touch) {
+        this.next();
+      }
+    },
+    rightSwipe() {
+      if (this.finalOptions.touch) {
+        this.prev();
+      }
     },
     next() {
       if (this.$refs.sliderController) {

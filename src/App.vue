@@ -275,9 +275,11 @@
       <p>
         The slider will calculate the height of the screen and fit it to that. If you need an offset
         you can also set that as well. This is helpful with heros that lay under a fixed position
-        navigation. The width of the slider is up to the designer
+        navigation. The width of the slider is up to the designer. In this case the slider is
+        constrained by the padding of this demo but you could easily bleed it to the edge by putting
+        it somewhere without padding or by using negative margins.
       </p>
-      <div style="margin-left: -100px; margin-right: -100px;">
+      <div>
         <slither-slider :options="{ fullscreen: true, fullscreenOffset: -200 }">
           <div
             :style="{
@@ -395,6 +397,44 @@
 
       <hr />
 
+      <div class="headline-1">Touch Enabled</div>
+      <slither-slider :options="{ autoplay: false }">
+        <div class="slider-card">
+          <div class="headline-2">Slide 1</div>
+          <p>Swipe to the right or left</p>
+        </div>
+        <div>
+          <div class="slider-card">
+            <div class="headline-2">Slide 2</div>
+            <p>Yay! You did it!</p>
+          </div>
+        </div>
+        <div class="slider-card">
+          <div class="headline-2">Slide 3</div>
+          <p>You did it again!!!</p>
+        </div>
+      </slither-slider>
+
+      <hr />
+      <div class="headline-1">Touch Disabled</div>
+      <slither-slider :options="{ touch: false }">
+        <div class="slider-card">
+          <div class="headline-2">Slide 1</div>
+          <p v-for="(paragraph, key) in getRandomParagraphs(1)" :key="key">{{ paragraph }}</p>
+        </div>
+        <div>
+          <div class="slider-card">
+            <div class="headline-2">Slide 2</div>
+            <p v-for="(paragraph, key) in getRandomParagraphs(1)" :key="key">{{ paragraph }}</p>
+          </div>
+        </div>
+        <div class="slider-card">
+          <div class="headline-2">Slide 3</div>
+          <p v-for="(paragraph, key) in getRandomParagraphs(1)" :key="key">{{ paragraph }}</p>
+        </div>
+      </slither-slider>
+
+      <hr />
       <div class="headline-1">Slider with components</div>
       <p>
         Another test with the components at the root and endless turned on.

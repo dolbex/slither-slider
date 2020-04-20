@@ -109,6 +109,7 @@ There is one thing to keep in mind when passing components a any part of your sl
 | loop                  | true                               | ("endless" parameter must be true) This gives the illusion that an endless slider appears as if it goes forever. If set to false the slider will appear to "rewind" to the beginning.                   |
 | extras                | 3                                  | ("endless" and "loop" parameters must be true) This adjusts the number of slides slither appends to the end to give the illusion of infinite                                                            |
 | overflowHiddenPadding | {top:0, left:0, right:0, bottom:0} | If you have a dropshadow or something absolutely positioned relative that "hangs over" the spacing of your slide contents you may need to apply some padding.                                           |
+| touch                 | true                               | Enables swipe gestures to navigate slides                                                                                                                                                               |
 
 ### Events
 

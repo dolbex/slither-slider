@@ -17,26 +17,29 @@ export default {
           options: this.options,
           numberOfElementsPerSlide: this.numberOfElementsPerSlide,
           slideDirection: this.slideDirection,
-          numberOfSlides: this.numberOfSlides,
+          numberOfSlides: this.numberOfSlides
         },
         on: {
-          animating: (newValue) => {
+          animating: newValue => {
             this.animating = newValue;
           },
           resetToStart: () => {
             this.setIndex(0);
-          },
-        },
+          }
+        }
       });
 
       const barndoorElement = createElement(
         "div",
-        { class: "slither-slider-barndoor", style: this.barndoorStyles },
+        {
+          class: "slither-slider-barndoor",
+          style: this.barndoorStyles
+        },
         [slidesElement]
       );
 
       const controllerElement = createElement("div", { class: "slither-slider-controller" }, [
-        barndoorElement,
+        barndoorElement
       ]);
 
       return controllerElement;
@@ -44,13 +47,13 @@ export default {
     return "";
   },
   components: {
-    SlideRenderer,
+    SlideRenderer
   },
   props: {
     options: {
       type: Object,
-      default: () => ({}),
-    },
+      default: () => ({})
+    }
   },
   data() {
     return {
@@ -62,7 +65,7 @@ export default {
       loaded: false,
       autoplayInterval: null,
       windowWidth: window.innerWidth,
-      slideDirection: null,
+      slideDirection: null
     };
   },
 
@@ -78,7 +81,7 @@ export default {
       if (typeof this.options.numberOfSlides === "object") {
         let numberOfSlidesPerPage = 1;
         let sizeConfigChoice = 0;
-        this.options.numberOfSlides.forEach((sizeConfig) => {
+        this.options.numberOfSlides.forEach(sizeConfig => {
           if (sizeConfig.min >= sizeConfigChoice && sizeConfig.min <= this.windowWidth) {
             sizeConfigChoice = sizeConfig.min;
             numberOfSlidesPerPage = sizeConfig.number;
@@ -123,7 +126,7 @@ export default {
         paddingTop: this.options.overflowHiddenPadding.top + "px",
         paddingRight: this.options.overflowHiddenPadding.right + "px",
         paddingBottom: this.options.overflowHiddenPadding.bottom + "px",
-        paddingLeft: this.options.overflowHiddenPadding.left + "px",
+        paddingLeft: this.options.overflowHiddenPadding.left + "px"
       };
 
       return styles;
@@ -131,7 +134,7 @@ export default {
 
     sliderStyles() {
       return this.options.endless ? { width: "30000px" } : {};
-    },
+    }
   },
 
   mounted() {
@@ -156,7 +159,7 @@ export default {
     buildAndAddSlides() {
       this.slideElements = [];
       if (this.$slots && this.$slots.default) {
-        this.$slots.default.forEach((slideElement) => {
+        this.$slots.default.forEach(slideElement => {
           this.slideElements.push(slideElement);
         });
       }
@@ -197,9 +200,9 @@ export default {
       const renderedSlideElements = [];
       const slideSets = [];
 
-      this.slideElements.forEach((slideElement) => {
+      this.slideElements.forEach(slideElement => {
         const slide = createElement(SlideRenderer, { props: { options: this.options } }, [
-          slideElement,
+          slideElement
         ]);
         renderedSlideElements.push(slide);
       });
@@ -228,7 +231,7 @@ export default {
       }
 
       return slideSets;
-    },
+    }
   },
   watch: {
     numberOfSlides(newValue) {
@@ -239,8 +242,8 @@ export default {
     },
     activeIndex(newValue) {
       this.$emit("newActiveIndex", newValue);
-    },
-  },
+    }
+  }
 };
 </script>
 

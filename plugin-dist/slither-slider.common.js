@@ -3460,10 +3460,10 @@ if (typeof window !== 'undefined') {
 // Indicate to webpack that this file can be concatenated
 /* harmony default export */ var setPublicPath = (null);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"2c3c18d4-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SlitherApp.vue?vue&type=template&id=f9502b58&
-var SlitherAppvue_type_template_id_f9502b58_render = function () {
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"2c3c18d4-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SlitherApp.vue?vue&type=template&id=30830ffc&
+var SlitherAppvue_type_template_id_30830ffc_render = function () {
 var this$1 = this;
-var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.finalOptions.transition)?_c('div',{staticClass:"slither-slider"},[_c('slider-controller',{ref:"sliderController",attrs:{"options":_vm.finalOptions},on:{"newNumberOfPages":function (value) {
+var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.finalOptions.transition)?_c('div',{directives:[{name:"touch",rawName:"v-touch:swipe.left",value:(_vm.leftSwipe),expression:"leftSwipe",arg:"swipe",modifiers:{"left":true}},{name:"touch",rawName:"v-touch:swipe.right",value:(_vm.rightSwipe),expression:"rightSwipe",arg:"swipe",modifiers:{"right":true}}],staticClass:"slither-slider"},[_c('slider-controller',{ref:"sliderController",attrs:{"options":_vm.finalOptions},on:{"newNumberOfPages":function (value) {
         this$1.numberOfPages = value;
       },"newNumberOfSlides":function (value) {
         this$1.numberOfSlides = value;
@@ -3474,7 +3474,7 @@ var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.final
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/SlitherApp.vue?vue&type=template&id=f9502b58&
+// CONCATENATED MODULE: ./src/components/SlitherApp.vue?vue&type=template&id=30830ffc&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.object.assign.js
 var es6_object_assign = __webpack_require__("f751");
@@ -5880,6 +5880,11 @@ var SliderDots_component = normalizeComponent(
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -5926,7 +5931,8 @@ var SliderDots_component = normalizeComponent(
           left: 0,
           right: 0,
           bottom: 0
-        }
+        },
+        touch: true
       },
       finalOptions: {}
     };
@@ -5951,6 +5957,16 @@ var SliderDots_component = normalizeComponent(
   methods: {
     setOptions: function setOptions() {
       this.finalOptions = Object.assign({}, this.defaultOptions, this.options);
+    },
+    leftSwipe: function leftSwipe() {
+      if (this.finalOptions.touch) {
+        this.next();
+      }
+    },
+    rightSwipe: function rightSwipe() {
+      if (this.finalOptions.touch) {
+        this.prev();
+      }
     },
     next: function next() {
       if (this.$refs.sliderController) {
@@ -5985,7 +6001,7 @@ var SlitherAppvue_type_style_index_0_lang_scss_ = __webpack_require__("4713");
 
 var SlitherApp_component = normalizeComponent(
   components_SlitherAppvue_type_script_lang_js_,
-  SlitherAppvue_type_template_id_f9502b58_render,
+  SlitherAppvue_type_template_id_30830ffc_render,
   staticRenderFns,
   false,
   null,
