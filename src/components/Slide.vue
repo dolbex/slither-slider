@@ -8,7 +8,7 @@ export default {
       {
         ref: "slide",
         class: "slither-slider-slide",
-        style: this.styles,
+        style: this.styles
       },
       this.slideSet
     );
@@ -18,28 +18,28 @@ export default {
   props: {
     options: {
       type: Object,
-      required: true,
+      required: true
     },
     index: {
       type: Number,
-      required: true,
+      required: true
     },
     activeIndex: {
       type: Number,
-      required: true,
+      required: true
     },
     slideSet: {
       type: Array,
-      required: true,
+      required: true
     },
     numberOfElementsPerSlide: {
       type: Number,
-      required: true,
-    },
+      required: true
+    }
   },
   data() {
     return {
-      height: "auto",
+      height: "auto"
     };
   },
   mounted() {
@@ -48,8 +48,15 @@ export default {
   computed: {
     styles() {
       if (this.options.endless) {
+        if (this.options.cuts === "left") {
+          return {
+            display: "flex",
+            flexDirection: "row-reverse"
+          };
+        }
+
         return {
-          display: "flex",
+          display: "flex"
         };
       }
 
@@ -58,9 +65,9 @@ export default {
         height: this.height,
         display: "grid",
         gridTemplateColumns: `repeat(${this.numberOfElementsPerSlide}, minmax(0, 1fr))`,
-        gap: this.options.gap + "px",
+        gap: this.options.gap + "px"
       };
-    },
+    }
   },
   methods: {
     setHeight() {
@@ -68,7 +75,7 @@ export default {
         const fullscreenHeight = window.innerHeight + this.options.fullscreenOffset;
         this.height = fullscreenHeight + "px";
       }
-    },
-  },
+    }
+  }
 };
 </script>

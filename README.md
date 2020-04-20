@@ -82,7 +82,9 @@ There is one thing to keep in mind when passing components a any part of your sl
   sliderClass: null,
   controlsWrapperClass: null,
   overflowHiddenPadding: { top: 0, left: 0, right: 0, bottom: 0 },
+  touch: true,
   endless: false,
+  cuts: "right",
   gap: 30,
   loop: true,
   extras: 3,
@@ -105,6 +107,7 @@ There is one thing to keep in mind when passing components a any part of your sl
 | autoplay              | false                              | You know what this does.                                                                                                                                                                                |
 | secondsOnSlide        | 4                                  | This is the number of seconds slither will pause on a slide before moving foward (autoplay must be set to true)                                                                                         |
 | endless               | false                              | Display all the slides next to each other regardless of their width                                                                                                                                     |
+| cuts                  | "right"                            | ("endless" must be true) Cuts off the slides on the right side by default. In a case where you want the cut-off of slides to show on the left set this value to "left"                                  |
 | gap                   | 10                                 | ("endless" parameter must be true) The gap between each of the slides in an endless presentation                                                                                                        |
 | loop                  | true                               | ("endless" parameter must be true) This gives the illusion that an endless slider appears as if it goes forever. If set to false the slider will appear to "rewind" to the beginning.                   |
 | extras                | 3                                  | ("endless" and "loop" parameters must be true) This adjusts the number of slides slither appends to the end to give the illusion of infinite                                                            |

@@ -11,7 +11,7 @@ export default {
       const slideWrapper =
         index === this.activeIndex || (this.options.endless && index === 0)
           ? createElement(Slide, {
-              key: this.randomString(),
+              key: index,
               ref: "slide",
               style: this.styles,
               class: "slither-slider-slide-wrapper",
@@ -21,8 +21,8 @@ export default {
                 index: index,
                 activeIndex: this.activeIndex,
                 numberOfElementsPerSlide: this.numberOfElementsPerSlide,
-                randothing: this.activeIndex === index,
-              },
+                randothing: this.activeIndex === index
+              }
             })
           : null;
 
@@ -34,7 +34,7 @@ export default {
             class: "slither-slider-transition-group",
             style: "width:100%;",
             css: "false",
-            on: { enter: this.animateIn, leave: this.animateOut },
+            on: { enter: this.animateIn, leave: this.animateOut }
           },
           [slideWrapper]
         );
@@ -47,37 +47,37 @@ export default {
     return createElement("div", { style: { transition: "height 300ms" } }, slides);
   },
   components: {
-    Slide,
+    Slide
   },
   props: {
     slideSets: {
       type: Array,
-      required: true,
+      required: true
     },
     activeIndex: {
       type: Number,
-      required: true,
+      required: true
     },
     options: {
       type: Object,
-      required: true,
+      required: true
     },
     numberOfElementsPerSlide: {
       type: Number,
-      required: true,
+      required: true
     },
     slideDirection: {
       type: String,
-      default: "left",
+      default: "left"
     },
     numberOfSlides: {
       type: Number,
-      required: true,
-    },
+      required: true
+    }
   },
   data() {
     return {
-      height: "auto",
+      height: "auto"
     };
   },
   computed: {
@@ -91,7 +91,11 @@ export default {
       const styles = {};
 
       if (this.options.endless) {
-        styles.marginRight = this.options.gap + "px";
+        if (this.options.cuts === "left") {
+          styles.marginLeft = this.options.gap + "px";
+        } else {
+          styles.marginRight = this.options.gap + "px";
+        }
       }
 
       return styles;
@@ -119,7 +123,7 @@ export default {
         totalWidth += this.options.gap;
       }
       return totalWidth;
-    },
+    }
   },
   methods: {
     animateIn(el, done) {
@@ -144,7 +148,7 @@ export default {
         top: elPosition.y + "px",
         left: elPosition.x + "px",
         width: elPosition.width + "px",
-        height: elPosition.height + "px",
+        height: elPosition.height + "px"
       });
 
       if (this.options.transition === "fade") {
@@ -168,7 +172,7 @@ export default {
         complete: () => {
           this.$emit("animating", false);
           done();
-        },
+        }
       });
     },
 
@@ -196,19 +200,13 @@ export default {
         complete: () => {
           this.$emit("animating", false);
           done();
-        },
+        }
       });
       // For dubugging
       // setTimeout(() => {
       //   animation.pause();
       // }, this.options.animationDuration / 2);
-    },
-
-    randomString() {
-      return (
-        Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
-      );
-    },
+    }
   },
   watch: {
     activeIndex(index, oldIndex) {
@@ -219,7 +217,7 @@ export default {
         // infinite loop
         if (oldIndex < index - 1) {
           anime.set(this.$el, {
-            translateX: -this.endOffsetWidth,
+            translateX: -this.endOffsetWidth
           });
         }
 
@@ -227,7 +225,7 @@ export default {
           targets: this.$el,
           opacity: 1,
           duration: this.options.animationDuration,
-          translateX: -this.totalOffsetWidth,
+          translateX: this.options.cuts === "left" ? this.totalOffsetWidth : -this.totalOffsetWidth,
           easing: "easeOutExpo",
           complete: () => {
             this.animating = false;
@@ -237,10 +235,10 @@ export default {
                 anime.set(this.$el, { translateX: 0 });
               }
             }
-          },
+          }
         });
       }
-    },
-  },
+    }
+  }
 };
 </script>

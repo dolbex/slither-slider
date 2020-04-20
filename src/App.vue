@@ -170,6 +170,30 @@
 
       <hr />
 
+      <div class="headline-1">Endless Slider (opposite side cut-off)</div>
+      <slither-slider :options="{ dots: true, endless: true, gap: 20, cuts: 'left' }">
+        <div
+          v-for="n in 4"
+          :key="n"
+          :style="{
+            backgroundColor: '#434190',
+            color: '#fff',
+            width: randomWidth(n),
+            height: '200px',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            fontSize: '6rem',
+            fontWeight: 'bold',
+            borderRadius: '0.25rem'
+          }"
+        >
+          {{ n }}
+        </div>
+      </slither-slider>
+
+      <hr />
+
       <div class="headline-1">Variable Width Endless Slider (Doesn't Loop)</div>
       <slither-slider :options="{ dots: true, endless: true, gap: 20, loop: false }">
         <div
@@ -398,7 +422,7 @@
       <hr />
 
       <div class="headline-1">Touch Enabled</div>
-      <slither-slider :options="{ autoplay: false }">
+      <slither-slider>
         <div class="slider-card">
           <div class="headline-2">Slide 1</div>
           <p>Swipe to the right or left</p>
@@ -491,25 +515,21 @@
         :options="{
           autoplay: true
         }"
-        @changed="
-          newSlideIndex => {
-            exampleEventIndex = newSlideIndex;
-          }
-        "
+        @changed="setNewSlideIndex"
       >
         <div class="slider-card">
           <div class="headline-2">Slide 1</div>
-          <p v-for="(paragraph, key) in getRandomParagraphs(1)" :key="key">{{ paragraph }}</p>
+          <p>Check out the current slide index below</p>
         </div>
         <div>
           <div class="slider-card">
             <div class="headline-2">Slide 2</div>
-            <p v-for="(paragraph, key) in getRandomParagraphs(1)" :key="key">{{ paragraph }}</p>
+            <p>Check out the current slide index below</p>
           </div>
         </div>
         <div class="slider-card">
           <div class="headline-2">Slide 3</div>
-          <p v-for="(paragraph, key) in getRandomParagraphs(1)" :key="key">{{ paragraph }}</p>
+          <p>Check out the current slide index below</p>
         </div>
       </slither-slider>
 
@@ -550,9 +570,8 @@ export default {
   },
   data() {
     return {
-      dynamicHeightDim: 100,
       loaded: true,
-      exampleEventIndex: null,
+      exampleEventIndex: 0,
       paragraphs: [
         `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus consequat dolor eu lorem commodo interdum. Praesent ut dictum neque. Duis bibendum, lorem bibendum congue volutpat, felis risus consectetur ipsum, eget varius lacus lacus id massa. Fusce suscipit leo eget lorem porta, nec tempor tellus cursus. Curabitur pellentesque vitae nisi finibus gravida. Praesent id lectus ac lacus tristique consectetur. Integer hendrerit odio vel erat varius, et fermentum arcu dignissim.`,
         `Sed ac lacinia mi. Aenean mollis aliquam tortor, eget vulputate eros. Nulla luctus ullamcorper tristique. Curabitur ex magna, tincidunt et ante a, sodales vestibulum mi. Proin luctus turpis vel tempus rutrum. Curabitur nec euismod nibh. Suspendisse id ante odio. Cras euismod lacus vel venenatis bibendum. Nulla sit amet semper est.`,
@@ -567,11 +586,6 @@ export default {
       ],
       dynamicSlides: 3
     };
-  },
-  created() {
-    setInterval(() => {
-      this.dynamicHeightDim = (Math.floor(Math.random() * Math.floor(4)) + 1) * 100;
-    }, 2000);
   },
   methods: {
     randomWidth(index) {
@@ -588,6 +602,9 @@ export default {
     getRandomParagraph() {
       const randomParagraph = Math.floor(Math.random() * Math.floor(9));
       return this.paragraphs[randomParagraph];
+    },
+    setNewSlideIndex(newIndex) {
+      this.exampleEventIndex = newIndex;
     }
   }
 };

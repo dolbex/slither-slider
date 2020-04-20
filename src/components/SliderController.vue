@@ -53,6 +53,10 @@ export default {
     options: {
       type: Object,
       default: () => ({})
+    },
+    containerWidth: {
+      type: Number,
+      required: true
     }
   },
   data() {
@@ -133,7 +137,24 @@ export default {
     },
 
     sliderStyles() {
-      return this.options.endless ? { width: "30000px" } : {};
+      let styles = {};
+
+      if (this.options.endless) {
+        const width = 300000;
+
+        if (this.options.cuts === "left") {
+          const offset = width - this.containerWidth;
+
+          styles = {
+            width: `${width}px`,
+            transform: `translate3d(-${offset}px, 0, 0)`
+          };
+        } else {
+          styles = { width: `${width}px` };
+        }
+      }
+
+      return styles;
     }
   },
 

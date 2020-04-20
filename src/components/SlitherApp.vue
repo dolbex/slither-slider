@@ -7,6 +7,7 @@
   >
     <slider-controller
       :options="finalOptions"
+      :container-width="containerWidth"
       ref="sliderController"
       @newNumberOfPages="
         value => {
@@ -74,6 +75,7 @@ export default {
       numberOfPages: 0,
       activeIndex: 0,
       defaultSlot: [],
+      containerWidth: 0,
       defaultOptions: {
         autoplay: false,
         transition: "slide",
@@ -92,7 +94,8 @@ export default {
         loop: true,
         extras: 3,
         overflowHiddenPadding: { top: 0, left: 0, right: 0, bottom: 0 },
-        touch: true
+        touch: true,
+        cuts: "right"
       },
       finalOptions: {}
     };
@@ -105,6 +108,11 @@ export default {
   mounted() {
     this.defaultSlot = this.$slots.default;
     this.$emit("changed", 0);
+
+    this.setContainerWidth();
+    window.addEventListener("resize", () => {
+      this.setContainerWidth();
+    });
   },
   computed: {
     hasSlides() {
@@ -143,6 +151,9 @@ export default {
       if (this.$refs.sliderController) {
         this.$refs.sliderController.goToIndex(index);
       }
+    },
+    setContainerWidth() {
+      this.containerWidth = this.$el.getBoundingClientRect().width;
     }
   }
 };

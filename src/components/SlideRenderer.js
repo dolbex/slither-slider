@@ -5,15 +5,15 @@ export default {
   props: {
     options: {
       type: Object,
-      required: true,
-    },
+      required: true
+    }
   },
   render() {
     return this.defaultSlot;
   },
   data() {
     return {
-      defaultSlot: null,
+      defaultSlot: null
     };
   },
   mounted() {
@@ -24,13 +24,13 @@ export default {
   methods: {
     setImages() {
       const images = this.findImages(this.defaultSlot[0]);
-      images.forEach((image) => {
+      images.forEach(image => {
         image.data.on = Object.assign(
           {},
           {
             load: () => {
               bus.$emit("loaded");
-            },
+            }
           },
           image.data.on
         );
@@ -43,7 +43,7 @@ export default {
       }
 
       if (vnode.children) {
-        vnode.children.forEach((child) => {
+        vnode.children.forEach(child => {
           imageNodes = imageNodes.concat(this.findImages(child));
         });
       }
@@ -52,10 +52,10 @@ export default {
     },
     addChangeListener() {
       if (this.defaultSlot) {
-        this.defaultSlot.forEach((vnode) => {
+        this.defaultSlot.forEach(vnode => {
           if (vnode.data) {
             this.observer = new MutationObserver(
-              function (mutations) {
+              function(mutations) {
                 this.$emit("contentChanged");
               }.bind(this)
             );
@@ -64,6 +64,6 @@ export default {
           }
         });
       }
-    },
-  },
+    }
+  }
 };
