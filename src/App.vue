@@ -537,9 +537,21 @@
 
       <hr />
 
-      <div class="headline-1">Slider with updated components</div>
-      <button @click="dynamicSlides++">Add slide</button>
-      <button @click="dynamicSlides--">Remove slide</button>
+      <div class="headline-1">Slider with added / removed slides</div>
+      <div style="margin-bottom:20px;">
+        <button
+          @click="dynamicSlides++"
+          style="font-size:1rem; padding:1rem 2rem; background-color:#276749; color:white; margin-right:8px"
+        >
+          Add slide
+        </button>
+        <button
+          @click="dynamicSlides--"
+          style="font-size:1rem; padding:1rem 2rem; background-color:#434190; color:white; margin-right:8px"
+        >
+          Remove slide
+        </button>
+      </div>
       <slither-slider :options="{ endless: true }">
         <div
           class="slider-card"
@@ -584,7 +596,7 @@ export default {
         `Sed lectus est, lobortis quis congue eu, iaculis non leo. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse sit amet rhoncus justo, ut ullamcorper velit. Ut non ligula et erat gravida suscipit quis sit amet nunc. Nunc sagittis massa at dui sagittis feugiat. Proin posuere tortor pretium ipsum consectetur mollis. Quisque imperdiet porttitor scelerisque. Nullam quis pulvinar tellus, ac fringilla dolor. Donec euismod nisi risus, lacinia consequat quam condimentum in.`,
         `Ut lacinia ullamcorper faucibus. Etiam euismod pretium dui, sit amet lacinia ante lacinia vitae. Donec nibh metus, vestibulum sed iaculis at, finibus sed orci. Donec ac sem et purus ultrices sagittis. Nulla rutrum felis id feugiat blandit. Sed ac lectus maximus, posuere diam sed, elementum enim. Proin feugiat dui at fringilla euismod. Donec ullamcorper massa et placerat pharetra. Curabitur hendrerit est ultrices odio sodales mattis. Pellentesque consequat mi eu nulla porttitor consequat. Etiam posuere, purus eget rhoncus rhoncus, lorem felis venenatis mauris, a vehicula nulla velit sed nulla. In hac habitasse platea dictumst. Etiam eu consequat odio. In fringilla semper sapien molestie scelerisque. Morbi convallis, elit a pellentesque cursus, neque metus porta quam, vitae malesuada dui mi sit amet risus.`
       ],
-      dynamicSlides: 3
+      dynamicSlides: 0
     };
   },
   methods: {

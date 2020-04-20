@@ -32,7 +32,7 @@
     <!-- Next/Prev controls -->
     <slider-controls
       :options="finalOptions"
-      :show-controls="finalOptions.controls && hasSlides > 1"
+      :show-controls="finalOptions.controls && this.hasSlides"
       @next="next"
       @prev="prev"
       :previous="$slots.previous"
@@ -109,28 +109,22 @@ export default {
     this.defaultSlot = this.$slots.default;
     this.$emit("changed", 0);
 
-    this.setContainerWidth();
-
-    // Sometimes there is a delay or outside forces that change the container
-    // Let's do one more check to be sure we have the proper size
-    setTimeout(() => {
-      this.setContainerWidth();
-    }, 1000);
-
     window.addEventListener("resize", () => {
       this.setContainerWidth();
     });
+
+    this.addChangeListener();
+    this.refresh();
   },
   computed: {
     hasSlides() {
-      if (this.defaultSlot) {
-        return this.defaultSlot.length;
-      }
-      console.warn("Slither Slider: No slides found");
-      return 0;
+      return this.numberOfSlides > 0;
     }
   },
   methods: {
+    refresh() {
+      this.setContainerWidth();
+    },
     setOptions() {
       this.finalOptions = Object.assign({}, this.defaultOptions, this.options);
     },
@@ -161,6 +155,21 @@ export default {
     },
     setContainerWidth() {
       this.containerWidth = this.$el.getBoundingClientRect().width;
+    },
+    addChangeListener() {
+      if (this.defaultSlot) {
+        this.defaultSlot.forEach(vnode => {
+          if (vnode.data) {
+            this.observer = new MutationObserver(
+              function(mutations) {
+                this.refresh();
+              }.bind(this)
+            );
+            // Setup the observer
+            this.observer.observe(this.$el, { attributes: true, childList: true, subtree: true });
+          }
+        });
+      }
     }
   }
 };

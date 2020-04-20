@@ -3034,8 +3034,8 @@ if (typeof window !== 'undefined') {
 // Indicate to webpack that this file can be concatenated
 /* harmony default export */ var setPublicPath = (null);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"2c3c18d4-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SlitherApp.vue?vue&type=template&id=6292eb69&
-var SlitherAppvue_type_template_id_6292eb69_render = function () {
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"2c3c18d4-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SlitherApp.vue?vue&type=template&id=4667b3d8&
+var SlitherAppvue_type_template_id_4667b3d8_render = function () {
 var this$1 = this;
 var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.finalOptions.transition)?_c('div',{directives:[{name:"touch",rawName:"v-touch:swipe.left",value:(_vm.leftSwipe),expression:"leftSwipe",arg:"swipe",modifiers:{"left":true}},{name:"touch",rawName:"v-touch:swipe.right",value:(_vm.rightSwipe),expression:"rightSwipe",arg:"swipe",modifiers:{"right":true}}],staticClass:"slither-slider"},[_c('slider-controller',{ref:"sliderController",attrs:{"options":_vm.finalOptions,"container-width":_vm.containerWidth},on:{"newNumberOfPages":function (value) {
         this$1.numberOfPages = value;
@@ -3044,17 +3044,17 @@ var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.final
       },"newActiveIndex":function (value) {
         this$1.activeIndex = value;
         this$1.$emit('changed', value);
-      }}},[_vm._t("default")],2),_c('slider-controls',{attrs:{"options":_vm.finalOptions,"show-controls":_vm.finalOptions.controls && _vm.hasSlides > 1,"previous":_vm.$slots.previous,"next":_vm.$slots.next},on:{"next":_vm.next,"prev":_vm.prev}}),_c('slider-dots',{attrs:{"options":_vm.finalOptions,"show-dots":_vm.finalOptions.dots,"number-of-slides":this.numberOfSlides,"number-of-pages":this.numberOfPages,"active-index":this.activeIndex},on:{"goToIndex":_vm.goToIndex}})],1):_vm._e()}
+      }}},[_vm._t("default")],2),_c('slider-controls',{attrs:{"options":_vm.finalOptions,"show-controls":_vm.finalOptions.controls && this.hasSlides,"previous":_vm.$slots.previous,"next":_vm.$slots.next},on:{"next":_vm.next,"prev":_vm.prev}}),_c('slider-dots',{attrs:{"options":_vm.finalOptions,"show-dots":_vm.finalOptions.dots,"number-of-slides":this.numberOfSlides,"number-of-pages":this.numberOfPages,"active-index":this.activeIndex},on:{"goToIndex":_vm.goToIndex}})],1):_vm._e()}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/SlitherApp.vue?vue&type=template&id=6292eb69&
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.object.assign.js
-var es6_object_assign = __webpack_require__("f751");
+// CONCATENATED MODULE: ./src/components/SlitherApp.vue?vue&type=template&id=4667b3d8&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom.iterable.js
 var web_dom_iterable = __webpack_require__("ac6a");
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.object.assign.js
+var es6_object_assign = __webpack_require__("f751");
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/symbol/iterator.js
 var iterator = __webpack_require__("5d58");
@@ -5432,6 +5432,7 @@ var SliderDots_component = normalizeComponent(
 /* harmony default export */ var SliderDots = (SliderDots_component.exports);
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SlitherApp.vue?vue&type=script&lang=js&
 
+
 //
 //
 //
@@ -5547,27 +5548,21 @@ var SliderDots_component = normalizeComponent(
 
     this.defaultSlot = this.$slots.default;
     this.$emit("changed", 0);
-    this.setContainerWidth(); // Sometimes there is a delay or outside forces that change the container
-    // Let's do one more check to be sure we have the proper size
-
-    setTimeout(function () {
-      _this.setContainerWidth();
-    }, 1000);
     window.addEventListener("resize", function () {
       _this.setContainerWidth();
     });
+    this.addChangeListener();
+    this.refresh();
   },
   computed: {
     hasSlides: function hasSlides() {
-      if (this.defaultSlot) {
-        return this.defaultSlot.length;
-      }
-
-      console.warn("Slither Slider: No slides found");
-      return 0;
+      return this.numberOfSlides > 0;
     }
   },
   methods: {
+    refresh: function refresh() {
+      this.setContainerWidth();
+    },
     setOptions: function setOptions() {
       this.finalOptions = Object.assign({}, this.defaultOptions, this.options);
     },
@@ -5598,6 +5593,25 @@ var SliderDots_component = normalizeComponent(
     },
     setContainerWidth: function setContainerWidth() {
       this.containerWidth = this.$el.getBoundingClientRect().width;
+    },
+    addChangeListener: function addChangeListener() {
+      var _this2 = this;
+
+      if (this.defaultSlot) {
+        this.defaultSlot.forEach(function (vnode) {
+          if (vnode.data) {
+            _this2.observer = new MutationObserver(function (mutations) {
+              this.refresh();
+            }.bind(_this2)); // Setup the observer
+
+            _this2.observer.observe(_this2.$el, {
+              attributes: true,
+              childList: true,
+              subtree: true
+            });
+          }
+        });
+      }
     }
   }
 });
@@ -5617,7 +5631,7 @@ var SlitherAppvue_type_style_index_0_lang_scss_ = __webpack_require__("4713");
 
 var SlitherApp_component = normalizeComponent(
   components_SlitherAppvue_type_script_lang_js_,
-  SlitherAppvue_type_template_id_6292eb69_render,
+  SlitherAppvue_type_template_id_4667b3d8_render,
   staticRenderFns,
   false,
   null,
