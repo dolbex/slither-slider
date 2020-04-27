@@ -75,7 +75,13 @@ export default {
 
   computed: {
     numberOfSlides() {
-      return this.slideElements.length;
+      let numberOfSlides = 0;
+      this.slideElements.forEach(slideElement => {
+        if (typeof slideElement.tag !== "undefined") {
+          numberOfSlides += 1;
+        }
+      });
+      return numberOfSlides;
     },
 
     numberOfElementsPerSlide() {
@@ -222,10 +228,12 @@ export default {
       const slideSets = [];
 
       this.slideElements.forEach(slideElement => {
-        const slide = createElement(SlideRenderer, { props: { options: this.options } }, [
-          slideElement
-        ]);
-        renderedSlideElements.push(slide);
+        if (typeof slideElement.tag !== "undefined") {
+          const slide = createElement(SlideRenderer, { props: { options: this.options } }, [
+            slideElement
+          ]);
+          renderedSlideElements.push(slide);
+        }
       });
 
       for (let i = 1; i <= this.numberOfPages; i++) {

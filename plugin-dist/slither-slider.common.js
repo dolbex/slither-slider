@@ -5361,7 +5361,13 @@ var Slides_component = normalizeComponent(
   },
   computed: {
     numberOfSlides: function numberOfSlides() {
-      return this.slideElements.length;
+      var numberOfSlides = 0;
+      this.slideElements.forEach(function (slideElement) {
+        if (typeof slideElement.tag !== "undefined") {
+          numberOfSlides += 1;
+        }
+      });
+      return numberOfSlides;
     },
     numberOfElementsPerSlide: function numberOfElementsPerSlide() {
       var _this2 = this;
@@ -5519,12 +5525,14 @@ var Slides_component = normalizeComponent(
       var renderedSlideElements = [];
       var slideSets = [];
       this.slideElements.forEach(function (slideElement) {
-        var slide = createElement(SlideRenderer, {
-          props: {
-            options: _this6.options
-          }
-        }, [slideElement]);
-        renderedSlideElements.push(slide);
+        if (typeof slideElement.tag !== "undefined") {
+          var slide = createElement(SlideRenderer, {
+            props: {
+              options: _this6.options
+            }
+          }, [slideElement]);
+          renderedSlideElements.push(slide);
+        }
       });
 
       for (var i = 1; i <= this.numberOfPages; i++) {
