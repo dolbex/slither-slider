@@ -32,7 +32,7 @@
     <!-- Next/Prev controls -->
     <slider-controls
       :options="finalOptions"
-      :show-controls="finalOptions.controls && this.hasSlides"
+      :show-controls="finalOptions.controls && this.numberOfSlides > 1"
       @next="next"
       @prev="prev"
       :previous="$slots.previous"
