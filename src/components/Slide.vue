@@ -64,7 +64,7 @@ export default {
         position: "relative",
         height: this.height,
         display: "grid",
-        gridTemplateColumns: `repeat(${this.numberOfElementsPerSlide}, minmax(0, 1fr))`,
+        gridTemplateColumns: this.calculateGrid(),
         gap: this.options.gap + "px"
       };
     }
@@ -75,6 +75,19 @@ export default {
         const fullscreenHeight = window.innerHeight + this.options.fullscreenOffset;
         this.height = fullscreenHeight + "px";
       }
+    },
+
+    calculateGrid() {
+      if (this.options.preserveGrid) {
+        return `repeat(${this.numberOfElementsPerSlide}, minmax(0, 1fr))`;
+      }
+
+      console.log(this.slideSet, this.slideSet.length, this.numberOfElementsPerSlide);
+      if (this.slideSet.length <= this.numberOfElementsPerSlide) {
+        return `repeat(${this.slideSet.length}, minmax(0, 1fr))`;
+      }
+
+      return `repeat(${this.numberOfElementsPerSlide}, minmax(0, 1fr))`;
     }
   }
 };

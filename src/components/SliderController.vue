@@ -244,7 +244,9 @@ export default {
           if (this.options.endless) {
             renderedSlideElements[j].data.style = { marginRight: this.options.gap + "px" };
           }
-          slideSet.push(renderedSlideElements[j]);
+          if (renderedSlideElements[j]) {
+            slideSet.push(renderedSlideElements[j]);
+          }
         }
         slideSets.push(slideSet);
       }

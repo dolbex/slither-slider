@@ -112,7 +112,29 @@
       <div class="headline-1">Slider with multiple items per slide</div>
       <slither-slider :options="{ dots: true, numberOfSlides: 3, slideClass: 'flex-demo-slide' }">
         <div
-          v-for="n in 35"
+          v-for="n in 10"
+          :key="n"
+          class="slider-card"
+          style="margin-right: 30px; padding: 30px;"
+        >
+          <div class="headline-2">Slide {{ n }}</div>
+          <p v-for="(paragraph, key) in getRandomParagraphs(1)" :key="key">{{ paragraph }}</p>
+        </div>
+      </slither-slider>
+
+      <hr />
+
+      <div class="headline-1">Slider with multiple items per slide preserve width</div>
+      <slither-slider
+        :options="{
+          dots: true,
+          numberOfSlides: 3,
+          preserveGrid: true,
+          slideClass: 'flex-demo-slide'
+        }"
+      >
+        <div
+          v-for="n in 10"
           :key="n"
           class="slider-card"
           style="margin-right: 30px; padding: 30px;"

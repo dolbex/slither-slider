@@ -95,7 +95,8 @@ export default {
         extras: 3,
         overflowHiddenPadding: { top: 0, left: 0, right: 0, bottom: 0 },
         touch: true,
-        cuts: "right"
+        cuts: "right",
+        preserveGrid: false
       },
       finalOptions: {}
     };
