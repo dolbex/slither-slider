@@ -82,7 +82,6 @@ export default {
         return `repeat(${this.numberOfElementsPerSlide}, minmax(0, 1fr))`;
       }
 
-      console.log(this.slideSet, this.slideSet.length, this.numberOfElementsPerSlide);
       if (this.slideSet.length <= this.numberOfElementsPerSlide) {
         return `repeat(${this.slideSet.length}, minmax(0, 1fr))`;
       }
