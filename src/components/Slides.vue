@@ -26,8 +26,6 @@ export default {
             })
           : null;
 
-      console.log(slideWrapper);
-
       if (!this.options.endless) {
         const transition = createElement(
           "transition-group",
