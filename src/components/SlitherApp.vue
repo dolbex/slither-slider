@@ -114,7 +114,7 @@ export default {
       this.setContainerWidth();
     });
 
-    this.addChangeListener();
+    // this.addChangeListener();
     this.refresh();
   },
   computed: {
@@ -123,8 +123,12 @@ export default {
     }
   },
   methods: {
+    reload() {
+      this.$refs.sliderController.reload();
+    },
     refresh() {
       this.setContainerWidth();
+      this.$refs.sliderController.buildAndAddSlides();
     },
     setOptions() {
       this.finalOptions = Object.assign({}, this.defaultOptions, this.options);
@@ -156,21 +160,6 @@ export default {
     },
     setContainerWidth() {
       this.containerWidth = this.$el.getBoundingClientRect().width;
-    },
-    addChangeListener() {
-      if (this.defaultSlot) {
-        this.defaultSlot.forEach(vnode => {
-          if (vnode.data) {
-            this.observer = new MutationObserver(
-              function(mutations) {
-                this.refresh();
-              }.bind(this)
-            );
-            // Setup the observer
-            this.observer.observe(this.$el, { attributes: true, childList: true, subtree: true });
-          }
-        });
-      }
     }
   }
 };

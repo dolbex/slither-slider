@@ -3034,8 +3034,8 @@ if (typeof window !== 'undefined') {
 // Indicate to webpack that this file can be concatenated
 /* harmony default export */ var setPublicPath = (null);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"e6424d54-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SlitherApp.vue?vue&type=template&id=1eb40cde&
-var SlitherAppvue_type_template_id_1eb40cde_render = function () {
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"e6424d54-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SlitherApp.vue?vue&type=template&id=d44d3f54&
+var SlitherAppvue_type_template_id_d44d3f54_render = function () {
 var this$1 = this;
 var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.finalOptions.transition)?_c('div',{directives:[{name:"touch",rawName:"v-touch:swipe.left",value:(_vm.leftSwipe),expression:"leftSwipe",arg:"swipe",modifiers:{"left":true}},{name:"touch",rawName:"v-touch:swipe.right",value:(_vm.rightSwipe),expression:"rightSwipe",arg:"swipe",modifiers:{"right":true}}],staticClass:"slither-slider"},[_c('slider-controller',{ref:"sliderController",attrs:{"options":_vm.finalOptions,"container-width":_vm.containerWidth},on:{"newNumberOfPages":function (value) {
         this$1.numberOfPages = value;
@@ -3048,10 +3048,7 @@ var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.final
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/SlitherApp.vue?vue&type=template&id=1eb40cde&
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom.iterable.js
-var web_dom_iterable = __webpack_require__("ac6a");
+// CONCATENATED MODULE: ./src/components/SlitherApp.vue?vue&type=template&id=d44d3f54&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.object.assign.js
 var es6_object_assign = __webpack_require__("f751");
@@ -3082,6 +3079,9 @@ function typeof_typeof(obj) {
 
   return typeof_typeof(obj);
 }
+// EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom.iterable.js
+var web_dom_iterable = __webpack_require__("ac6a");
+
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.number.constructor.js
 var es6_number_constructor = __webpack_require__("c5f6");
 
@@ -4689,6 +4689,7 @@ var component = normalizeComponent(
           randothing: _this.activeIndex === index
         }
       }) : null;
+      console.log(slideWrapper);
 
       if (!_this.options.endless) {
         var transition = createElement("transition-group", {
@@ -5124,6 +5125,10 @@ var Slides_component = normalizeComponent(
         _this3.windowWidth = window.innerWidth;
       });
     },
+    reload: function reload() {
+      this.loaded = false;
+      this.init();
+    },
     buildAndAddSlides: function buildAndAddSlides() {
       var _this4 = this;
 
@@ -5453,7 +5458,6 @@ var SliderDots_component = normalizeComponent(
 /* harmony default export */ var SliderDots = (SliderDots_component.exports);
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SlitherApp.vue?vue&type=script&lang=js&
 
-
 //
 //
 //
@@ -5572,8 +5576,8 @@ var SliderDots_component = normalizeComponent(
     this.$emit("changed", 0);
     window.addEventListener("resize", function () {
       _this.setContainerWidth();
-    });
-    this.addChangeListener();
+    }); // this.addChangeListener();
+
     this.refresh();
   },
   computed: {
@@ -5582,8 +5586,12 @@ var SliderDots_component = normalizeComponent(
     }
   },
   methods: {
+    reload: function reload() {
+      this.$refs.sliderController.reload();
+    },
     refresh: function refresh() {
       this.setContainerWidth();
+      this.$refs.sliderController.buildAndAddSlides();
     },
     setOptions: function setOptions() {
       this.finalOptions = Object.assign({}, this.defaultOptions, this.options);
@@ -5615,25 +5623,6 @@ var SliderDots_component = normalizeComponent(
     },
     setContainerWidth: function setContainerWidth() {
       this.containerWidth = this.$el.getBoundingClientRect().width;
-    },
-    addChangeListener: function addChangeListener() {
-      var _this2 = this;
-
-      if (this.defaultSlot) {
-        this.defaultSlot.forEach(function (vnode) {
-          if (vnode.data) {
-            _this2.observer = new MutationObserver(function (mutations) {
-              this.refresh();
-            }.bind(_this2)); // Setup the observer
-
-            _this2.observer.observe(_this2.$el, {
-              attributes: true,
-              childList: true,
-              subtree: true
-            });
-          }
-        });
-      }
     }
   }
 });
@@ -5653,7 +5642,7 @@ var SlitherAppvue_type_style_index_0_lang_scss_ = __webpack_require__("4713");
 
 var SlitherApp_component = normalizeComponent(
   components_SlitherAppvue_type_script_lang_js_,
-  SlitherAppvue_type_template_id_1eb40cde_render,
+  SlitherAppvue_type_template_id_d44d3f54_render,
   staticRenderFns,
   false,
   null,

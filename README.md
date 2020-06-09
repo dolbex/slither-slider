@@ -124,6 +124,26 @@ There is one thing to keep in mind when passing components a any part of your sl
 | ------- | ------------------- | ------------------------------------------------------ |
 | changed | current slide index | Whenever the active index changes the event is emitted |
 
+### Methods
+
+| Method | Parameters | Description                                                                         |
+| ------ | ---------- | ----------------------------------------------------------------------------------- |
+| reload | None       | Reloads and rebuilds the slider. Usefull when you have a slider with dynamic slides |
+
+#### Basic example:
+
+```html
+<slither-slider ref="slider">
+  ...
+</slither-slider>
+```
+
+```javascript
+this.$refs.slider.reload();
+```
+
+See the DynamicSlides component for a real world exampleß
+
 ### Styles
 
 Styles are fairly minimal out of the box so here are some that you may want to use to get started that represent what you're probably used to seeing and then you can modify from there.

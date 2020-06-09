@@ -183,6 +183,12 @@ export default {
         this.windowWidth = window.innerWidth;
       });
     },
+
+    reload() {
+      this.loaded = false;
+      this.init();
+    },
+
     buildAndAddSlides() {
       this.slideElements = [];
       if (this.$slots && this.$slots.default) {
