@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="demo">
     <div>
-      <!-- <div class="headline-1">Basic slider</div>
+      <div class="headline-1">Basic slider</div>
       <slither-slider>
         <div class="slider-card">
           <div class="headline-2">Slide 1</div>
@@ -166,13 +166,13 @@
         </div>
       </slither-slider>
 
-      <hr /> -->
+      <hr />
 
       <div class="headline-1">Slider with Dynamic Slides</div>
       <dynamic-slides></dynamic-slides>
       <hr />
 
-      <!-- <div class="headline-1">Variable Width Endless Slider</div>
+      <div class="headline-1">Variable Width Endless Slider</div>
       <slither-slider :options="{ dots: true, endless: true, gap: 20 }">
         <div
           v-for="n in 4"
@@ -589,7 +589,7 @@
         </div>
       </slither-slider>
 
-      <hr /> -->
+      <hr />
     </div>
   </div>
 </template>
