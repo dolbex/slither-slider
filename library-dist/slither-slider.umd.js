@@ -4698,7 +4698,6 @@ var component = normalizeComponent(
           randothing: _this.activeIndex === index
         }
       }) : null;
-      console.log(slideWrapper);
 
       if (!_this.options.endless) {
         var transition = createElement("transition-group", {
