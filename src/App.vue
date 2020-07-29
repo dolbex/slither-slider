@@ -173,50 +173,54 @@
       <hr />
 
       <div class="headline-1">Variable Width Endless Slider</div>
-      <slither-slider :options="{ dots: true, endless: true, gap: 20 }">
-        <div
-          v-for="n in 4"
-          :key="n"
-          :style="{
-            backgroundColor: '#434190',
-            color: '#fff',
-            width: randomWidth(n),
-            height: '200px',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            fontSize: '6rem',
-            fontWeight: 'bold',
-            borderRadius: '0.25rem'
-          }"
-        >
-          {{ n }}
-        </div>
-      </slither-slider>
+      <div style="width:60%; background-color:pink; border-radius:20px;">
+        <slither-slider :options="{ dots: true, endless: true, gap: 20 }">
+          <div
+            v-for="n in 4"
+            :key="n"
+            :style="{
+              backgroundColor: '#434190',
+              color: '#fff',
+              width: randomWidth(n),
+              height: '200px',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              fontSize: '6rem',
+              fontWeight: 'bold',
+              borderRadius: '0.25rem'
+            }"
+          >
+            {{ n }}
+          </div>
+        </slither-slider>
+      </div>
 
       <hr />
 
       <div class="headline-1">Endless Slider (opposite side cut-off)</div>
-      <slither-slider :options="{ dots: true, endless: true, gap: 20, cuts: 'left' }">
-        <div
-          v-for="n in 4"
-          :key="n"
-          :style="{
-            backgroundColor: '#434190',
-            color: '#fff',
-            width: randomWidth(n),
-            height: '200px',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            fontSize: '6rem',
-            fontWeight: 'bold',
-            borderRadius: '0.25rem'
-          }"
-        >
-          {{ n }}
-        </div>
-      </slither-slider>
+      <div style="width:60%; background-color:pink; border-radius:20px;">
+        <slither-slider :options="{ dots: true, endless: true, gap: 20, cuts: 'left' }">
+          <div
+            v-for="n in 4"
+            :key="n"
+            :style="{
+              backgroundColor: '#434190',
+              color: '#fff',
+              width: randomWidth(n),
+              height: '200px',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              fontSize: '6rem',
+              fontWeight: 'bold',
+              borderRadius: '0.25rem'
+            }"
+          >
+            {{ n }}
+          </div>
+        </slither-slider>
+      </div>
 
       <hr />
 

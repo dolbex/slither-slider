@@ -180,13 +180,17 @@ export default {
       });
 
       window.addEventListener("resize", () => {
-        this.windowWidth = window.innerWidth;
+        this.resize();
       });
     },
 
     reload() {
       this.loaded = false;
       this.init();
+    },
+
+    resize() {
+      this.windowWidth = window.innerWidth;
     },
 
     buildAndAddSlides() {
@@ -248,7 +252,11 @@ export default {
         const startOfSet = (i - 1) * this.numberOfElementsPerSlide;
         for (let j = startOfSet; j < this.numberOfElementsPerSlide + startOfSet; j++) {
           if (this.options.endless) {
-            renderedSlideElements[j].data.style = { marginRight: this.options.gap + "px" };
+            if (this.options.cuts === "right") {
+              renderedSlideElements[j].data.style = { marginRight: this.options.gap + "px" };
+            } else {
+              renderedSlideElements[j].data.style = { marginLeft: this.options.gap + "px" };
+            }
           }
           if (renderedSlideElements[j]) {
             slideSet.push(renderedSlideElements[j]);
