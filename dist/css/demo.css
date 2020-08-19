@@ -70,3 +70,15 @@ hr {
 .flex-demo-slide > div {
   padding: 0 10px;
 }
+
+.button {
+  border-radius: 3px;
+  background: linear-gradient(
+    317deg,
+    rgba(42, 192, 224, 1) 0%,
+    rgba(33, 215, 122, 1) 100%
+  );
+  border: 0px;
+  padding: 12px 20px;
+  color: white;
+}

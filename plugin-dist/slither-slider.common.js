@@ -5433,12 +5433,20 @@ var Slides_component = normalizeComponent(
     barndoorStyles: function barndoorStyles() {
       var styles = {
         position: "relative",
-        overflow: "hidden",
         paddingTop: this.options.overflowHiddenPadding.top + "px",
         paddingRight: this.options.overflowHiddenPadding.right + "px",
         paddingBottom: this.options.overflowHiddenPadding.bottom + "px",
-        paddingLeft: this.options.overflowHiddenPadding.left + "px"
+        paddingLeft: this.options.overflowHiddenPadding.left + "px",
+        maxWidth: "100%",
+        height: "auto"
       };
+
+      if (this.animating) {
+        styles["overflow"] = "hidden";
+      } else if (this.options.endless) {
+        styles["overflowX"] = "hidden";
+      }
+
       return styles;
     },
     sliderStyles: function sliderStyles() {

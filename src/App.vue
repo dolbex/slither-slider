@@ -6,6 +6,17 @@
         <div class="slider-card">
           <div class="headline-2">Slide 1</div>
           <p v-for="(paragraph, key) in getRandomParagraphs(1)" :key="key">{{ paragraph }}</p>
+          <!-- <button @click="showoverflow = !showoverflow" class="button">
+            Show Overflow
+          </button>
+
+          <div style="position:relative;">
+            <div
+              style="position: absolute; right:0; border:3px solid red; width:200px; height:500px; border-radius:1em; padding:12px 16px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);"
+            >
+              asdfasdf
+            </div>
+          </div> -->
         </div>
         <div>
           <div class="slider-card">
@@ -628,7 +639,8 @@ export default {
         `Sed lectus est, lobortis quis congue eu, iaculis non leo. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse sit amet rhoncus justo, ut ullamcorper velit. Ut non ligula et erat gravida suscipit quis sit amet nunc. Nunc sagittis massa at dui sagittis feugiat. Proin posuere tortor pretium ipsum consectetur mollis. Quisque imperdiet porttitor scelerisque. Nullam quis pulvinar tellus, ac fringilla dolor. Donec euismod nisi risus, lacinia consequat quam condimentum in.`,
         `Ut lacinia ullamcorper faucibus. Etiam euismod pretium dui, sit amet lacinia ante lacinia vitae. Donec nibh metus, vestibulum sed iaculis at, finibus sed orci. Donec ac sem et purus ultrices sagittis. Nulla rutrum felis id feugiat blandit. Sed ac lectus maximus, posuere diam sed, elementum enim. Proin feugiat dui at fringilla euismod. Donec ullamcorper massa et placerat pharetra. Curabitur hendrerit est ultrices odio sodales mattis. Pellentesque consequat mi eu nulla porttitor consequat. Etiam posuere, purus eget rhoncus rhoncus, lorem felis venenatis mauris, a vehicula nulla velit sed nulla. In hac habitasse platea dictumst. Etiam eu consequat odio. In fringilla semper sapien molestie scelerisque. Morbi convallis, elit a pellentesque cursus, neque metus porta quam, vitae malesuada dui mi sit amet risus.`
       ],
-      dynamicSlides: 0
+      dynamicSlides: 0,
+      showoverflow: false // example on slide 1 where it breaks the plane of the barndoor
     };
   },
   methods: {
