@@ -1,45 +1,35 @@
 {
   "name": "slither-slider",
-  "description": "Simple Vue JS slider for Vue JS that pretty much takes what you throw at it. Features 'fullscreen', lazy loading, and easy customization",
-  "keywords": [
-    "vue",
-    "vuejs",
-    "slider",
-    "lazy",
-    "slither"
-  ],
-  "license": "MIT",
   "version": "2.5.3",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/dolbex/slither-slider"
-  },
   "private": false,
-  "main": "./plugin-dist/slither-slider.umd.min.js",
+  "description": "Simple Vue JS slider for Vue JS that pretty much takes what you throw at it. Features 'fullscreen', lazy loading, and easy customization",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
+    "build-all": "npm run build-lib:library && npm run build-lib:plugin && vue-cli-service build",
     "build-lib": "npm run build-lib:library && npm run build-lib:plugin",
     "build-lib:library": "vue-cli-service build --environment production --target lib --name slither-slider src/library-entry.js --dest library-dist/",
     "build-lib:plugin": "vue-cli-service build --environment production --target lib --name slither-slider src/library-plugin.js --dest plugin-dist/",
-    "build-all": "npm run build-lib:library && npm run build-lib:plugin && vue-cli-service build",
-    "publish-docs": "git subtree push --prefix dist origin gh-pages",
-    "test:unit": "vue-cli-service test:unit"
+    "publish-docs": "git subtree push --prefix dist origin gh-pages"
   },
+  "main": "./plugin-dist/slither-slider.umd.min.js",
   "dependencies": {
     "animejs": "^3.1.0",
+    "core-js": "^3.6.5",
     "vue2-touch-events": "^2.2.1"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.11.0",
-    "@vue/cli-plugin-eslint": "^3.11.0",
-    "@vue/cli-service": "^3.11.0",
-    "@vue/eslint-config-airbnb": "^4.0.0",
-    "babel-eslint": "^10.0.1",
+    "@vue/cli-plugin-babel": "~4.5.8",
+    "@vue/cli-plugin-eslint": "~4.5.8",
+    "@vue/cli-service": "~4.5.8",
+    "@vue/eslint-config-airbnb": "^5.0.2",
+    "babel-eslint": "^10.1.0",
     "core-js": "^2.6.5",
-    "eslint": "^5.16.0",
-    "eslint-plugin-vue": "^5.0.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-vue": "^6.2.2",
     "sass": "^1.18.0",
     "sass-loader": "^7.1.0",
     "vue": "^2.6.10",
@@ -68,5 +58,17 @@
   "browserslist": [
     "> 1%",
     "last 2 versions"
-  ]
+  ],
+  "keywords": [
+    "vue",
+    "vuejs",
+    "slider",
+    "lazy",
+    "slither"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dolbex/slither-slider"
+  }
 }
