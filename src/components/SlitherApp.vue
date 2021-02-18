@@ -91,6 +91,7 @@ export default {
         controlsWrapperClass: null,
         endless: false,
         gap: 30,
+        adaptiveHeight: false,
         loop: true,
         extras: 3,
         overflowHiddenPadding: { top: 0, left: 0, right: 0, bottom: 0 },

@@ -62,6 +62,7 @@
           secondsOnSlide: 5,
           controls: false,
           dots: false,
+          animationDuration: '500',
           overflowHiddenPadding: { top: 0, left: 20, right: 20, bottom: 20 }
         }"
       >
@@ -85,7 +86,7 @@
         <div
           style="
             background-color: #e2e8f0;
-            height: 500px;
+            height: 700px;
             display: flex;
             overflow: hidden;
             border-radius: 8px;
@@ -115,6 +116,97 @@
             <div class="headline-2">Slide 3</div>
             <p v-for="(paragraph, key) in getRandomParagraphs(1)" :key="key">{{ paragraph }}</p>
           </div>
+        </div>
+      </slither-slider>
+
+      <hr />
+
+      <div class="headline-1">Autoplay Slider with adaptive height</div>
+      <slither-slider
+        :options="{
+          autoplay: true,
+          secondsOnSlide: 5,
+          controls: false,
+          dots: false,
+          adaptiveHeight: true,
+          animationDuration: '500',
+          overflowHiddenPadding: { top: 0, left: 20, right: 20, bottom: 20 }
+        }"
+      >
+        <div
+          style="
+            background-color: #e2e8f0;
+            height: 500px;
+            display: flex;
+            overflow: hidden;
+            border-radius: 8px;
+          "
+        >
+          <div>
+            <img src="https://picsum.photos/id/450/300/600" />
+          </div>
+          <div style="padding: 30px;">
+            <div class="headline-2">Slide 1</div>
+            <p v-for="(paragraph, key) in getRandomParagraphs(1)" :key="key">{{ paragraph }}</p>
+          </div>
+        </div>
+        <div
+          style="
+            background-color: #e2e8f0;
+            height: 700px;
+            display: flex;
+            overflow: hidden;
+            border-radius: 8px;
+          "
+        >
+          <div>
+            <img src="https://picsum.photos/id/449/300/600" />
+          </div>
+          <div style="padding: 30px;">
+            <div class="headline-2">Slide 2</div>
+            <p v-for="(paragraph, key) in getRandomParagraphs(1)" :key="key">{{ paragraph }}</p>
+          </div>
+        </div>
+        <div
+          style="
+            background-color: #e2e8f0;
+            height: 500px;
+            display: flex;
+            overflow: hidden;
+            border-radius: 8px;
+          "
+        >
+          <div>
+            <img src="https://picsum.photos/id/448/300/600" />
+          </div>
+          <div style="padding: 30px;">
+            <div class="headline-2">Slide 3</div>
+            <p v-for="(paragraph, key) in getRandomParagraphs(1)" :key="key">{{ paragraph }}</p>
+          </div>
+        </div>
+      </slither-slider>
+
+      <hr />
+
+      <div class="headline-1">Fade Transition with Adaptive Height</div>
+      <slither-slider
+        :options="{
+          adaptiveHeight: true,
+          transition: 'fade',
+          overflowHiddenPadding: { top: 0, left: 20, right: 20, bottom: 20 }
+        }"
+      >
+        <div class="slider-card" style="background-color: pink;">
+          <div class="headline-2">Slide 1</div>
+          <p v-for="(paragraph, key) in getRandomParagraphs(2)" :key="key">{{ paragraph }}</p>
+        </div>
+        <div class="slider-card">
+          <div class="headline-2">Slide 2</div>
+          <p v-for="(paragraph, key) in getRandomParagraphs(5)" :key="key">{{ paragraph }}</p>
+        </div>
+        <div class="slider-card">
+          <div class="headline-2">Slide 3</div>
+          <p v-for="(paragraph, key) in getRandomParagraphs(2)" :key="key">{{ paragraph }}</p>
         </div>
       </slither-slider>
 
@@ -643,6 +735,7 @@ export default {
       showoverflow: false // example on slide 1 where it breaks the plane of the barndoor
     };
   },
+
   methods: {
     randomWidth(index) {
       const widths = [200, 300, 400, 500];

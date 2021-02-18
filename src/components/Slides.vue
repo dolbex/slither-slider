@@ -44,7 +44,11 @@ export default {
       }
     });
 
-    return createElement("div", { style: { transition: "height 300ms" } }, slides);
+    return createElement(
+      "div",
+      { style: { overflow: "hidden", height: this.height, transition: "height 300ms" } },
+      slides
+    );
   },
   components: {
     Slide
@@ -125,6 +129,7 @@ export default {
       return totalWidth;
     }
   },
+
   methods: {
     animateIn(el, done) {
       if (this.options.transition === "fade") {
@@ -143,12 +148,16 @@ export default {
         (elPosition.bottom = childrenPos.bottom - parentPos.bottom),
         (elPosition.left = childrenPos.left - parentPos.left);
 
+      if (this.activeIndex === 1) {
+        this.height = this.$el.offsetHeight + "px";
+      }
+
       anime.set(el, {
         position: "absolute",
         top: elPosition.y + "px",
         left: elPosition.x + "px",
-        width: elPosition.width + "px",
-        height: elPosition.height + "px"
+        width: parentPos.width + "px",
+        height: parentPos.height + "px"
       });
 
       if (this.options.transition === "fade") {
@@ -171,6 +180,10 @@ export default {
         easing: this.options.animationEasing,
         complete: () => {
           this.$emit("animating", false);
+
+          if (this.options.adaptiveHeight) {
+            this.height = this.$refs.slide.$el.offsetHeight + "px";
+          }
           done();
         }
       });
@@ -191,7 +204,7 @@ export default {
       this.$emit("animating", true);
       anime.set(el, { translateX: startingTransform, opacity: startingOpacity });
 
-      const animation = anime({
+      anime({
         targets: el,
         translateX: destinationTransform,
         opacity: destinationOpacity,
@@ -199,6 +212,18 @@ export default {
         easing: this.options.animationEasing,
         complete: () => {
           this.$emit("animating", false);
+
+          if (this.options.adaptiveHeight) {
+            this.height = this.$refs.slide.$el.offsetHeight + "px";
+          }
+
+          // if (this.options.adaptiveHeight) {
+          //   this.$nextTick(() => {
+          //     console.log(this.$el.offsetHeight)
+          //     this.height = this.$el.offsetHeight + 'px'
+          //   })
+          // }
+
           done();
         }
       });

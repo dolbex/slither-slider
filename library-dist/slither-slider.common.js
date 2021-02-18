@@ -3147,8 +3147,8 @@ if (typeof window !== 'undefined') {
 // Indicate to webpack that this file can be concatenated
 /* harmony default export */ var setPublicPath = (null);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6270d219-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SlitherApp.vue?vue&type=template&id=d44d3f54&
-var SlitherAppvue_type_template_id_d44d3f54_render = function () {
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6270d219-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SlitherApp.vue?vue&type=template&id=758d00c0&
+var SlitherAppvue_type_template_id_758d00c0_render = function () {
 var this$1 = this;
 var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.finalOptions.transition)?_c('div',{directives:[{name:"touch",rawName:"v-touch:swipe.left",value:(_vm.leftSwipe),expression:"leftSwipe",arg:"swipe",modifiers:{"left":true}},{name:"touch",rawName:"v-touch:swipe.right",value:(_vm.rightSwipe),expression:"rightSwipe",arg:"swipe",modifiers:{"right":true}}],staticClass:"slither-slider"},[_c('slider-controller',{ref:"sliderController",attrs:{"options":_vm.finalOptions,"container-width":_vm.containerWidth},on:{"newNumberOfPages":function (value) {
         this$1.numberOfPages = value;
@@ -3161,7 +3161,7 @@ var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.final
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/SlitherApp.vue?vue&type=template&id=d44d3f54&
+// CONCATENATED MODULE: ./src/components/SlitherApp.vue?vue&type=template&id=758d00c0&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.assign.js
 var es_object_assign = __webpack_require__("cca6");
@@ -4850,6 +4850,8 @@ var component = normalizeComponent(
     });
     return createElement("div", {
       style: {
+        overflow: "hidden",
+        height: this.height,
         transition: "height 300ms"
       }
     }, slides);
@@ -4949,12 +4951,17 @@ var component = normalizeComponent(
           childrenPos = el.getBoundingClientRect(),
           elPosition = {};
       elPosition.top = childrenPos.top - parentPos.top, elPosition.right = childrenPos.right - parentPos.right, elPosition.bottom = childrenPos.bottom - parentPos.bottom, elPosition.left = childrenPos.left - parentPos.left;
+
+      if (this.activeIndex === 1) {
+        this.height = this.$el.offsetHeight + "px";
+      }
+
       anime_es.set(el, {
         position: "absolute",
         top: elPosition.y + "px",
         left: elPosition.x + "px",
-        width: elPosition.width + "px",
-        height: elPosition.height + "px"
+        width: parentPos.width + "px",
+        height: parentPos.height + "px"
       });
 
       if (this.options.transition === "fade") {
@@ -4979,6 +4986,10 @@ var component = normalizeComponent(
         complete: function complete() {
           _this2.$emit("animating", false);
 
+          if (_this2.options.adaptiveHeight) {
+            _this2.height = _this2.$refs.slide.$el.offsetHeight + "px";
+          }
+
           done();
         }
       });
@@ -5001,7 +5012,7 @@ var component = normalizeComponent(
         translateX: startingTransform,
         opacity: startingOpacity
       });
-      var animation = anime_es({
+      anime_es({
         targets: el,
         translateX: destinationTransform,
         opacity: destinationOpacity,
@@ -5009,6 +5020,16 @@ var component = normalizeComponent(
         easing: this.options.animationEasing,
         complete: function complete() {
           _this3.$emit("animating", false);
+
+          if (_this3.options.adaptiveHeight) {
+            _this3.height = _this3.$refs.slide.$el.offsetHeight + "px";
+          } // if (this.options.adaptiveHeight) {
+          //   this.$nextTick(() => {
+          //     console.log(this.$el.offsetHeight)
+          //     this.height = this.$el.offsetHeight + 'px'
+          //   })
+          // }
+
 
           done();
         }
@@ -5710,6 +5731,7 @@ var SliderDots_component = normalizeComponent(
         controlsWrapperClass: null,
         endless: false,
         gap: 30,
+        adaptiveHeight: false,
         loop: true,
         extras: 3,
         overflowHiddenPadding: {
@@ -5801,7 +5823,7 @@ var SlitherAppvue_type_style_index_0_lang_scss_ = __webpack_require__("4713");
 
 var SlitherApp_component = normalizeComponent(
   components_SlitherAppvue_type_script_lang_js_,
-  SlitherAppvue_type_template_id_d44d3f54_render,
+  SlitherAppvue_type_template_id_758d00c0_render,
   staticRenderFns,
   false,
   null,

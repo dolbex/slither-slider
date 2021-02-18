@@ -20,14 +20,14 @@ hr {
 }
 
 .headline-1 {
-  font-size: 3rem;
+  font-size: 2rem;
   margin-bottom: 0.75em;
   line-height: 1.1em;
 }
 
 @media (min-width: 640px) {
   .headline-1 {
-    font-size: 5rem;
+    font-size: 2rem;
     margin-bottom: 0.75em;
     line-height: 0.9em;
   }
