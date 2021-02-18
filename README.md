@@ -70,32 +70,35 @@ There is one thing to keep in mind when passing components a any part of your sl
 {
   autoplay: false,
   transition: "slide",
-  animationDuration: 500,
-  animationEasing: "easeOutQuint",
-  slidePosition: "center",
-  controls: true,
   dots: true,
   animatedDots: false,
   dotLimit: false,
   fullscreen: false,
   fullscreenOffset: null,
+  controls: true,
   numberOfSlides: 1,
+  controlsWrapperClass: null,
+  animationDuration: 500,
+  animationEasing: "easeOutQuint",
+  slidePosition: "center",
   slideClass: null,
   sliderClass: null,
-  controlsWrapperClass: null,
-  overflowHiddenPadding: { top: 0, left: 0, right: 0, bottom: 0 },
-  touch: true,
+  secondsOnSlide: 4,
   endless: false,
   cuts: "right",
   gap: 30,
+  adaptiveHeight: false,
   loop: true,
   extras: 3,
+  overflowHiddenPadding: { top: 0, left: 0, right: 0, bottom: 0 },
+  touch: true,
   preserveGrid: false
 }
 ```
 
 | Option                | Default                            | Effect                                                                                                                                                                                                  |
 | --------------------- | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| autoplay              | false                              | You know what this does.                                                                                                                                                                                |
 | transition            | 'slide'                            | Transition can be set to 'fade' or 'slide' **(currently only slide working)**                                                                                                                           |
 | dots                  | true                               | Show dots at the bottom                                                                                                                                                                                 |
 | animatedDots          | false                              | Makes the dots scale up as they approach the slide it represents                                                                                                                                        |
@@ -107,12 +110,12 @@ There is one thing to keep in mind when passing components a any part of your sl
 | controlsWrapperClass  | null (String)                      | Adds these classes to the wrapper around the controls                                                                                                                                                   |
 | animationDuration     | 500                                | How long the animation takes                                                                                                                                                                            |
 | animationEasing       | "easeOutQuint"                     | The easing of the animation - options can be found at anime.js documentation page [here](https://animejs.com/documentation/#pennerFunctions)                                                            |
-| autoplay              | false                              | You know what this does.                                                                                                                                                                                |
+| slidePosition         | "center"                           | "center", "left", and "right" are your options.                                                                                                                                                         |
 | secondsOnSlide        | 4                                  | This is the number of seconds slither will pause on a slide before moving foward (autoplay must be set to true)                                                                                         |
 | endless               | false                              | Display all the slides next to each other regardless of their width                                                                                                                                     |
 | cuts                  | "right"                            | ("endless" must be true) Cuts off the slides on the right side by default. In a case where you want the cut-off of slides to show on the left set this value to "left"                                  |
 | gap                   | 10                                 | ("endless" parameter must be true) The gap between each of the slides in an endless presentation                                                                                                        |
-| adaptiveHeight                   | false                                 | If set to true the slider will increase and decrease height based on the slide's height. False will base a fixed height on the first slide's height presentation                                                                                                        |
+| adaptiveHeight        | false                              | If set to true the slider will increase and decrease height based on the slide's height. False will base a fixed height on the first slide's height presentation                                        |
 | loop                  | true                               | ("endless" parameter must be true) This gives the illusion that an endless slider appears as if it goes forever. If set to false the slider will appear to "rewind" to the beginning.                   |
 | extras                | 3                                  | ("endless" and "loop" parameters must be true) This adjusts the number of slides slither appends to the end to give the illusion of infinite                                                            |
 | overflowHiddenPadding | {top:0, left:0, right:0, bottom:0} | If you have a dropshadow or something absolutely positioned relative that "hangs over" the spacing of your slide contents you may need to apply some padding.                                           |
