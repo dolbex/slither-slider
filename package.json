@@ -17,7 +17,6 @@
   "main": "./plugin-dist/slither-slider.umd.min.js",
   "dependencies": {
     "animejs": "^3.1.0",
-    "core-js": "^3.6.5",
     "vue2-touch-events": "^3.2.0"
   },
   "devDependencies": {
@@ -31,9 +30,10 @@
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-vue": "^7.6.0",
     "sass": "^1.18.0",
-    "sass-loader": "^11.0.1",
+    "sass-loader": "^10.1.1",
     "vue": "^2.6.10",
     "vue-template-compiler": "^2.6.10",
+    "webpack": "^5.23.0",
     "websocket-extensions": "^0.1.4"
   },
   "eslintConfig": {
