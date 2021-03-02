@@ -154,8 +154,8 @@ export default {
 
       anime.set(el, {
         position: "absolute",
-        top: elPosition.y + "px",
-        left: elPosition.x + "px",
+        top: elPosition.top + "px",
+        left: elPosition.left + "px",
         width: parentPos.width + "px",
         height: parentPos.height + "px"
       });
@@ -190,11 +190,11 @@ export default {
     },
 
     slideAnimation(el, done, inOut, direction) {
-      const startingOpacity = inOut === "in" ? 0 : 1;
-      const destinationOpacity = inOut === "in" ? 1 : 0;
+      const startingOpacity = inOut === "in" ? 1 : 1;
+      const destinationOpacity = inOut === "in" ? 1 : 1;
 
       let startingTransform = inOut === "in" ? "-100%" : 0;
-      let destinationTransform = inOut === "in" ? 0 : "100%";
+      let destinationTransform = inOut === "in" ? 0 : 100;
 
       if (direction === "left") {
         startingTransform = inOut === "in" ? "100%" : 0;

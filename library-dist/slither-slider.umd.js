@@ -4980,8 +4980,8 @@ var component = normalizeComponent(
 
       anime_es.set(el, {
         position: "absolute",
-        top: elPosition.y + "px",
-        left: elPosition.x + "px",
+        top: elPosition.top + "px",
+        left: elPosition.left + "px",
         width: parentPos.width + "px",
         height: parentPos.height + "px"
       });
@@ -5019,10 +5019,10 @@ var component = normalizeComponent(
     slideAnimation: function slideAnimation(el, done, inOut, direction) {
       var _this3 = this;
 
-      var startingOpacity = inOut === "in" ? 0 : 1;
-      var destinationOpacity = inOut === "in" ? 1 : 0;
+      var startingOpacity = inOut === "in" ? 1 : 1;
+      var destinationOpacity = inOut === "in" ? 1 : 1;
       var startingTransform = inOut === "in" ? "-100%" : 0;
-      var destinationTransform = inOut === "in" ? 0 : "100%";
+      var destinationTransform = inOut === "in" ? 0 : 100;
 
       if (direction === "left") {
         startingTransform = inOut === "in" ? "100%" : 0;
