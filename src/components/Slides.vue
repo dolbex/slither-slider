@@ -256,11 +256,14 @@ export default {
           complete: () => {
             if (this.options.loop) {
               if (index + 1 > this.numberOfSlides) {
-                this.$emit("resetToStart");
                 anime.set(this.$el, { translateX: 0 });
+                this.animating = false;
+                this.$emit("animating", false);
+                this.$emit("resetToStart");
+              } else {
+                this.animating = false;
+                this.$emit("animating", false);
               }
-              this.animating = false;
-              this.$emit("animating", false);
             } else {
               this.animating = false;
               this.$emit("animating", false);

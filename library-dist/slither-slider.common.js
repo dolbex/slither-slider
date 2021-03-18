@@ -5131,16 +5131,19 @@ var component = normalizeComponent(
           complete: function complete() {
             if (_this4.options.loop) {
               if (index + 1 > _this4.numberOfSlides) {
-                _this4.$emit("resetToStart");
-
                 anime_es.set(_this4.$el, {
                   translateX: 0
                 });
+                _this4.animating = false;
+
+                _this4.$emit("animating", false);
+
+                _this4.$emit("resetToStart");
+              } else {
+                _this4.animating = false;
+
+                _this4.$emit("animating", false);
               }
-
-              _this4.animating = false;
-
-              _this4.$emit("animating", false);
             } else {
               _this4.animating = false;
 
