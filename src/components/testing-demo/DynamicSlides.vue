@@ -55,29 +55,29 @@ export default {
         ],
         "#414A4F": [
           {
-            title: "Slide 4",
+            title: "Slide 1",
             description: this.getRandomParagraph()
           },
           {
-            title: "Slide 5",
+            title: "Slide 2",
             description: this.getRandomParagraph()
           },
           {
-            title: "Slide 6",
+            title: "Slide 3",
             description: this.getRandomParagraph()
           }
         ],
         "#FB9334": [
           {
-            title: "Slide 4",
+            title: "Slide 1",
             description: this.getRandomParagraph()
           },
           {
-            title: "Slide 5",
+            title: "Slide 2",
             description: this.getRandomParagraph()
           },
           {
-            title: "Slide 6",
+            title: "Slide 3",
             description: this.getRandomParagraph()
           }
         ]
@@ -94,9 +94,6 @@ export default {
   methods: {
     changeColor(color) {
       this.color = color;
-      this.$nextTick(() => {
-        this.$refs.slider.reload();
-      });
     },
 
     getRandomParagraph() {

@@ -1,5 +1,4 @@
 <script>
-import SlideRenderer from "./SlideRenderer";
 import Slides from "./Slides";
 
 export default {
@@ -46,9 +45,6 @@ export default {
     }
     return "";
   },
-  components: {
-    SlideRenderer
-  },
   props: {
     options: {
       type: Object,
@@ -77,7 +73,7 @@ export default {
     numberOfSlides() {
       let numberOfSlides = 0;
       this.slideElements.forEach(slideElement => {
-        if (typeof slideElement.tag !== "undefined") {
+        if (typeof slideElement !== "undefined" && typeof slideElement.tag !== "undefined") {
           numberOfSlides += 1;
         }
       });
@@ -209,7 +205,9 @@ export default {
       }
     },
     setIndex(index) {
-      this.activeIndex = index;
+      if (!this.animating) {
+        this.activeIndex = index;
+      }
     },
     goToIndex(index, buttonClicked) {
       // Find out the direction we're moving.
@@ -221,7 +219,7 @@ export default {
         this.slideDirection = this.activeIndex < index ? "left" : "right";
       }
 
-      this.activeIndex = index;
+      this.setIndex(index);
     },
     next() {
       if (!this.animating || this.options.endless) this.goToIndex(this.nextIndex, "next");
@@ -231,6 +229,12 @@ export default {
     },
     startAutoplay() {
       if (this.options.autoplay) {
+        this.resetAutoPlayInterval();
+      }
+    },
+    resetAutoPlayInterval() {
+      if (this.options.autoplay) {
+        clearInterval(this.autoplayInterval);
         const interval = this.options.secondsOnSlide ? this.options.secondsOnSlide * 1000 : 4000;
         this.autoplayInterval = setInterval(() => {
           this.next();
@@ -240,16 +244,39 @@ export default {
     pauseInterval() {
       clearInterval(this.autoplayInterval);
     },
+    deepClone(vnodes, createElement) {
+      function cloneVNode(vnode) {
+        let cloned = createElement(vnode.tag, vnode.data);
+        if (vnode.children) {
+          const clonedChildren = vnode.children && vnode.children.map(vnode => cloneVNode(vnode));
+          cloned = createElement(vnode.tag, vnode.data, clonedChildren);
+        }
+
+        cloned.text = vnode.text;
+        cloned.isComment = vnode.isComment;
+        cloned.componentInstance = vnode.componentInstance;
+        cloned.componentOptions = vnode.componentOptions;
+        cloned.elm = vnode.elm;
+        cloned.context = vnode.context;
+        cloned.ns = vnode.ns;
+        cloned.isStatic = vnode.isStatic;
+        cloned.key = Math.random() * (10000 - 100) + 100;
+        return cloned;
+      }
+      if (vnodes) {
+        const clonedVNodes = cloneVNode(vnodes);
+        return clonedVNodes;
+      }
+      return null;
+    },
+
     buildSlideSets(createElement) {
       const renderedSlideElements = [];
       const slideSets = [];
 
       this.slideElements.forEach(slideElement => {
-        if (typeof slideElement.tag !== "undefined") {
-          const slide = createElement(SlideRenderer, { props: { options: this.options } }, [
-            slideElement
-          ]);
-          renderedSlideElements.push(slide);
+        if (typeof slideElement !== "undefined" && typeof slideElement.tag !== "undefined") {
+          renderedSlideElements.push(slideElement);
         }
       });
 
@@ -260,9 +287,15 @@ export default {
         for (let j = startOfSet; j < this.numberOfElementsPerSlide + startOfSet; j++) {
           if (this.options.endless) {
             if (this.options.cuts === "right") {
-              renderedSlideElements[j].data.style = { marginRight: this.options.gap + "px" };
+              renderedSlideElements[j].data.style = {
+                marginRight: this.options.gap + "px",
+                ...renderedSlideElements[j].data.style
+              };
             } else {
-              renderedSlideElements[j].data.style = { marginLeft: this.options.gap + "px" };
+              renderedSlideElements[j].data.style = {
+                marginLeft: this.options.gap + "px",
+                ...renderedSlideElements[j].data.style
+              };
             }
           }
           if (renderedSlideElements[j]) {
@@ -275,7 +308,7 @@ export default {
       // Add extras
       if (this.options.endless && this.options.loop) {
         for (let i = 0; i < this.options.extras; i++) {
-          const element = renderedSlideElements[i];
+          const element = this.deepClone(renderedSlideElements[i], createElement);
           if (element) {
             slideSets[0].push(element);
           }
@@ -293,6 +326,7 @@ export default {
       this.$emit("newNumberOfPages", newValue);
     },
     activeIndex(newValue) {
+      this.resetAutoPlayInterval();
       this.$emit("newActiveIndex", newValue);
     }
   }

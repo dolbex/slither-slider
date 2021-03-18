@@ -7,7 +7,7 @@ export default {
       "div",
       {
         ref: "slide",
-        class: "slither-slider-slide",
+        class: this.slideClasses,
         style: this.styles
       },
       this.slideSet
@@ -46,6 +46,16 @@ export default {
     this.setHeight();
   },
   computed: {
+    slideClasses() {
+      const slideClasses = ["slither-slider-slide"];
+
+      if (this.index === this.activeIndex) {
+        slideClasses.push("slither-slider-active-slide");
+      }
+
+      return slideClasses;
+    },
+
     styles() {
       if (this.options.endless) {
         if (this.options.cuts === "left") {

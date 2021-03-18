@@ -770,6 +770,29 @@ module.exports = {
 
 /***/ }),
 
+/***/ "4de4":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var $ = __webpack_require__("23e7");
+var $filter = __webpack_require__("b727").filter;
+var arrayMethodHasSpeciesSupport = __webpack_require__("1dde");
+
+var HAS_SPECIES_SUPPORT = arrayMethodHasSpeciesSupport('filter');
+
+// `Array.prototype.filter` method
+// https://tc39.es/ecma262/#sec-array.prototype.filter
+// with adding support of @@species
+$({ target: 'Array', proto: true, forced: !HAS_SPECIES_SUPPORT }, {
+  filter: function filter(callbackfn /* , thisArg */) {
+    return $filter(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
+  }
+});
+
+
+/***/ }),
+
 /***/ "4df4":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1721,75 +1744,6 @@ module.exports = isForced;
 
 /***/ }),
 
-/***/ "99af":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var $ = __webpack_require__("23e7");
-var fails = __webpack_require__("d039");
-var isArray = __webpack_require__("e8b5");
-var isObject = __webpack_require__("861d");
-var toObject = __webpack_require__("7b0b");
-var toLength = __webpack_require__("50c4");
-var createProperty = __webpack_require__("8418");
-var arraySpeciesCreate = __webpack_require__("65f0");
-var arrayMethodHasSpeciesSupport = __webpack_require__("1dde");
-var wellKnownSymbol = __webpack_require__("b622");
-var V8_VERSION = __webpack_require__("2d00");
-
-var IS_CONCAT_SPREADABLE = wellKnownSymbol('isConcatSpreadable');
-var MAX_SAFE_INTEGER = 0x1FFFFFFFFFFFFF;
-var MAXIMUM_ALLOWED_INDEX_EXCEEDED = 'Maximum allowed index exceeded';
-
-// We can't use this feature detection in V8 since it causes
-// deoptimization and serious performance degradation
-// https://github.com/zloirock/core-js/issues/679
-var IS_CONCAT_SPREADABLE_SUPPORT = V8_VERSION >= 51 || !fails(function () {
-  var array = [];
-  array[IS_CONCAT_SPREADABLE] = false;
-  return array.concat()[0] !== array;
-});
-
-var SPECIES_SUPPORT = arrayMethodHasSpeciesSupport('concat');
-
-var isConcatSpreadable = function (O) {
-  if (!isObject(O)) return false;
-  var spreadable = O[IS_CONCAT_SPREADABLE];
-  return spreadable !== undefined ? !!spreadable : isArray(O);
-};
-
-var FORCED = !IS_CONCAT_SPREADABLE_SUPPORT || !SPECIES_SUPPORT;
-
-// `Array.prototype.concat` method
-// https://tc39.es/ecma262/#sec-array.prototype.concat
-// with adding support of @@isConcatSpreadable and @@species
-$({ target: 'Array', proto: true, forced: FORCED }, {
-  // eslint-disable-next-line no-unused-vars -- required for `.length`
-  concat: function concat(arg) {
-    var O = toObject(this);
-    var A = arraySpeciesCreate(O, 0);
-    var n = 0;
-    var i, k, length, len, E;
-    for (i = -1, length = arguments.length; i < length; i++) {
-      E = i === -1 ? O : arguments[i];
-      if (isConcatSpreadable(E)) {
-        len = toLength(E.length);
-        if (n + len > MAX_SAFE_INTEGER) throw TypeError(MAXIMUM_ALLOWED_INDEX_EXCEEDED);
-        for (k = 0; k < len; k++, n++) if (k in E) createProperty(A, n, E[k]);
-      } else {
-        if (n >= MAX_SAFE_INTEGER) throw TypeError(MAXIMUM_ALLOWED_INDEX_EXCEEDED);
-        createProperty(A, n++, E);
-      }
-    }
-    A.length = n;
-    return A;
-  }
-});
-
-
-/***/ }),
-
 /***/ "9bbf":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2425,6 +2379,27 @@ module.exports = function (name) {
 
 /***/ }),
 
+/***/ "b64b":
+/***/ (function(module, exports, __webpack_require__) {
+
+var $ = __webpack_require__("23e7");
+var toObject = __webpack_require__("7b0b");
+var nativeKeys = __webpack_require__("df75");
+var fails = __webpack_require__("d039");
+
+var FAILS_ON_PRIMITIVES = fails(function () { nativeKeys(1); });
+
+// `Object.keys` method
+// https://tc39.es/ecma262/#sec-object.keys
+$({ target: 'Object', stat: true, forced: FAILS_ON_PRIMITIVES }, {
+  keys: function keys(it) {
+    return nativeKeys(toObject(it));
+  }
+});
+
+
+/***/ }),
+
 /***/ "b727":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2770,6 +2745,29 @@ module.exports = function (it, TAG, STATIC) {
 
 /***/ }),
 
+/***/ "d81d":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var $ = __webpack_require__("23e7");
+var $map = __webpack_require__("b727").map;
+var arrayMethodHasSpeciesSupport = __webpack_require__("1dde");
+
+var HAS_SPECIES_SUPPORT = arrayMethodHasSpeciesSupport('map');
+
+// `Array.prototype.map` method
+// https://tc39.es/ecma262/#sec-array.prototype.map
+// with adding support of @@species
+$({ target: 'Array', proto: true, forced: !HAS_SPECIES_SUPPORT }, {
+  map: function map(callbackfn /* , thisArg */) {
+    return $map(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
+  }
+});
+
+
+/***/ }),
+
 /***/ "da84":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2788,6 +2786,37 @@ module.exports =
   (function () { return this; })() || Function('return this')();
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__("24aa")))
+
+/***/ }),
+
+/***/ "dbb4":
+/***/ (function(module, exports, __webpack_require__) {
+
+var $ = __webpack_require__("23e7");
+var DESCRIPTORS = __webpack_require__("83ab");
+var ownKeys = __webpack_require__("56ef");
+var toIndexedObject = __webpack_require__("fc6a");
+var getOwnPropertyDescriptorModule = __webpack_require__("06cf");
+var createProperty = __webpack_require__("8418");
+
+// `Object.getOwnPropertyDescriptors` method
+// https://tc39.es/ecma262/#sec-object.getownpropertydescriptors
+$({ target: 'Object', stat: true, sham: !DESCRIPTORS }, {
+  getOwnPropertyDescriptors: function getOwnPropertyDescriptors(object) {
+    var O = toIndexedObject(object);
+    var getOwnPropertyDescriptor = getOwnPropertyDescriptorModule.f;
+    var keys = ownKeys(O);
+    var result = {};
+    var index = 0;
+    var key, descriptor;
+    while (keys.length > index) {
+      descriptor = getOwnPropertyDescriptor(O, key = keys[index++]);
+      if (descriptor !== undefined) createProperty(result, key, descriptor);
+    }
+    return result;
+  }
+});
+
 
 /***/ }),
 
@@ -3003,6 +3032,29 @@ addToUnscopables('entries');
 
 /***/ }),
 
+/***/ "e439":
+/***/ (function(module, exports, __webpack_require__) {
+
+var $ = __webpack_require__("23e7");
+var fails = __webpack_require__("d039");
+var toIndexedObject = __webpack_require__("fc6a");
+var nativeGetOwnPropertyDescriptor = __webpack_require__("06cf").f;
+var DESCRIPTORS = __webpack_require__("83ab");
+
+var FAILS_ON_PRIMITIVES = fails(function () { nativeGetOwnPropertyDescriptor(1); });
+var FORCED = !DESCRIPTORS || FAILS_ON_PRIMITIVES;
+
+// `Object.getOwnPropertyDescriptor` method
+// https://tc39.es/ecma262/#sec-object.getownpropertydescriptor
+$({ target: 'Object', stat: true, forced: FORCED, sham: !DESCRIPTORS }, {
+  getOwnPropertyDescriptor: function getOwnPropertyDescriptor(it, key) {
+    return nativeGetOwnPropertyDescriptor(toIndexedObject(it), key);
+  }
+});
+
+
+/***/ }),
+
 /***/ "e538":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3163,6 +3215,9 @@ var staticRenderFns = []
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.assign.js
 var es_object_assign = __webpack_require__("cca6");
 
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.map.js
+var es_array_map = __webpack_require__("d81d");
+
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.number.constructor.js
 var es_number_constructor = __webpack_require__("a9e3");
 
@@ -3172,6 +3227,75 @@ var web_dom_collections_for_each = __webpack_require__("159b");
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.symbol.js
 var es_symbol = __webpack_require__("a4d3");
 
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.filter.js
+var es_array_filter = __webpack_require__("4de4");
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.get-own-property-descriptor.js
+var es_object_get_own_property_descriptor = __webpack_require__("e439");
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.get-own-property-descriptors.js
+var es_object_get_own_property_descriptors = __webpack_require__("dbb4");
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.keys.js
+var es_object_keys = __webpack_require__("b64b");
+
+// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/defineProperty.js
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/objectSpread2.js
+
+
+
+
+
+
+
+
+function ownKeys(object, enumerableOnly) {
+  var keys = Object.keys(object);
+
+  if (Object.getOwnPropertySymbols) {
+    var symbols = Object.getOwnPropertySymbols(object);
+    if (enumerableOnly) symbols = symbols.filter(function (sym) {
+      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+    });
+    keys.push.apply(keys, symbols);
+  }
+
+  return keys;
+}
+
+function _objectSpread2(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+
+    if (i % 2) {
+      ownKeys(Object(source), true).forEach(function (key) {
+        _defineProperty(target, key, source[key]);
+      });
+    } else if (Object.getOwnPropertyDescriptors) {
+      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+    } else {
+      ownKeys(Object(source)).forEach(function (key) {
+        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+      });
+    }
+  }
+
+  return target;
+}
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.symbol.description.js
 var es_symbol_description = __webpack_require__("e01a");
 
@@ -3213,91 +3337,6 @@ function _typeof(obj) {
 
   return _typeof(obj);
 }
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.concat.js
-var es_array_concat = __webpack_require__("99af");
-
-// EXTERNAL MODULE: external {"commonjs":"vue","commonjs2":"vue","root":"Vue"}
-var external_commonjs_vue_commonjs2_vue_root_Vue_ = __webpack_require__("8bbf");
-var external_commonjs_vue_commonjs2_vue_root_Vue_default = /*#__PURE__*/__webpack_require__.n(external_commonjs_vue_commonjs2_vue_root_Vue_);
-
-// CONCATENATED MODULE: ./src/bus.js
-
-/* harmony default export */ var bus = (new external_commonjs_vue_commonjs2_vue_root_Vue_default.a());
-// CONCATENATED MODULE: ./src/components/SlideRenderer.js
-
-
-
-
-/* harmony default export */ var SlideRenderer = ({
-  name: "SlideRenderer",
-  props: {
-    options: {
-      type: Object,
-      required: true
-    }
-  },
-  render: function render() {
-    return this.defaultSlot;
-  },
-  data: function data() {
-    return {
-      defaultSlot: null
-    };
-  },
-  mounted: function mounted() {
-    this.defaultSlot = this.$slots.default;
-    this.setImages();
-    this.addChangeListener();
-  },
-  methods: {
-    setImages: function setImages() {
-      var images = this.findImages(this.defaultSlot[0]);
-      images.forEach(function (image) {
-        image.data.on = Object.assign({}, {
-          load: function load() {
-            bus.$emit("loaded");
-          }
-        }, image.data.on);
-      });
-    },
-    findImages: function findImages(vnode) {
-      var _this = this;
-
-      var imageNodes = [];
-
-      if (vnode.tag === "img") {
-        imageNodes.push(vnode);
-      }
-
-      if (vnode.children) {
-        vnode.children.forEach(function (child) {
-          imageNodes = imageNodes.concat(_this.findImages(child));
-        });
-      }
-
-      return imageNodes;
-    },
-    addChangeListener: function addChangeListener() {
-      var _this2 = this;
-
-      if (this.defaultSlot) {
-        this.defaultSlot.forEach(function (vnode) {
-          if (vnode.data) {
-            _this2.observer = new MutationObserver(function (mutations) {
-              this.$emit("contentChanged");
-            }.bind(_this2)); // Setup the observer
-
-            _this2.observer.observe(_this2.$el, {
-              attributes: true,
-              childList: true,
-              subtree: true
-            });
-          }
-        });
-      }
-    }
-  }
-});
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.from.js
 var es_array_from = __webpack_require__("a630");
 
@@ -4613,6 +4652,13 @@ anime.random = function (min, max) { return Math.floor(Math.random() * (max - mi
 
 /* harmony default export */ var anime_es = (anime);
 
+// EXTERNAL MODULE: external {"commonjs":"vue","commonjs2":"vue","root":"Vue"}
+var external_commonjs_vue_commonjs2_vue_root_Vue_ = __webpack_require__("8bbf");
+var external_commonjs_vue_commonjs2_vue_root_Vue_default = /*#__PURE__*/__webpack_require__.n(external_commonjs_vue_commonjs2_vue_root_Vue_);
+
+// CONCATENATED MODULE: ./src/bus.js
+
+/* harmony default export */ var bus = (new external_commonjs_vue_commonjs2_vue_root_Vue_default.a());
 // CONCATENATED MODULE: ./node_modules/@vue/cli-plugin-babel/node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/@vue/cli-plugin-babel/node_modules/thread-loader/dist/cjs.js!./node_modules/@vue/cli-plugin-babel/node_modules/babel-loader/lib!./node_modules/@vue/cli-service/node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/@vue/cli-service/node_modules/vue-loader/lib??vue-loader-options!./src/components/Slide.vue?vue&type=script&lang=js&
 
 
@@ -4621,7 +4667,7 @@ anime.random = function (min, max) { return Math.floor(Math.random() * (max - mi
   render: function render(createElement) {
     var slide = createElement("div", {
       ref: "slide",
-      class: "slither-slider-slide",
+      class: this.slideClasses,
       style: this.styles
     }, this.slideSet);
     var slideWrapper = createElement("div", {
@@ -4660,6 +4706,15 @@ anime.random = function (min, max) { return Math.floor(Math.random() * (max - mi
     this.setHeight();
   },
   computed: {
+    slideClasses: function slideClasses() {
+      var slideClasses = ["slither-slider-slide"];
+
+      if (this.index === this.activeIndex) {
+        slideClasses.push("slither-slider-active-slide");
+      }
+
+      return slideClasses;
+    },
     styles: function styles() {
       if (this.options.endless) {
         if (this.options.cuts === "left") {
@@ -4854,7 +4909,7 @@ var component = normalizeComponent(
         }
       }) : null;
 
-      if (!_this.options.endless) {
+      if (!_this.options.endless && !_this.animating) {
         var transition = createElement("transition-group", {
           tag: "div",
           class: "slither-slider-transition-group",
@@ -5066,7 +5121,8 @@ var component = normalizeComponent(
       var _this4 = this;
 
       if (this.options.endless) {
-        this.animating = true; // If progressing back from first to last reset us to give us the illusion of
+        this.animating = true;
+        this.$emit("animating", true); // If progressing back from first to last reset us to give us the illusion of
         // infinite loop
 
         if (oldIndex < index - 1) {
@@ -5082,8 +5138,6 @@ var component = normalizeComponent(
           translateX: this.options.cuts === "left" ? this.totalOffsetWidth : -this.totalOffsetWidth,
           easing: "easeOutExpo",
           complete: function complete() {
-            _this4.animating = false;
-
             if (_this4.options.loop) {
               if (index + 1 > _this4.numberOfSlides) {
                 _this4.$emit("resetToStart");
@@ -5092,6 +5146,14 @@ var component = normalizeComponent(
                   translateX: 0
                 });
               }
+
+              _this4.animating = false;
+
+              _this4.$emit("animating", false);
+            } else {
+              _this4.animating = false;
+
+              _this4.$emit("animating", false);
             }
           }
         });
@@ -5122,6 +5184,7 @@ var Slides_component = normalizeComponent(
 
 /* harmony default export */ var Slides = (Slides_component.exports);
 // CONCATENATED MODULE: ./node_modules/@vue/cli-plugin-babel/node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/@vue/cli-plugin-babel/node_modules/thread-loader/dist/cjs.js!./node_modules/@vue/cli-plugin-babel/node_modules/babel-loader/lib!./node_modules/@vue/cli-service/node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/@vue/cli-service/node_modules/vue-loader/lib??vue-loader-options!./src/components/SliderController.vue?vue&type=script&lang=js&
+
 
 
 
@@ -5166,9 +5229,6 @@ var Slides_component = normalizeComponent(
 
     return "";
   },
-  components: {
-    SlideRenderer: SlideRenderer
-  },
   props: {
     options: {
       type: Object,
@@ -5199,7 +5259,7 @@ var Slides_component = normalizeComponent(
     numberOfSlides: function numberOfSlides() {
       var numberOfSlides = 0;
       this.slideElements.forEach(function (slideElement) {
-        if (typeof slideElement.tag !== "undefined") {
+        if (typeof slideElement !== "undefined" && typeof slideElement.tag !== "undefined") {
           numberOfSlides += 1;
         }
       });
@@ -5336,7 +5396,9 @@ var Slides_component = normalizeComponent(
       }
     },
     setIndex: function setIndex(index) {
-      this.activeIndex = index;
+      if (!this.animating) {
+        this.activeIndex = index;
+      }
     },
     goToIndex: function goToIndex(index, buttonClicked) {
       // Find out the direction we're moving.
@@ -5349,7 +5411,7 @@ var Slides_component = normalizeComponent(
         this.slideDirection = this.activeIndex < index ? "left" : "right";
       }
 
-      this.activeIndex = index;
+      this.setIndex(index);
     },
     next: function next() {
       if (!this.animating || this.options.endless) this.goToIndex(this.nextIndex, "next");
@@ -5358,9 +5420,15 @@ var Slides_component = normalizeComponent(
       if (!this.animating || this.options.endless) this.goToIndex(this.prevIndex, "prev");
     },
     startAutoplay: function startAutoplay() {
+      if (this.options.autoplay) {
+        this.resetAutoPlayInterval();
+      }
+    },
+    resetAutoPlayInterval: function resetAutoPlayInterval() {
       var _this5 = this;
 
       if (this.options.autoplay) {
+        clearInterval(this.autoplayInterval);
         var interval = this.options.secondsOnSlide ? this.options.secondsOnSlide * 1000 : 4000;
         this.autoplayInterval = setInterval(function () {
           _this5.next();
@@ -5370,19 +5438,42 @@ var Slides_component = normalizeComponent(
     pauseInterval: function pauseInterval() {
       clearInterval(this.autoplayInterval);
     },
-    buildSlideSets: function buildSlideSets(createElement) {
-      var _this6 = this;
+    deepClone: function deepClone(vnodes, createElement) {
+      function cloneVNode(vnode) {
+        var cloned = createElement(vnode.tag, vnode.data);
 
+        if (vnode.children) {
+          var clonedChildren = vnode.children && vnode.children.map(function (vnode) {
+            return cloneVNode(vnode);
+          });
+          cloned = createElement(vnode.tag, vnode.data, clonedChildren);
+        }
+
+        cloned.text = vnode.text;
+        cloned.isComment = vnode.isComment;
+        cloned.componentInstance = vnode.componentInstance;
+        cloned.componentOptions = vnode.componentOptions;
+        cloned.elm = vnode.elm;
+        cloned.context = vnode.context;
+        cloned.ns = vnode.ns;
+        cloned.isStatic = vnode.isStatic;
+        cloned.key = Math.random() * (10000 - 100) + 100;
+        return cloned;
+      }
+
+      if (vnodes) {
+        var clonedVNodes = cloneVNode(vnodes);
+        return clonedVNodes;
+      }
+
+      return null;
+    },
+    buildSlideSets: function buildSlideSets(createElement) {
       var renderedSlideElements = [];
       var slideSets = [];
       this.slideElements.forEach(function (slideElement) {
-        if (typeof slideElement.tag !== "undefined") {
-          var slide = createElement(SlideRenderer, {
-            props: {
-              options: _this6.options
-            }
-          }, [slideElement]);
-          renderedSlideElements.push(slide);
+        if (typeof slideElement !== "undefined" && typeof slideElement.tag !== "undefined") {
+          renderedSlideElements.push(slideElement);
         }
       });
 
@@ -5393,13 +5484,13 @@ var Slides_component = normalizeComponent(
         for (var j = startOfSet; j < this.numberOfElementsPerSlide + startOfSet; j++) {
           if (this.options.endless) {
             if (this.options.cuts === "right") {
-              renderedSlideElements[j].data.style = {
+              renderedSlideElements[j].data.style = _objectSpread2({
                 marginRight: this.options.gap + "px"
-              };
+              }, renderedSlideElements[j].data.style);
             } else {
-              renderedSlideElements[j].data.style = {
+              renderedSlideElements[j].data.style = _objectSpread2({
                 marginLeft: this.options.gap + "px"
-              };
+              }, renderedSlideElements[j].data.style);
             }
           }
 
@@ -5414,7 +5505,7 @@ var Slides_component = normalizeComponent(
 
       if (this.options.endless && this.options.loop) {
         for (var _i = 0; _i < this.options.extras; _i++) {
-          var element = renderedSlideElements[_i];
+          var element = this.deepClone(renderedSlideElements[_i], createElement);
 
           if (element) {
             slideSets[0].push(element);
@@ -5433,6 +5524,7 @@ var Slides_component = normalizeComponent(
       this.$emit("newNumberOfPages", newValue);
     },
     activeIndex: function activeIndex(newValue) {
+      this.resetAutoPlayInterval();
       this.$emit("newActiveIndex", newValue);
     }
   }

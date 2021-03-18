@@ -26,7 +26,7 @@ export default {
             })
           : null;
 
-      if (!this.options.endless) {
+      if (!this.options.endless && !this.animating) {
         const transition = createElement(
           "transition-group",
           {
@@ -237,6 +237,7 @@ export default {
     activeIndex(index, oldIndex) {
       if (this.options.endless) {
         this.animating = true;
+        this.$emit("animating", true);
 
         // If progressing back from first to last reset us to give us the illusion of
         // infinite loop
@@ -253,12 +254,16 @@ export default {
           translateX: this.options.cuts === "left" ? this.totalOffsetWidth : -this.totalOffsetWidth,
           easing: "easeOutExpo",
           complete: () => {
-            this.animating = false;
             if (this.options.loop) {
               if (index + 1 > this.numberOfSlides) {
                 this.$emit("resetToStart");
                 anime.set(this.$el, { translateX: 0 });
               }
+              this.animating = false;
+              this.$emit("animating", false);
+            } else {
+              this.animating = false;
+              this.$emit("animating", false);
             }
           }
         });

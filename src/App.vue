@@ -6,17 +6,6 @@
         <div class="slider-card">
           <div class="headline-2">Slide 1</div>
           <p v-for="(paragraph, key) in getRandomParagraphs(1)" :key="key">{{ paragraph }}</p>
-          <!-- <button @click="showoverflow = !showoverflow" class="button">
-            Show Overflow
-          </button>
-
-          <div style="position:relative;">
-            <div
-              style="position: absolute; right:0; border:3px solid red; width:200px; height:500px; border-radius:1em; padding:12px 16px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);"
-            >
-              asdfasdf
-            </div>
-          </div> -->
         </div>
         <div>
           <div class="slider-card">
@@ -39,7 +28,7 @@
           overflowHiddenPadding: { top: 0, left: 20, right: 20, bottom: 20 }
         }"
       >
-        <div class="slider-card" style="background-color: pink;">
+        <div class="slider-card">
           <div class="headline-2">Slide 1</div>
           <p v-for="(paragraph, key) in getRandomParagraphs(2)" :key="key">{{ paragraph }}</p>
         </div>
@@ -196,7 +185,7 @@
           overflowHiddenPadding: { top: 0, left: 20, right: 20, bottom: 20 }
         }"
       >
-        <div class="slider-card" style="background-color: pink;">
+        <div class="slider-card">
           <div class="headline-2">Slide 1</div>
           <p v-for="(paragraph, key) in getRandomParagraphs(2)" :key="key">{{ paragraph }}</p>
         </div>
@@ -276,7 +265,7 @@
       <hr />
 
       <div class="headline-1">Variable Width Endless Slider</div>
-      <div style="width:60%; background-color:pink; border-radius:20px;">
+      <div style="width:60%; border-radius:20px;">
         <slither-slider :options="{ dots: true, endless: true, gap: 20 }">
           <div
             v-for="n in 4"
@@ -302,7 +291,7 @@
       <hr />
 
       <div class="headline-1">Endless Slider (opposite side cut-off)</div>
-      <div style="width:60%; background-color:pink; border-radius:20px;">
+      <div style="width:60%; border-radius:20px;">
         <slither-slider :options="{ dots: true, endless: true, gap: 20, cuts: 'left' }">
           <div
             v-for="n in 4"
@@ -598,7 +587,7 @@
         <strong>Important</strong>: You <strong>must</strong> wrap components in a div or other
         valid html element.
       </p>
-      <slither-slider>
+      <slither-slider :options="{ autoplay: true, secondsOnSlide: 5 }">
         <div v-for="n in 6" :key="n">
           <another-test-component :number="n" :full-width="true"></another-test-component>
         </div>
@@ -609,8 +598,10 @@
       <div class="headline-1">Endless Slider with components</div>
       <p>
         Another test with the components at the root and endless turned on.
-        <strong>Important</strong>: You <strong>must</strong> wrap components in a div or other
-        valid html element.
+        <strong>Important</strong>: In this example change slide one's title to red, and go "back"
+        to the left so you can see slide 9 and 1. Since the 1 you are now looking at is a clone of
+        the first slide (to give it the illusion of infinite scroll) the states will be differnet.
+        Just keep this in mind and use a global store if you need persistance across your slides.
       </p>
       <slither-slider
         :options="{ endless: true, extras: 4, animatedDots: true, dotLimit: true }"
@@ -643,30 +634,8 @@
       </slither-slider>
 
       <hr />
-      <div class="headline-1">Slider Events</div>
-      <slither-slider
-        :options="{
-          autoplay: true
-        }"
-        @changed="setNewSlideIndex"
-      >
-        <div class="slider-card">
-          <div class="headline-2">Slide 1</div>
-          <p>Check out the current slide index below</p>
-        </div>
-        <div>
-          <div class="slider-card">
-            <div class="headline-2">Slide 2</div>
-            <p>Check out the current slide index below</p>
-          </div>
-        </div>
-        <div class="slider-card">
-          <div class="headline-2">Slide 3</div>
-          <p>Check out the current slide index below</p>
-        </div>
-      </slither-slider>
 
-      <div>The current slide index is {{ exampleEventIndex }}</div>
+      <slider-with-event></slider-with-event>
 
       <hr />
 
@@ -706,6 +675,7 @@ import SlitherSlider from "./components/SlitherApp.vue";
 import TestRenderComponent from "./components/testing-demo/TestRenderComponent";
 import AnotherTestComponent from "./components/testing-demo/AnotherTestComponent";
 import DynamicSlides from "./components/testing-demo/DynamicSlides";
+import SliderWithEvent from "./components/testing-demo/SliderWithEvent";
 
 export default {
   name: "App",
@@ -713,12 +683,12 @@ export default {
     SlitherSlider,
     AnotherTestComponent,
     TestRenderComponent,
-    DynamicSlides
+    DynamicSlides,
+    SliderWithEvent
   },
   data() {
     return {
       loaded: true,
-      exampleEventIndex: 0,
       paragraphs: [
         `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus consequat dolor eu lorem commodo interdum. Praesent ut dictum neque. Duis bibendum, lorem bibendum congue volutpat, felis risus consectetur ipsum, eget varius lacus lacus id massa. Fusce suscipit leo eget lorem porta, nec tempor tellus cursus. Curabitur pellentesque vitae nisi finibus gravida. Praesent id lectus ac lacus tristique consectetur. Integer hendrerit odio vel erat varius, et fermentum arcu dignissim.`,
         `Sed ac lacinia mi. Aenean mollis aliquam tortor, eget vulputate eros. Nulla luctus ullamcorper tristique. Curabitur ex magna, tincidunt et ante a, sodales vestibulum mi. Proin luctus turpis vel tempus rutrum. Curabitur nec euismod nibh. Suspendisse id ante odio. Cras euismod lacus vel venenatis bibendum. Nulla sit amet semper est.`,
@@ -751,9 +721,6 @@ export default {
     getRandomParagraph() {
       const randomParagraph = Math.floor(Math.random() * Math.floor(9));
       return this.paragraphs[randomParagraph];
-    },
-    setNewSlideIndex(newIndex) {
-      this.exampleEventIndex = newIndex;
     }
   }
 };
