@@ -1,6 +1,6 @@
 {
   "name": "slither-slider",
-  "version": "2.8.0",
+  "version": "2.8.1",
   "private": false,
   "description": "Simple Vue JS slider for Vue JS that pretty much takes what you throw at it. Features 'fullscreen', lazy loading, and easy customization",
   "scripts": {
