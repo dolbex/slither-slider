@@ -84,6 +84,7 @@ There is one thing to keep in mind when passing components a any part of your sl
   slideClass: null,
   sliderClass: null,
   secondsOnSlide: 4,
+  clickableSlides: false,
   endless: false,
   cuts: "right",
   gap: 30,
@@ -113,6 +114,7 @@ There is one thing to keep in mind when passing components a any part of your sl
 | slidePosition         | "center"                           | "center", "left", and "right" are your options.                                                                                                                                                         |
 | secondsOnSlide        | 4                                  | This is the number of seconds slither will pause on a slide before moving foward (autoplay must be set to true)                                                                                         |
 | endless               | false                              | Display all the slides next to each other regardless of their width                                                                                                                                     |
+| clickableSlides       | false                              | Will advance to the slide clicked                                                                                                                                                                       |
 | cuts                  | "right"                            | ("endless" must be true) Cuts off the slides on the right side by default. In a case where you want the cut-off of slides to show on the left set this value to "left"                                  |
 | gap                   | 10                                 | ("endless" parameter must be true) The gap between each of the slides in an endless presentation                                                                                                        |
 | adaptiveHeight        | false                              | If set to true the slider will increase and decrease height based on the slide's height. False will base a fixed height on the first slide's height presentation                                        |

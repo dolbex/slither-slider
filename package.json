@@ -15,11 +15,10 @@
     "publish-docs": "git subtree push --prefix dist origin gh-pages"
   },
   "main": "./plugin-dist/slither-slider.umd.min.js",
-  "dependencies": {
-    "animejs": "^3.1.0",
-    "vue2-touch-events": "^3.2.0"
-  },
+  "dependencies": {},
   "devDependencies": {
+    "animejs": "^3.1.0",
+    "vue2-touch-events": "^3.2.0",
     "@vue/cli-plugin-babel": "~4.5.11",
     "@vue/cli-plugin-eslint": "~4.5.11",
     "@vue/cli-service": "~4.5.11",

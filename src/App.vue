@@ -340,6 +340,32 @@
 
       <hr />
 
+      <div class="headline-1">Clickable Slides</div>
+      <slither-slider
+        :options="{ dots: true, endless: true, gap: 20, loop: false, clickableSlides: true }"
+      >
+        <div
+          v-for="n in 8"
+          :key="n"
+          :style="{
+            backgroundColor: '#E53E3E',
+            color: '#fff',
+            width: randomWidth(n),
+            height: '200px',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            fontSize: '6rem',
+            fontWeight: 'bold',
+            borderRadius: '0.25rem'
+          }"
+        >
+          {{ n }}
+        </div>
+      </slither-slider>
+
+      <hr />
+
       <div class="headline-1">Background Images</div>
       <slither-slider :options="{ dots: false }">
         <div

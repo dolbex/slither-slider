@@ -298,6 +298,20 @@ export default {
               };
             }
           }
+          if (this.options.clickableSlides) {
+            if (typeof renderedSlideElements[j].data.on === "undefined") {
+              renderedSlideElements[j].data["on"] = {};
+            }
+
+            renderedSlideElements[j].data.style = {
+              cursor: "pointer",
+              ...renderedSlideElements[j].data.style
+            };
+
+            renderedSlideElements[j].data.on.click = () => {
+              this.goToIndex(j);
+            };
+          }
           if (renderedSlideElements[j]) {
             slideSet.push(renderedSlideElements[j]);
           }

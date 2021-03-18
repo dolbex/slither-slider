@@ -81,6 +81,7 @@ export default {
         transition: "slide",
         animationDuration: 500,
         animationEasing: "easeOutQuint",
+        clickableSlides: false,
         controls: true,
         dots: true,
         animatedDots: false,
