@@ -697,20 +697,14 @@
 </template>
 
 <script>
-import SlitherSlider from "./components/SlitherApp.vue";
-import TestRenderComponent from "./components/testing-demo/TestRenderComponent";
-import AnotherTestComponent from "./components/testing-demo/AnotherTestComponent";
-import DynamicSlides from "./components/testing-demo/DynamicSlides";
-import SliderWithEvent from "./components/testing-demo/SliderWithEvent";
-
 export default {
   name: "App",
   components: {
-    SlitherSlider,
-    AnotherTestComponent,
-    TestRenderComponent,
-    DynamicSlides,
-    SliderWithEvent
+    SlitherSlider: () => import("./components/SlitherApp.vue"),
+    TestRenderComponent: () => import("./components/testing-demo/TestRenderComponent"),
+    AnotherTestComponent: () => import("./components/testing-demo/AnotherTestComponent"),
+    DynamicSlides: () => import("./components/testing-demo/DynamicSlides"),
+    SliderWithEvent: () => import("./components/testing-demo/SliderWithEvent")
   },
   data() {
     return {

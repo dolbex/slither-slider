@@ -156,7 +156,7 @@ export default {
 
           styles = {
             width: `${width}px`,
-            transform: `translate3d(-${offset}px, 0, 0)`
+            marginLeft: `-${offset}px`
           };
         } else {
           styles = { width: `${width}px` };
