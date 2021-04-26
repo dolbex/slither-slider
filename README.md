@@ -93,7 +93,8 @@ There is one thing to keep in mind when passing components a any part of your sl
   extras: 3,
   overflowHiddenPadding: { top: 0, left: 0, right: 0, bottom: 0 },
   touch: true,
-  preserveGrid: false
+  preserveGrid: false,
+  swipeTolerance: 80
 }
 ```
 
@@ -122,7 +123,8 @@ There is one thing to keep in mind when passing components a any part of your sl
 | extras                | 3                                  | ("endless" and "loop" parameters must be true) This adjusts the number of slides slither appends to the end to give the illusion of infinite                                                            |
 | overflowHiddenPadding | {top:0, left:0, right:0, bottom:0} | If you have a dropshadow or something absolutely positioned relative that "hangs over" the spacing of your slide contents you may need to apply some padding.                                           |
 | touch                 | true                               | Enables swipe gestures to navigate slides                                                                                                                                                               |
-| preserveGrid          | fase                               | When multiple slides are shown at a time and you get to the last one where there is an awkward number should we preserve the grid to keep the space where slides would have been?                       |
+| preserveGrid          | false                              | When multiple slides are shown at a time and you get to the last one where there is an awkward number should we preserve the grid to keep the space where slides would have been?                       |
+| swipeTolerance        | 80                                 | Swipe Tolerance on the swiping: 0 - 100 - higher is more likely to register a swipe                                                                                                                     |
 
 ### Events
 

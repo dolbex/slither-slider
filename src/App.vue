@@ -2,7 +2,7 @@
   <div id="app" class="demo">
     <div>
       <div class="headline-1">Basic slider</div>
-      <slither-slider>
+      <slither-slider :options="{ swipeTolerance: 80 }">
         <div class="slider-card">
           <div class="headline-2">Slide 1</div>
           <p v-for="(paragraph, key) in getRandomParagraphs(1)" :key="key">{{ paragraph }}</p>

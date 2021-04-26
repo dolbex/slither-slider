@@ -4,6 +4,7 @@
     v-if="finalOptions.transition"
     v-touch:swipe.left="leftSwipe"
     v-touch:swipe.right="rightSwipe"
+    v-touch-options="{ swipeTolerance: finalOptions.swipeTolerance }"
   >
     <slider-controller
       :options="finalOptions"
@@ -98,7 +99,8 @@ export default {
         overflowHiddenPadding: { top: 0, left: 0, right: 0, bottom: 0 },
         touch: true,
         cuts: "right",
-        preserveGrid: false
+        preserveGrid: false,
+        swipeTolerance: 80
       },
       finalOptions: {}
     };
