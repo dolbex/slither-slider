@@ -7472,9 +7472,9 @@ sass-loader@^11.0.1:
     neo-async "^2.6.2"
 
 sass@^1.18.0:
-  version "1.32.11"
-  resolved "https://registry.yarnpkg.com/sass/-/sass-1.32.11.tgz#b236b3ea55c76602c2ef2bd0445f0db581baa218"
-  integrity sha512-O9tRcob/fegUVSIV1ihLLZcftIOh0AF1VpKgusUfLqnb2jQ0GLDwI5ivv1FYWivGv8eZ/AwntTyTzjcHu0c/qw==
+  version "1.32.12"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.32.12.tgz#a2a47ad0f1c168222db5206444a30c12457abb9f"
+  integrity sha512-zmXn03k3hN0KaiVTjohgkg98C3UowhL1/VSGdj4/VAAiMKGQOE80PFPxFP2Kyq0OUskPKcY5lImkhBKEHlypJA==
   dependencies:
     chokidar ">=3.0.0 <4.0.0"
 
@@ -8698,7 +8698,7 @@ vue-template-es2015-compiler@^1.9.0:
   resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz#1ee3bc9a16ecbf5118be334bb15f9c46f82f5825"
   integrity sha512-4gDntzrifFnCEvyoO8PqyJDmguXgVPxKiIxrBKjIowvL9l+N66196+72XVYR8BBf1Uv1Fgt3bGevJ+sEmxfZzw==
 
-vue2-touch-events@^3.2.0:
+vue2-touch-events@^3.2.2:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/vue2-touch-events/-/vue2-touch-events-3.2.2.tgz#77b760a70659ed8a75e7c685163e73497be87042"
   integrity sha512-rGV8jxgOQEJYkJCp7uOBe3hjvmG1arThrq1wGtJHwJTgi65+P2a+0l4CYcQO/U1ZFqTq2/TT2+oTE6H7Y+6Eog==
