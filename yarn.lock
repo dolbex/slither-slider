@@ -1345,7 +1345,7 @@
   optionalDependencies:
     vue-loader-v16 "npm:vue-loader@^16.1.0"
 
-"@vue/cli-shared-utils@^4.5.12", "@vue/cli-shared-utils@^4.5.13":
+"@vue/cli-shared-utils@^4.5.13":
   version "4.5.13"
   resolved "https://registry.yarnpkg.com/@vue/cli-shared-utils/-/cli-shared-utils-4.5.13.tgz#acd40f31b4790f1634292bdaa5fca95dc1e0ff50"
   integrity sha512-HpnOrkLg42RFUsQGMJv26oTG3J3FmKtO2WSRhKIIL+1ok3w9OjGCtA3nMMXN27f9eX14TqO64M36DaiSZ1fSiw==
@@ -7392,9 +7392,9 @@ sass-loader@^11.0.1:
     neo-async "^2.6.2"
 
 sass@^1.18.0:
-  version "1.32.13"
-  resolved "https://registry.yarnpkg.com/sass/-/sass-1.32.13.tgz#8d29c849e625a415bce71609c7cf95e15f74ed00"
-  integrity sha512-dEgI9nShraqP7cXQH+lEXVf73WOPCse0QlFzSD8k+1TcOxCMwVXfQlr0jtoluZysQOyJGnfr21dLvYKDJq8HkA==
+  version "1.34.0"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.34.0.tgz#e46d5932d8b0ecc4feb846d861f26a578f7f7172"
+  integrity sha512-rHEN0BscqjUYuomUEaqq3BMgsXqQfkcMVR7UhscsAVub0/spUrZGBMxQXFS2kfiDsPLZw5yuU9iJEFNC2x38Qw==
   dependencies:
     chokidar ">=3.0.0 <4.0.0"
 
