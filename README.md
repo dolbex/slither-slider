@@ -1,6 +1,6 @@
 # Slither Slider
 
-> :warning: **Project closed**
+> :warning: **PROJECT CLOSED**
 
 I had a lot of fun working on Slither for a while. I learned a lot and encourage you to take make this a "simple" project to learn from. It's deceptively complex to meet all the edge cases.
 
