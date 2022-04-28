@@ -1,16 +1,18 @@
 # Slither Slider
 
-Simple Vue JS slider for Vue JS that pretty much takes what you throw at it.
-
-![Minified](https://badgen.net/bundlephobia/minzip/slither-slider)
-
-![Snakes.... I hate snakes](https://github.com/dolbex/slither-slider/blob/master/snake.png?raw=true)
-
 > :warning: **Project closed**
 
 I had a lot of fun working on Slither for a while. I learned a lot and encourage you to take make this a "simple" project to learn from. It's deceptively complex to meet all the edge cases.
 
 The folks at https://swiperjs.com/ have really done it right. I will be migrating all of my projects in that direction moving forward.
+
+---
+
+Simple Vue JS slider for Vue JS that pretty much takes what you throw at it.
+
+![Minified](https://badgen.net/bundlephobia/minzip/slither-slider)
+
+![Snakes.... I hate snakes](https://github.com/dolbex/slither-slider/blob/master/snake.png?raw=true)
 
 ## Demo
 
